@@ -2,8 +2,6 @@ package fr.formation.repo.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import fr.formation.model.Abonnes;
 import fr.formation.model.Saisie;
 import fr.formation.repo.IAbonnesRepository;
@@ -13,7 +11,7 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 
 	@Override
 	public List<Abonnes> findAll() {
-		
+
 		try (EntityManager em = emf.createEntityManager()) {
 			em.createQuery("select a from Abonnes a", Abonnes.class).getResultList();
 		} catch (Exception ex) {
@@ -25,12 +23,9 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 	}
 
 	@Override
-	
-	public void createEntry() {
-       Abonnes abonne = new Abonnes();
-       
-   	try (EntityManager em = emf.createEntityManager()) {
 
+	public void createEntry() {
+		Abonnes abonne = new Abonnes();
 		int id_animal = Saisie.nextInt("L'Id de l'animal: ");
 		int age = Saisie.nextInt("Son age : ");
 		String pseudo = Saisie.next("Son pseudo :");
@@ -41,40 +36,51 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 		abonne.setPseudo(pseudo);
 		abonne.setNb_patounes(nb_patounes);
 		abonne.setQuartier_id(id_quartier);
-		
-		
-		
-   	}
+
+		try (EntityManager em = emf.createEntityManager()) {
+			em.getTransaction().begin();
+			try {
+				if (abonne.getId() == 0) {
+					em.persist(abonne);
+				} else {
+					abonne = em.merge(abonne);
+				}
+				em.getTransaction().commit();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				em.getTransaction().rollback();
+			}
+
+		}
 	}
 
 	@Override
 	public void updateEntry(Abonnes entity) {
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
-			
+
 			try {
 				if (entity.getId() == 0) {
 					em.persist(entity);
 				}
-				
+
 				else {
 					entity = em.merge(entity);
 				}
-				
+
 				em.getTransaction().commit();
 			}
-			
+
 			catch (Exception ex) {
 				ex.printStackTrace();
 				em.getTransaction().rollback();
 			}
 		}
-		
+
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		return ;
+
 	}
 
 	@Override
@@ -85,8 +91,22 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 
 	@Override
 	public void deleteEntry() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Entrer le pseudo de l'abonne que vous voulez supprimer");
+
+		try (EntityManager em = emf.createEntityManager()) {
+			em.getTransaction().begin();
+			try {
+				Abonnes abonneAsupprimer = em.find(Abonnes.class, Saisie.next("l'Id de l'abonnest a supprimé : "));
+				em.remove(abonneAsupprimer);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				em.getTransaction().rollback();
+			}
+
+		} catch (Exception ed) {
+			ed.printStackTrace();
+		}
 	}
 
 }
