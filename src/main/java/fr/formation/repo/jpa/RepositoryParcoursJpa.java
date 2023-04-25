@@ -1,5 +1,6 @@
 package fr.formation.repo.jpa;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,16 +39,14 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
                 ex.printStackTrace();
                 em.getTransaction().rollback();
             }
-            catch (Exception ex){
-                ex.printStackTrace();
-            }
-
             return;
         }
     }
 
     @Override
     public void deleteEntry (){
+        System.out.println("Entrez l'id du parcours à supprimer : ");
+        String id = 
         try(EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
@@ -66,6 +65,18 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
             ex.printStackTrace();
         }
         
+    }
+
+    @Override
+    public void createEntry() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
+    }
+
+    @Override
+    public List<Parcours> findByDateParcours(LocalDateTime date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByDateParcours'");
     }
 
 }
