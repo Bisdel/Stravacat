@@ -1,4 +1,4 @@
-package fr.formation.repo;
+package fr.formation.model;
 
 public class Abonnement {
 
