@@ -5,5 +5,5 @@ import java.util.List;
 
 
 public interface IAbonnementsRepository extends IRepository<Abonnement> {
-	 public  List<Aboennements> findByAbonnements(String abonnement);
+	 public  List<Abonnement> findByAbonnements(String abonnement);
 }
