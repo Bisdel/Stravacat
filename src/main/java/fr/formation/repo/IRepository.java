@@ -6,7 +6,7 @@ import fr.formation.model.Animal;
 
 public interface IRepository<T> {
 
-    public List<Animal> findAll();
+    public List<T> findAll();
 
     public void createEntry(String pseudo);
     
