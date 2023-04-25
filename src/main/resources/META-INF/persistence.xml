@@ -11,7 +11,7 @@
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/stravacat" />
 			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.user" value="postgres" />
-			<property name="hibernate.connection.password" value="0000" />
+			<property name="hibernate.connection.password" value="070910" />
 			
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			
