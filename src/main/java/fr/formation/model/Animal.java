@@ -1,11 +1,37 @@
 package fr.formation.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "animal")
 public class Animal {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "anim_id")
     private int id;
+
+    @Column(name = "anim_pseudo")
     private String pseudo;
+
+    @Column(name = "anim_password")
     private String password;
+    
+    @Column(name = "anim_age")
     private int age;
+    
+    @Column(name = "anim_nb_patounes")
     private int nbPatounes;
+    
+    @ManyToOne
+    @JoinColumn(name = "quar_id")
     private int quartierId;
 
     public int getId() {
