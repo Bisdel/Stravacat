@@ -46,7 +46,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     @Override
     public void deleteEntry (){
         System.out.println("Entrez l'id du parcours à supprimer : ");
-        String id = 
+        String id = sc.nextLine();
         try(EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
@@ -75,6 +75,13 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
 
     @Override
     public List<Parcours> findByDateParcours(LocalDateTime date) {
+        try (EntityManager em = emf.createEntityManager()){
+            return em.createQuery(null)
+        }
+        LocalDateTime end = date.plusDays(1);
+
+        // where la date est comprise entre le début et la fin
+
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByDateParcours'");
     }
