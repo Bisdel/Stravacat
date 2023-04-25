@@ -1,11 +1,24 @@
 package fr.formation.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-
-
+@Entity
+@Table(name = " quartier ")
 public class Quartier {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "quar_id")
 private int id;
+	
+	@Column(name = "quar_ville" , length = 30 , nullable = false)
 private String ville;
+	
+	@Column(name = " quar_ambiance" , length = 250 , nullable=false)
 private String ambiance;
 
 
