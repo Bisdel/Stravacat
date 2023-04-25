@@ -1,3 +1,3 @@
 # Stravacat
 
-!(/wireframe.png)
+![wireframe](/wireframe.png)
