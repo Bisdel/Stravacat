@@ -10,10 +10,10 @@ public class ApplicationAnimalJpa {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("\nBienvenue sur Stravacat, le réseau social de vos compagnons à poils préférés !");
 
         IRepositoryAnimal repoAnimalJpa = new RepositoryAnimalJpa();
 
+        System.out.println("\nBienvenue sur Stravacat, le réseau social de vos compagnons à poils préférés !");
         System.out.println("\n-- Rechercher un animal par son pseudo :\nEntrez un pseudo :");
         try {
             String pseudo = sc.nextLine();
