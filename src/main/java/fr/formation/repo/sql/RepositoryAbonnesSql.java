@@ -1,6 +1,7 @@
 package fr.formation.repo.sql;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import fr.Stravact.repo.IAbonnesRepository;
-import fr.formation.model.Abonnes;
 
-public class RepositoryAbonnesSql extends AbstractRepository implements IAbonnesRepository {
+import fr.formation.model.Abonnes;
+import fr.formation.model.Animal;
+import fr.formation.repo.IAbonnesRepository;
+
+public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbonnesRepository {
 
 	@Override
 	public List<Abonnes> findAll() {
@@ -43,7 +46,7 @@ public class RepositoryAbonnesSql extends AbstractRepository implements IAbonnes
 		return abonnes;
 	}
 
-	@Override
+
 	public Optional<Abonnes> findByid(int id) {
 		try {
 			String query = "select * from abonnes where abon_id = ? ";
@@ -71,7 +74,7 @@ public class RepositoryAbonnesSql extends AbstractRepository implements IAbonnes
 		return Optional.empty();
 	}
 
-	@Override
+	
 	public Abonnes save(Abonnes entity) {
 		try {
 			String query = "INSERT INTO ABONNES( abon_age , abon_pseudo, abon_animal_id , abon_nb_patounes ,abon_quartier_id) values (?,?,?,?,?)";
@@ -94,7 +97,7 @@ public class RepositoryAbonnesSql extends AbstractRepository implements IAbonnes
 		return entity;
 	}
 
-	@Override
+
 	public void deletedById(int id) {
 		try {
 			String query = "delete from abonnes where abon_id = ? ";
@@ -130,6 +133,24 @@ public class RepositoryAbonnesSql extends AbstractRepository implements IAbonnes
 			ex.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void createEntry(String pseudo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEntry(Animal animal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEntry() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

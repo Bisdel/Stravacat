@@ -70,7 +70,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		return Optional.empty();
 	}
 
-	@Override
+	
 	public Quartier save(Quartier entity) {
 		try {
 			String query = "Insert into quartier (quar_ambiance , quar_ville) values(?,?)";
@@ -95,7 +95,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		return entity;
 	}
 
-	@Override
+
 	public void deletedById(int id) {
 		try {
 			String query = "DELETE FROM quartier Where quar_id = ? ";
@@ -109,7 +109,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 	}
 
-	@Override
+
 	
 	public List<Quartier> findByVille(String ville) {
 		try {
