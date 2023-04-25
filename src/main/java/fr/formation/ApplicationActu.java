@@ -69,10 +69,10 @@ public class ApplicationActu {
 		System.out.println("Privé ? (true/false) :");		
 		actualite.setActu_isPrivate(sc.nextBoolean());
 		
-		repoActualite.createEntry();
+		repoActualite.createEntry(actualite);
 		
 		System.out.println("Actualité #" + actualite.getActu_id() + " ajoutée");
-		System.out.println("Actu#" + actualite.getActu_id() + " - " + LocalDateTime.now() + ", " + actualite.getActu_description());
+		System.out.println("Actu#" + actualite.getActu_id() + " - " + actualite.getActu_timestamp() + ", " + actualite.getActu_description());
 	}
 	
 	public static void afficherActualite() {
@@ -80,8 +80,11 @@ public class ApplicationActu {
 		try {
 			System.out.println("Saisis l'id de l'animal l'ancien");
 			int animalId = sc.nextInt();
-			List<Actualite> actualites = repoActualite.findByAnimalId(animalId);
 			
+			List<Actualite> actualites = repoActualite.findByAnimalId(animalId);
+			if (actualites.isEmpty()){
+				System.out.println("Pseudo inexistant donc pas d'actu");
+			} else {
 			for (Actualite a : actualites)
 				if (a.getActu_isPrivate()) {
 					String confid = "privé";
@@ -90,16 +93,16 @@ public class ApplicationActu {
 				else {
 					String confid = "public";
 					System.out.println("Actu#" + a.getActu_id() + " Statut " + confid + " - " + a.getActu_timestamp().toLocalDate() + " à " + a.getActu_timestamp().toLocalTime() + ", " + a.getActu_description());
-				}				
+				}	
+			}			
 		}
 		catch (InputMismatchException ex) {
 			ex.printStackTrace();
-			System.out.println("Pas d'animal donc pas d'actu");
 		}
 	}
 	
 	public static void modifierActualite() {
-		afficherActualite();
+		listerActualites();
 		IActualiteRepository repoActualite = new RepositoryActualiteSql();
 		System.out.println("-------------------------------");
 		try {
@@ -121,7 +124,7 @@ public class ApplicationActu {
 	}
 	
 	public static void supprimerActualite() {
-		afficherActualite();
+		listerActualites();
 		IActualiteRepository repoActualite = new RepositoryActualiteSql();
 		System.out.println("-------------------------------");	
 		try {

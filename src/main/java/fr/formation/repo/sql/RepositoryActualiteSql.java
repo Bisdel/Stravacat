@@ -12,6 +12,7 @@ import java.util.List;
 import fr.formation.ApplicationActu;
 import fr.formation.model.Actualite;
 import fr.formation.repo.IActualiteRepository;
+import jakarta.persistence.JoinColumn;
 
 public class RepositoryActualiteSql extends AbstractRepositorySql implements IActualiteRepository {
 
@@ -40,8 +41,7 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
 	// }
 
 	@Override
-	public void createEntry() {
-        Actualite actualite = new Actualite();
+	public Actualite createEntry(Actualite actualite) {
 		try {
 			if (actualite.getActu_id() == 0) {
 				String query = "INSERT INTO actualite (actu_animal_id, actu_ville_id, actu_description, actu_isprivate, actu_timestamp) VALUES (?, ?, ?, ?, ?)";
@@ -63,6 +63,13 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
 		catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+		return actualite;
+	}
+
+	@Override
+	public void createEntry() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
 	}
 
 	@Override
@@ -89,18 +96,13 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
         try {
             System.out.println("Saisis l'id de l'actualité à modifier l'ancien");
             int id = ApplicationActu.sc.nextInt();
-
-            int actuanimalId = ApplicationActu.sc.nextInt();
-            int actuvilleId = ApplicationActu.sc.nextInt();
-            String actudescription = ApplicationActu.sc.nextLine();
-            boolean actuconfid = ApplicationActu.sc.nextBoolean();
 		
-			String query = "UPDATE actualite SET actu_animal_id = ?, actu_ville_id = ?, actu_description = ?, actu_isprivate = ? , actu_date = ? WHERE actu_id = ?";
+			String query = "UPDATE actualite SET actu_animal_id = ?, actu_ville_id = ?, actu_description = ?, actu_isprivate = ? , actu_timestamp = ? WHERE actu_id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, actuanimalId);
-			statement.setInt(2, actuvilleId);
-			statement.setString(3, actudescription);
-			statement.setBoolean(4, actuconfid);
+			statement.setInt(1, actualite.getActu_animal_id());
+			statement.setInt(2, actualite.getActu_ville_id());
+			statement.setString(3, actualite.getActu_description());
+			statement.setBoolean(4, actualite.getActu_isPrivate());
             statement.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
 			statement.setInt(6, id);
 			statement.executeUpdate();
