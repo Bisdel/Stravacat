@@ -6,7 +6,7 @@ public interface IRepository<T> {
 
     public List<T> findAll();
 
-    public void createEntry(String pseudo);
+    public void createEntry();
     
     public void updateEntry(T entity);
     
