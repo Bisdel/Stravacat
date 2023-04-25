@@ -1,5 +1,6 @@
 package fr.formation;
 
+import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -71,7 +72,7 @@ public class ApplicationActu {
 		repoActualite.createEntry();
 		
 		System.out.println("Actualité #" + actualite.getActu_id() + " ajoutée");
-		System.out.println("Actu#" + actualite.getActu_id() + " - " + actualite.getActu_timestamp() + ", " + actualite.getActu_description());
+		System.out.println("Actu#" + actualite.getActu_id() + " - " + LocalDateTime.now() + ", " + actualite.getActu_description());
 	}
 	
 	public static void afficherActualite() {
