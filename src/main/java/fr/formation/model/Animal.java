@@ -98,4 +98,12 @@ public class Animal {
     public void setQuartierId(int quartierId) {
         this.quartierId = quartierId;
     }
+
+    public List<Parcours> getParcours() {
+        return parcours;
+    }
+
+    public void setParcours(List<Parcours> parcours) {
+        this.parcours = parcours;
+    }
 }

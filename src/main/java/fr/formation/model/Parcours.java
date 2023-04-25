@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 @Entity
 @Table (name = "parcours")
 public class Parcours {
@@ -44,7 +45,7 @@ public class Parcours {
 	private Time tempsParcours; 
 
 		@ManyToOne
-		@JoinColumn(name = "id")
+		@JoinColumn(name = "anim_id")
 	private Animal animal;
 
 
