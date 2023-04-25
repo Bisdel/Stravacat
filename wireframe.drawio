@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="zmbx7RX13E1gPNatcwdM" name="Page-1">
-        <mxGraphModel dx="1155" dy="781" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1424" dy="919" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -130,7 +130,7 @@
                 <mxCell id="41" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.user;fillColor=#7FBA42;rotation=0;" parent="8" vertex="1">
                     <mxGeometry x="101" y="135" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="Tes amis à poils t'attendent !&lt;br&gt;(et non l'inverse)" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Nunito;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNunito;fontStyle=1;fontSize=15;" parent="29" vertex="1">
+                <mxCell id="44" value="Tes amis à poils t'attendent !&lt;br&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Nunito;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNunito;fontStyle=1;fontSize=15;" parent="29" vertex="1">
                     <mxGeometry x="330" y="220" width="110" height="170" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="Search" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.searchBox;strokeColor=#999999;mainText=;strokeColor2=#008cff;fontColor=#666666;fontSize=17;align=left;spacingLeft=3;" parent="29" vertex="1">
