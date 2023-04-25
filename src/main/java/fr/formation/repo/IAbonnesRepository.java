@@ -2,8 +2,11 @@ package fr.formation.repo;
 
 import java.util.List;
 
+import fr.formation.model.Abonnement;
 import fr.formation.model.Abonnes;
 
+
+
 public interface IAbonnesRepository extends IRepository<Abonnes> {
- public   List<Abonnes> findByAbonnes(String pseudo);
+	 public  List<Abonnes> findByPseudo(String pseudo);
 }

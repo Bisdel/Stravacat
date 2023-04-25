@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 import fr.formation.model.Abonnes;
 import fr.formation.repo.IAbonnesRepository;
 
@@ -43,8 +42,8 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 		}
 
 		return abonnes;
-	}
 
+	}
 
 	public Optional<Abonnes> findByid(int id) {
 		try {
@@ -53,9 +52,9 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
 
-		if(result.next()) {
+			if (result.next()) {
 				Abonnes abonne = new Abonnes();
-				
+
 				abonne.setAge(result.getInt("abon_age"));
 				abonne.setId(result.getInt("abon_id"));
 				abonne.setPseudo(result.getString("abon_pseudo"));
@@ -73,43 +72,6 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 		return Optional.empty();
 	}
 
-	
-	public Abonnes save(Abonnes entity) {
-		try {
-			String query = "INSERT INTO ABONNES( abon_age , abon_pseudo, abon_animal_id , abon_nb_patounes ,abon_quartier_id) values (?,?,?,?,?)";
-			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			statement.setFloat(1, entity.getAge());
-			statement.setString(2, entity.getPseudo());
-			statement.setFloat(3, entity.getAnimal_id());
-			statement.setFloat(4, entity.getNb_patounes());
-			statement.setFloat(5, entity.getQuartier_id());
-			
-			ResultSet result = statement.getGeneratedKeys();
-			statement.executeUpdate();
-			
-			if (result.next()) {
-				entity.setId(result.getInt("abon_id"));
-			}
-		} catch (SQLException m) {
-			m.printStackTrace();
-		}
-		return entity;
-	}
-
-
-	public void deletedById(int id) {
-		try {
-			String query = "delete from abonnes where abon_id = ? ";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, id);
-			statement.executeUpdate();
-
-		} catch (SQLException d) {
-			d.printStackTrace();
-		}
-
-	}
-	@Override
 	public List<Abonnes> findByAbonnes(String pseudo) {
 		try {
 			String qyery = " selectr * from abonnes where abon_pseudo = ?";
@@ -136,26 +98,50 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 
 	@Override
 	public void createEntry(String pseudo) {
-		// TODO Auto-generated method stub
-		
+
 	}
-
-	
-		
-	
-
 
 	@Override
 	public void updateEntry(Abonnes entity) {
-		// TODO Auto-generated method stub
-		
-	}
+		try {
+			String query = "INSERT INTO ABONNES( abon_age , abon_pseudo, abon_animal_id , abon_nb_patounes ,abon_quartier_id) values (?,?,?,?,?)";
+			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			statement.setFloat(1, entity.getAge());
+			statement.setString(2, entity.getPseudo());
+			statement.setFloat(3, entity.getAnimal_id());
+			statement.setFloat(4, entity.getNb_patounes());
+			statement.setFloat(5, entity.getQuartier_id());
 
+			ResultSet result = statement.getGeneratedKeys();
+			statement.executeUpdate();
+
+			if (result.next()) {
+				entity.setId(result.getInt("abon_id"));
+			}
+		} catch (SQLException m) {
+			m.printStackTrace();
+		}
+		return;
+
+	}
 
 	@Override
 	public void deleteEntry() {
+		try {
+			String query = "delete from abonnes where abon_id = ? ";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, 0);
+			statement.executeUpdate();
+
+		} catch (SQLException d) {
+			d.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Abonnes> findByPseudo(String pseudo) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }
