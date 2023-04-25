@@ -6,7 +6,7 @@ import fr.formation.model.Animal;
 import fr.formation.repo.IRepositoryAnimal;
 import fr.formation.repo.sql.RepositoryAnimalSql;
 
-public class Application {
+public class ApplicationAnimalJpa {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -19,8 +19,8 @@ public class Application {
             String pseudo = sc.nextLine();
             if (repoAnimalSql.findByPseudo(pseudo).isPresent()) {
                 Animal animal = repoAnimalSql.findByPseudo(pseudo).get();
-                System.out.println("Animal trouvé !\nIl s'appelle " + animal.getAnim_pseudo() + ", il a "
-                        + animal.getAnim_age() + " ans et " + animal.getAnim_nb_patounes() + " patounes.");
+                System.out.println("Animal trouvé !\nIl s'appelle " + animal.getPseudo() + ", il a "
+                        + animal.getAge() + " ans et " + animal.getNbPatounes() + " patounes.");
                 System.out.println("Voulez-vous mettre à jour une de ces informations ?");
                 if (Navigation.choixOuiNon()){
                     repoAnimalSql.updateEntry(animal);                    

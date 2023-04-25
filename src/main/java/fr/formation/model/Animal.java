@@ -1,48 +1,59 @@
 package fr.formation.model;
 
 public class Animal {
-    private int anim_id;
-    private String anim_pseudo;
-    private String anim_password;
-    private int anim_age;
-    private int anim_nb_patounes;
-    private int anim_quartier_id;
-    
-    public int getAnim_id() {
-        return anim_id;
+    private int id;
+    private String pseudo;
+    private String password;
+    private int age;
+    private int nbPatounes;
+    private int quartierId;
+
+    public int getId() {
+        return id;
     }
-    public void setAnim_id(int anim_id) {
-        this.anim_id = anim_id;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getAnim_pseudo() {
-        return anim_pseudo;
+
+    public String getPseudo() {
+        return pseudo;
     }
-    public void setAnim_pseudo(String anim_pseudo) {
-        this.anim_pseudo = anim_pseudo;
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
-    public String getAnim_password() {
-        return anim_password;
+
+    public String getPassword() {
+        return password;
     }
-    public void setAnim_password(String anim_password) {
-        this.anim_password = anim_password;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public int getAnim_age() {
-        return anim_age;
+
+    public int getAge() {
+        return age;
     }
-    public void setAnim_age(int anim_age) {
-        this.anim_age = anim_age;
+
+    public void setAge(int age) {
+        this.age = age;
     }
-    public int getAnim_nb_patounes() {
-        return anim_nb_patounes;
+
+    public int getNbPatounes() {
+        return nbPatounes;
     }
-    public void setAnim_nb_patounes(int anim_nb_patounes) {
-        this.anim_nb_patounes = anim_nb_patounes;
+
+    public void setNbPatounes(int nbPatounes) {
+        this.nbPatounes = nbPatounes;
     }
-    public int getAnim_quartier_id() {
-        return anim_quartier_id;
+
+    public int getQuartierId() {
+        return quartierId;
     }
-    public void setAnim_quartier_id(int anim_quartier_id) {
-        this.anim_quartier_id = anim_quartier_id;
+
+    public void setQuartierId(int quartierId) {
+        this.quartierId = quartierId;
     }
-  
+
 }
