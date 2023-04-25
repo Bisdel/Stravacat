@@ -26,42 +26,51 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             return new ArrayList<>();
         }
     }
-    
+
     @Override
     public Optional<Animal> findByPseudo(String pseudo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByPseudo'");
+        try (EntityManager em = emf.createEntityManager()) {
+            return Optional.of(em
+                    .createQuery("select a from Animal a where a.pseudo = ?1", Animal.class)
+                    .setParameter(1, pseudo)
+                    .getSingleResult());
+        } catch (Exception ex) {
+            return Optional.empty();
+        }
     }
-    
+
     @Override
     public void createEntry() {
         System.out.println(
-            "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredepatounes");
+                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredepatounes - quartier");
         Animal animal = new Animal();
         try {
-			String infos = ApplicationAnimalJpa.sc.nextLine();
-			animal.setPseudo(String.format(infos.split(" - ")[0]));
-			animal.setPassword(String.format(infos.split(" - ")[1]));
-			animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
-			animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
-		} catch (NumberFormatException e) {
-			System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
-		} catch (IllegalFormatException e) {
-			System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
-		}
-        
-        try (EntityManager em = emf.createEntityManager()){
+            String infos = ApplicationAnimalJpa.sc.nextLine();
+            animal.setPseudo(String.format(infos.split(" - ")[0]));
+            animal.setPassword(String.format(infos.split(" - ")[1]));
+            animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
+            animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
+            String quartier = String.format(infos.split(" - ")[4]);
+            // if quartier.ispresent in table quartier :
+            //      comment rattacher au bon quartier ?
+            // -> Quartier.findbynom à créer
+        } catch (NumberFormatException e) {
+            System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
+        } catch (IllegalFormatException e) {
+            System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
+        }
+
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            try{
-                if (animal.getId() == 0){
+            try {
+                if (animal.getId() == 0) {
                     em.persist(animal);
-                }
-                else {
+                } else {
                     animal = em.merge(animal);
                 }
                 em.getTransaction().commit();
-            }
-            catch (Exception ex){
+                System.out.println("Votre animal a bien été créé !");
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 em.getTransaction().rollback();
             }
@@ -70,54 +79,52 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
 
     @Override
     public void updateEntry(Animal animal) {
-		boolean saisieValide = false;
-		while (saisieValide == false) {
-			System.out.println(
-					"\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/patounes) - donnée, exemple : pseudo - Franklinlatortue)");
-			String infos = ApplicationAnimalJpa.sc.nextLine();
+        boolean saisieValide = false;
+        while (saisieValide == false) {
+            System.out.println(
+                    "\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/patounes) - donnée, exemple : pseudo - Franklinlatortue)");
+            String infos = ApplicationAnimalJpa.sc.nextLine();
 
-			try {
-				try {
-					animal.setPseudo(String.format(infos.split("pseudo - ")[1]));
-					saisieValide = true;
-				} catch (ArrayIndexOutOfBoundsException e) {
-					// ignores error thrown for the fields not filled by user to update
-				}
-				try {
-					animal.setPassword(String.format(infos.split("motdepasse - ")[1]));
-					saisieValide = true;
-				} catch (ArrayIndexOutOfBoundsException e) {
-					// ignores error thrown for the fields not filled by user to update
-				}
-				try {
-					animal.setAge(Integer.parseInt(infos.split("age - ")[1]));
-					saisieValide = true;
-				} catch (ArrayIndexOutOfBoundsException e) {
-					// ignores error thrown for the fields not filled by user to update
-				}
-				try {
-					animal.setNbPatounes(Integer.parseInt(infos.split("patounes - ")[1]));
-					saisieValide = true;
-				} catch (ArrayIndexOutOfBoundsException e) {
-					// ignores error thrown for the fields not filled by user to update
-				}
-			} catch (Exception e) {
-				System.out.println(
-						"\nUne erreur s'est glissée dans votre saisie. Veuillez bien respecter le format de saisie des données à modifier :)");
-			}
-		}
-        try (EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin();
-            try{
-                if (animal.getId() == 0){
-                    em.persist(animal);
+            try {
+                try {
+                    animal.setPseudo(String.format(infos.split("pseudo - ")[1]));
+                    saisieValide = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // ignores error thrown for the fields not filled by user to update
                 }
-                else {
+                try {
+                    animal.setPassword(String.format(infos.split("motdepasse - ")[1]));
+                    saisieValide = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // ignores error thrown for the fields not filled by user to update
+                }
+                try {
+                    animal.setAge(Integer.parseInt(infos.split("age - ")[1]));
+                    saisieValide = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // ignores error thrown for the fields not filled by user to update
+                }
+                try {
+                    animal.setNbPatounes(Integer.parseInt(infos.split("patounes - ")[1]));
+                    saisieValide = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // ignores error thrown for the fields not filled by user to update
+                }
+            } catch (Exception e) {
+                System.out.println(
+                        "\nUne erreur s'est glissée dans votre saisie. Veuillez bien respecter le format de saisie des données à modifier :)");
+            }
+        }
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            try {
+                if (animal.getId() == 0) {
+                    em.persist(animal);
+                } else {
                     animal = em.merge(animal);
                 }
                 em.getTransaction().commit();
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 em.getTransaction().rollback();
             }
@@ -126,29 +133,27 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
 
     @Override
     public void deleteEntry() {
-		boolean saisieValide = false;
-		while (saisieValide == false) {
-			System.out.println("Entrez le pseudo à supprimer :");
-			String pseudo = ApplicationAdminJpa.scadmin.nextLine();
-            try(EntityManager em = emf.createEntityManager()){
+        boolean saisieValide = false;
+        while (saisieValide == false) {
+            System.out.println("Entrez le pseudo à supprimer :");
+            String pseudo = ApplicationAdminJpa.scadmin.nextLine();
+            try (EntityManager em = emf.createEntityManager()) {
                 em.getTransaction().begin();
-                try{
-                    em  .createQuery("delete from Animal a where a.pseudo = ?1")
-                        .setParameter(1, pseudo)
-                        .executeUpdate();
+                try {
+                    em.createQuery("delete from Animal a where a.pseudo = ?1")
+                            .setParameter(1, pseudo)
+                            .executeUpdate();
                     em.getTransaction().commit();
-                }
-                catch (Exception ex){
+                } catch (Exception ex) {
                     ex.printStackTrace();
                     em.getTransaction().rollback();
                 }
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
             System.out.println("L'animal a bien été supprimé de la base de données.");
             saisieValide = true;
         }
-            
+
     }
 }

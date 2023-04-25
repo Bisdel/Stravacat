@@ -5,7 +5,7 @@ import java.util.List;
 import fr.formation.model.Quartier;
 import fr.formation.repo.IQuartierRepository;
 
-public class QuartierRepositoryJpa implements IQuartierRepository {
+public class RepositoryQuartierJpa implements IQuartierRepository {
 
 	@Override
 	public List<Quartier> findAll() {
