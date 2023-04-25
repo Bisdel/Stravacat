@@ -11,7 +11,7 @@ public abstract class AbstractRepositorySql {
     public AbstractRepositorySql() {
         
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/stravacat_db", "postgres", "0000");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/stravact", "postgres", "0104");
         } catch (SQLException e) {
             e.printStackTrace();
         }

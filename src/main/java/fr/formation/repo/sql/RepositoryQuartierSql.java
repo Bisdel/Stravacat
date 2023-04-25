@@ -128,18 +128,15 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 	@Override
 	public void deleteEntry() {
 		try {
-			IQuartierRepository repoQuartier = new RepositoryQuartierSql();
+	
 			String query = "delete from quartier where quar_id= ? ";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, Saisie.next("veuillez saisr l'id du quartier que vous voulez supprimer : "));
-			int id = Saisie.nextInt("son Id");
-		
-			System.out.println("l'Id # " + (id) + " à été supprimer avec succé ! ");
+
+			statement.setInt(1, Saisie.nextInt("son Id"));
 			statement.executeUpdate();
 		} catch (SQLException d) {
 			d.printStackTrace();
 		}
-		
 
 	}
 
