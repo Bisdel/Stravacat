@@ -12,11 +12,13 @@ import java.util.Optional;
 
 import fr.formation.repo.IQuartierRepository;
 import fr.formation.model.Quartier;
+import fr.formation.model.Saisie;
 
 public class RepositoryQuartierSql extends AbstractRepositorySql implements IQuartierRepository {
 
 	@Override
 	public List<Quartier> findAll() {
+		
 		List<Quartier> quartiers = new ArrayList<>();
 
 		try {
@@ -94,13 +96,6 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		return entity;
 	}
 
-
-	public void deletedById(int id) {
-	
-
-	}
-
-
 	
 	public List<Quartier> findByVille(String ville) {
 		try {
@@ -136,14 +131,21 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 	@Override
 	public void updateEntry(Quartier entity) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 
 	@Override
 	public void deleteEntry() {
-		// TODO Auto-generated method stub
+		try {
+			String query = "delete from quartier where quar_id= ? ";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1,Saisie.next("veuillez saisr l'id du quartier que vous voulez supprimer : "));
+			statement.executeUpdate();
+
+		} catch (SQLException d) {
+			d.printStackTrace();
+		}
 		
 	}
 

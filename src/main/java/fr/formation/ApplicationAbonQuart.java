@@ -95,24 +95,16 @@ public class ApplicationAbonQuart {
 		int id = Saisie.nextInt("son Id");
 		repoQuartier.deleteEntry();
 		System.out.println("l'Id # " + (id) + " à été supprimer avec succé ! ");
-		for (Quartier q : repoQuartier.findAll()) {
-			System.out.println(
-					" l'id est " + q.getId() + " l'ambiance " + q.getAmbiance() + " la ville  " + q.getVille());
+		
 
 		}
-
-	}
-
+	
 	private static void SupprimerAbonnes() {
 		IAbonnesRepository repoAbonnes = new RepositoryAbonnesSql();
-		System.out.println(" qu'elle abonne vous voulez supprimer !");
 		repoAbonnes.deleteEntry();
-		for (Abonnes a : repoAbonnes.findAll()) {
-			System.out.println("l'Id " + a.getId() + " l'Id de l'animal abonne " + a.getAnimal_id() + " son pseudo "
-					+ a.getPseudo() + " son age " + a.getAge() + " c'est nombre de patte " + a.getNb_patounes()
-					+ " l'Id du cartier " + a.getQuartier_id());
+	
 		}
 
 	}
 
-}
+
