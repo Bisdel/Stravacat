@@ -96,15 +96,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 
 	public void deletedById(int id) {
-		try {
-			String query = "DELETE FROM quartier Where quar_id = ? ";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, id);
-			statement.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
+	
 
 	}
 
@@ -134,6 +126,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		return null;
 	}
 
+
 	@Override
 	public void createEntry(String pseudo) {
 		// TODO Auto-generated method stub
@@ -142,7 +135,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 
 	@Override
-	public void updateEntry(Quartier t) {
+	public void updateEntry(Quartier entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -153,5 +146,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }
