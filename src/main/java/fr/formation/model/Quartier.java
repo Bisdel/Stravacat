@@ -24,7 +24,7 @@ private String ville;
 	@Column(name = " quar_ambiance" , length = 250 , nullable=false)
 private String ambiance;
 
-	@OneToMany(mappedBy = "animal")
+	@OneToMany(mappedBy = "quartier")
 	private List<Animal> animaux;
 
 

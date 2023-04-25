@@ -45,7 +45,7 @@ public class Parcours {
 	private Time tempsParcours; 
 
 		@ManyToOne
-		@JoinColumn(name = "anim_id")
+		@JoinColumn(name = "par_animal_id")
 	private Animal animal;
 
 
