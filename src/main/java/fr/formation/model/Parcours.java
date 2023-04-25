@@ -8,10 +8,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
-@Table (name = "Parcours")
+@Table (name = "parcours")
 public class Parcours {
 
 	//------------? A PREVOIR ?-------------
@@ -42,7 +43,8 @@ public class Parcours {
 		@Column (name = "par_temps")
 	private Time tempsParcours; 
 
-		@OneToOne(mappedBy = "anim_id")
+		@ManyToOne
+		@JoinColumn(name = "id")
 	private Animal animal;
 
 

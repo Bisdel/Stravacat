@@ -1,5 +1,7 @@
 package fr.formation.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +36,12 @@ public class Animal {
     @ManyToOne
     @JoinColumn(name = "anim_quartier_id")
     private Quartier quartier;
+
+    @OneToMany(mappedBy = "parcours")
+    private List<Parcours> parcours;
+
+    //for SQL Apps
+    private int quartierId;
 
     public int getId() {
         return id;
@@ -80,5 +89,13 @@ public class Animal {
 
     public void setQuartier(Quartier quartier) {
         this.quartier = quartier;
+    }
+
+    public int getQuartierId() {
+        return quartierId;
+    }
+
+    public void setQuartierId(int quartierId) {
+        this.quartierId = quartierId;
     }
 }
