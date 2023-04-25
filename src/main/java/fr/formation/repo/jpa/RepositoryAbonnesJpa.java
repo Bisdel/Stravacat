@@ -35,7 +35,7 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 		abonne.setAge(age);
 		abonne.setPseudo(pseudo);
 		abonne.setNb_patounes(nb_patounes);
-		abonne.setQuartier_id(id_quartier);
+		abonne.setVille_id(id_ville);
 
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();

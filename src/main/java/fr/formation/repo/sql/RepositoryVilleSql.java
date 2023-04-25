@@ -69,11 +69,11 @@ public class RepositoryVilleSql extends AbstractRepositorySql implements IVilleR
 		return Optional.empty();
 	}
 
-	public List<Ville> findByVille(String ville) {
+	public List<Ville> findByVille(String ville2) {
 		try {
 			String query = "Select * from ville where vill_ville = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, ville);
+			statement.setString(1, ville2);
 
 			ResultSet result = statement.executeQuery();
 
@@ -98,9 +98,9 @@ public class RepositoryVilleSql extends AbstractRepositorySql implements IVilleR
 		IVilleRepository repoVille = new RepositoryVilleSql();
 		System.out.println(" Creer un nouveau ville ");
 		Ville ville = new Ville();
-		String ville = Saisie.next("le nom de la ville :");
+		String vil = Saisie.next("le nom de la ville :");
 		String ambiance = Saisie.next(" l'ambiance : ");
-		ville.setVille(ville);
+		ville.setVille(vil);
 		ville.setAmbiance(ambiance);
 		repoVille.updateEntry(ville);
 		System.out.println("le ville  " + ville.getId() + "ajouté");
