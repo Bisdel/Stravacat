@@ -37,7 +37,7 @@ public class Animal {
     @JoinColumn(name = "anim_quartier_id")
     private Quartier quartier;
 
-    @OneToMany(mappedBy = "parcours")
+    @OneToMany(mappedBy = "animal")
     private List<Parcours> parcours;
 
     //for SQL Apps
@@ -97,5 +97,13 @@ public class Animal {
 
     public void setQuartierId(int quartierId) {
         this.quartierId = quartierId;
+    }
+
+    public List<Parcours> getParcours() {
+        return parcours;
+    }
+
+    public void setParcours(List<Parcours> parcours) {
+        this.parcours = parcours;
     }
 }
