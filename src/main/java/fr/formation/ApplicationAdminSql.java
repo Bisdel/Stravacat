@@ -7,7 +7,7 @@ import fr.formation.model.Animal;
 import fr.formation.repo.IRepositoryAnimal;
 import fr.formation.repo.sql.RepositoryAnimalSql;
 
-public class ApplicationAdmin extends Application {
+public class ApplicationAdminSql extends ApplicationAnimalSql {
 
     public static Scanner scadmin = new Scanner(System.in);
     public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class ApplicationAdmin extends Application {
         System.out.println("\n-- Affichage des animaux présents sur le site :");
         List<Animal> animaux = repoAnimalSql.findAll();
         for (Animal animal : animaux) {
-            System.out.println("Animal #"+animal.getAnim_id()+" : "+animal.getAnim_pseudo()+", "+animal.getAnim_age()+" ans.");
+            System.out.println("Animal #"+animal.getId()+" : "+animal.getPseudo()+", "+animal.getAge()+" ans.");
         }
         
         System.out.println("\nVoulez-vous supprimer un animal ?");

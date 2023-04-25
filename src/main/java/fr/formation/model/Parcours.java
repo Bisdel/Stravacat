@@ -8,10 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 @Entity
-@Table (name = "Parcours")
+@Table (name = "parcours")
 public class Parcours {
 
 	//------------? A PREVOIR ?-------------
@@ -24,25 +26,26 @@ public class Parcours {
 		
 	    @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column (name = "par_id")
+        @Column (name = "parc_id")
 	private int id;
 
-        @Column (name = "par_ville", length = 100)
+        @Column (name = "parc_ville", length = 100)
 	private String villeParcours;
 
-        @Column (name = "par_quartier", length = 100)
+        @Column (name = "parc_quartier", length = 100)
 	private String quartierParcours;
 
-        @Column (name = "par_date")
+        @Column (name = "parc_date")
 	private LocalDateTime datePublicationParcours;
 
-        @Column (name = "par_trace")
+        @Column (name = "parc_trace")
 	private int traceGpsParcours; // JSON ??
 
-		@Column (name = "par_temps")
+		@Column (name = "parc_temps")
 	private Time tempsParcours; 
 
-		@OneToOne(mappedBy = "Animal")
+		@ManyToOne
+		@JoinColumn(name = "parc_animal_id")
 	private Animal animal;
 
 

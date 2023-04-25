@@ -58,61 +58,29 @@ public class ApplicationAbonQuart {
 
 	private static void AjouterQuartier() {
 		IQuartierRepository repoQuartier = new RepositoryQuartierSql();
-		System.out.println(" Creer un nouveau quartier ");
-		Quartier quartier = new Quartier();
-		String ville = Saisie.next("le nom de la ville :");
-		String ambiance = Saisie.next(" l'ambiance : ");
-		quartier.setVille(ville);
-		quartier.setAmbiance(ambiance);
-		repoQuartier.updateEntry(quartier);
-		System.out.println(quartier.getId() + " " + quartier.getAmbiance() + " " + quartier.getVille());
+	    repoQuartier.createEntry();
+	   
 	}
 
 	private static void AjouterAbonnes() {
 		IAbonnesRepository repoAbonnes = new RepositoryAbonnesSql();
-		System.out.println(" Creer un nouveau Abonne ");
-		Abonnes abonnes = new Abonnes();
-		System.out.println("--------------------------------");
-		int id_animal = Saisie.nextInt("L'Id de l'animal: ");
-		int age = Saisie.nextInt("Son age : ");
-		String pseudo = Saisie.next("Son pseudo :");
-		int nb_patounes = Saisie.nextInt("nb_patounes : ");
-		int id_quartier = Saisie.nextInt(" l'Id du quartier : ");
-		abonnes.setAnimal_id(id_animal);
-		abonnes.setAge(age);
-		abonnes.setPseudo(pseudo);
-		abonnes.setNb_patounes(nb_patounes);
-		abonnes.setQuartier_id(id_quartier);
-		repoAbonnes.updateEntry(abonnes);
-		System.out.println("L'id de l'abonne" + abonnes.getId() + " l'id de l'animal abonne est "
-				+ abonnes.getAnimal_id() + " son pseudo " + abonnes.getPseudo() + " son age " + abonnes.getAge()
-				+ " nb_patounes " + abonnes.getNb_patounes() + " le quartier de l'abonnes " + abonnes.getQuartier_id());
+		repoAbonnes.createEntry();
+	
 	}
 
 	private static void SupprimerQuartier() {
 		IQuartierRepository repoQuartier = new RepositoryQuartierSql();
-		System.out.println("Veuillez sasir l'Id que vous voulez supprimer ");
-		int id = Saisie.nextInt("son Id");
 		repoQuartier.deleteEntry();
-		System.out.println("l'Id # " + (id) + " à été supprimer avec succé ! ");
-		for (Quartier q : repoQuartier.findAll()) {
-			System.out.println(
-					" l'id est " + q.getId() + " l'ambiance " + q.getAmbiance() + " la ville  " + q.getVille());
+		
 
 		}
-
-	}
-
+	
 	private static void SupprimerAbonnes() {
 		IAbonnesRepository repoAbonnes = new RepositoryAbonnesSql();
-		System.out.println(" qu'elle abonne vous voulez supprimer !");
 		repoAbonnes.deleteEntry();
-		for (Abonnes a : repoAbonnes.findAll()) {
-			System.out.println("l'Id " + a.getId() + " l'Id de l'animal abonne " + a.getAnimal_id() + " son pseudo "
-					+ a.getPseudo() + " son age " + a.getAge() + " c'est nombre de patte " + a.getNb_patounes()
-					+ " l'Id du cartier " + a.getQuartier_id());
+	
 		}
 
 	}
 
-}
+

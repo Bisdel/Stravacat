@@ -59,30 +59,6 @@ public class RepositoryParcoursSql extends AbstractRepositorySql implements IPar
 		return Optional.empty();
 	}
 
-	@Override
-	public Optional<Parcours> findById(int id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-    @Override
-    public void createEntry(String pseudo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
-    }
-
-    @Override
-    public void updateEntry(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateEntry'");
-    }
-
     @Override
     public void deleteEntry() {
         // TODO Auto-generated method stub
@@ -90,8 +66,20 @@ public class RepositoryParcoursSql extends AbstractRepositorySql implements IPar
     }
 
     @Override
-    public List<Parcours> findByParcoursId(int id) {
+    public void createEntry() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByParcoursId'");
+        throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
+    }
+
+    @Override
+    public void updateEntry(Parcours entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateEntry'");
+    }
+
+    @Override
+    public List<Parcours> findByDateParcours(LocalDateTime date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByDateParcours'");
     }
 }

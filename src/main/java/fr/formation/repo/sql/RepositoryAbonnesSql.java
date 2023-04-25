@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.formation.model.Abonnes;
+import fr.formation.model.Quartier;
+import fr.formation.model.Saisie;
 import fr.formation.repo.IAbonnesRepository;
+import fr.formation.repo.IQuartierRepository;
 
 public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbonnesRepository {
 
@@ -98,7 +101,22 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 
 	@Override
 	public void createEntry() {
+		IAbonnesRepository repoAbonnes = new RepositoryAbonnesSql();
+		Abonnes abonnes = new Abonnes();
 
+		int id_animal = Saisie.nextInt("L'Id de l'animal: ");
+		int age = Saisie.nextInt("Son age : ");
+		String pseudo = Saisie.next("Son pseudo :");
+		int nb_patounes = Saisie.nextInt("nb_patounes : ");
+		int id_quartier = Saisie.nextInt(" l'Id du quartier : ");
+		abonnes.setAnimal_id(id_animal);
+		abonnes.setAge(age);
+		abonnes.setPseudo(pseudo);
+		abonnes.setNb_patounes(nb_patounes);
+		abonnes.setQuartier_id(id_quartier);
+
+		repoAbonnes.updateEntry(abonnes);
+		System.out.println("l'abonne à été ajouter !");
 	}
 
 	@Override
@@ -128,9 +146,9 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 	@Override
 	public void deleteEntry() {
 		try {
-			String query = "delete from abonnes where abon_id = ? ";
+			String query = "delete from abonnes where abon_pseudo= ? ";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, 0);
+			statement.setString(1, Saisie.next("veuillez saisr le pseudo que vous voulez supprimer : "));
 			statement.executeUpdate();
 
 		} catch (SQLException d) {
@@ -140,7 +158,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 
 	@Override
 	public List<Abonnes> findByPseudo(String pseudo) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

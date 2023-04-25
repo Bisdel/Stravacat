@@ -1,48 +1,109 @@
 package fr.formation.model;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "animal")
 public class Animal {
-    private int anim_id;
-    private String anim_pseudo;
-    private String anim_password;
-    private int anim_age;
-    private int anim_nb_patounes;
-    private int anim_quartier_id;
     
-    public int getAnim_id() {
-        return anim_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "anim_id")
+    private int id;
+
+    @Column(name = "anim_pseudo")
+    private String pseudo;
+
+    @Column(name = "anim_password")
+    private String password;
+    
+    @Column(name = "anim_age")
+    private int age;
+    
+    @Column(name = "anim_nb_patounes")
+    private int nbPatounes;
+    
+    @ManyToOne
+    @JoinColumn(name = "anim_quartier_id")
+    private Quartier quartier;
+
+    @OneToMany(mappedBy = "animal")
+    private List<Parcours> parcours;
+
+    //for SQL Apps
+    private int quartierId;
+
+    public int getId() {
+        return id;
     }
-    public void setAnim_id(int anim_id) {
-        this.anim_id = anim_id;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getAnim_pseudo() {
-        return anim_pseudo;
+
+    public String getPseudo() {
+        return pseudo;
     }
-    public void setAnim_pseudo(String anim_pseudo) {
-        this.anim_pseudo = anim_pseudo;
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
-    public String getAnim_password() {
-        return anim_password;
+
+    public String getPassword() {
+        return password;
     }
-    public void setAnim_password(String anim_password) {
-        this.anim_password = anim_password;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public int getAnim_age() {
-        return anim_age;
+
+    public int getAge() {
+        return age;
     }
-    public void setAnim_age(int anim_age) {
-        this.anim_age = anim_age;
+
+    public void setAge(int age) {
+        this.age = age;
     }
-    public int getAnim_nb_patounes() {
-        return anim_nb_patounes;
+
+    public int getNbPatounes() {
+        return nbPatounes;
     }
-    public void setAnim_nb_patounes(int anim_nb_patounes) {
-        this.anim_nb_patounes = anim_nb_patounes;
+
+    public void setNbPatounes(int nbPatounes) {
+        this.nbPatounes = nbPatounes;
     }
-    public int getAnim_quartier_id() {
-        return anim_quartier_id;
+
+    public Quartier getQuartier() {
+        return quartier;
     }
-    public void setAnim_quartier_id(int anim_quartier_id) {
-        this.anim_quartier_id = anim_quartier_id;
+
+    public void setQuartier(Quartier quartier) {
+        this.quartier = quartier;
     }
-  
+
+    public int getQuartierId() {
+        return quartierId;
+    }
+
+    public void setQuartierId(int quartierId) {
+        this.quartierId = quartierId;
+    }
+
+    public List<Parcours> getParcours() {
+        return parcours;
+    }
+
+    public void setParcours(List<Parcours> parcours) {
+        this.parcours = parcours;
+    }
 }
