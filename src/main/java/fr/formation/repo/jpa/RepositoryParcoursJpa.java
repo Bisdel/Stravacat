@@ -22,7 +22,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     }
 
     @Override
-    public Parcours updateEntry (Parcours entity){
+    public void updateEntry (Parcours entity){
         try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
@@ -42,12 +42,12 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
                 ex.printStackTrace();
             }
 
-            return entity;
+            return;
         }
     }
 
     @Override
-    public void deleteById (int id){
+    public void deleteEntry (){
         try(EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
