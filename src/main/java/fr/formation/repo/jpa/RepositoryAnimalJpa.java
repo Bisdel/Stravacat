@@ -52,7 +52,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
             String ville = String.format(infos.split(" - ")[4]);
             // if ville.ispresent in table ville :
-            //      comment rattacher au bon ville ?
+            //      comment rattacher a la bonne ville ?
             // -> Ville.findbynom à créer
         } catch (NumberFormatException e) {
             System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
