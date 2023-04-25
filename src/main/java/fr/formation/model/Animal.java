@@ -40,8 +40,15 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     private List<Parcours> parcours;
 
-    //for SQL Apps
-    private int quartierId;
+    // Obsolète : pour pouvoir lancer la version SQL des applications
+    // private int quartierId;
+    // public int getQuartierId() {
+    //     return quartierId;
+    // }
+
+    // public void setQuartierId(int quartierId) {
+    //     this.quartierId = quartierId;
+    // }
 
     public int getId() {
         return id;
@@ -89,14 +96,6 @@ public class Animal {
 
     public void setQuartier(Quartier quartier) {
         this.quartier = quartier;
-    }
-
-    public int getQuartierId() {
-        return quartierId;
-    }
-
-    public void setQuartierId(int quartierId) {
-        this.quartierId = quartierId;
     }
 
     public List<Parcours> getParcours() {
