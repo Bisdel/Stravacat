@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.formation.model.Abonnes;
-
+import fr.formation.model.Saisie;
 import fr.formation.repo.IAbonnesRepository;
 import jakarta.persistence.EntityManager;
 
-public class AbonnesRepositoryJpa extends AbstractRepositoryJpa implements IAbonnesRepository {
+public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbonnesRepository {
 
 	@Override
 	public List<Abonnes> findAll() {
@@ -25,9 +25,26 @@ public class AbonnesRepositoryJpa extends AbstractRepositoryJpa implements IAbon
 	}
 
 	@Override
+	
 	public void createEntry() {
        Abonnes abonne = new Abonnes();
        
+   	try (EntityManager em = emf.createEntityManager()) {
+
+		int id_animal = Saisie.nextInt("L'Id de l'animal: ");
+		int age = Saisie.nextInt("Son age : ");
+		String pseudo = Saisie.next("Son pseudo :");
+		int nb_patounes = Saisie.nextInt("nb_patounes : ");
+		int id_quartier = Saisie.nextInt(" l'Id du quartier : ");
+		abonne.setAnimal_id(id_animal);
+		abonne.setAge(age);
+		abonne.setPseudo(pseudo);
+		abonne.setNb_patounes(nb_patounes);
+		abonne.setQuartier_id(id_quartier);
+		
+		
+		
+   	}
 	}
 
 	@Override
