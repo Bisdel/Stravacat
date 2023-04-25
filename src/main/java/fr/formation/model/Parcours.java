@@ -37,7 +37,7 @@ public class Parcours {
 	private LocalDateTime datePublicationParcours;
 
         @Column (name = "par_trace")
-	private int traceGpsParcours; // en prévision du JSON
+	private int traceGpsParcours; // JSON ??
 
 		@Column (name = "par_temps")
 	private Time tempsParcours; 
