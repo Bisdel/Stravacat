@@ -1,8 +1,6 @@
-package fr.formation.repo.sql;
+package fr.formation.repo;
 
 import java.util.List;
-
-import fr.formation.repo.IRepository;
 
 
 
