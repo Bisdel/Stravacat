@@ -141,17 +141,9 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 		
 	}
 
-	@Override
-	public void updateEntry(Animal animal) {
-		// TODO Auto-generated method stub
+	
 		
-	}
-
-	@Override
-	public void deleteEntry() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 	@Override
