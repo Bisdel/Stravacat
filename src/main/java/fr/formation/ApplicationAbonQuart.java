@@ -1,7 +1,5 @@
 package fr.formation;
 
-import java.util.Scanner;
-
 import fr.formation.model.Abonnes;
 import fr.formation.model.Menu;
 import fr.formation.model.Quartier;
@@ -66,7 +64,7 @@ public class ApplicationAbonQuart {
 		String ambiance = Saisie.next(" l'ambiance : ");
 		quartier.setVille(ville);
 		quartier.setAmbiance(ambiance);
-		repoQuartier.save(quartier);
+		repoQuartier.updateEntry(quartier);
 		System.out.println(quartier.getId() + " " + quartier.getAmbiance() + " " + quartier.getVille());
 	}
 
@@ -85,7 +83,7 @@ public class ApplicationAbonQuart {
 		abonnes.setPseudo(pseudo);
 		abonnes.setNb_patounes(nb_patounes);
 		abonnes.setQuartier_id(id_quartier);
-		repoAbonnes.save(abonnes);
+		repoAbonnes.updateEntry(abonnes);
 		System.out.println("L'id de l'abonne" + abonnes.getId() + " l'id de l'animal abonne est "
 				+ abonnes.getAnimal_id() + " son pseudo " + abonnes.getPseudo() + " son age " + abonnes.getAge()
 				+ " nb_patounes " + abonnes.getNb_patounes() + " le quartier de l'abonnes " + abonnes.getQuartier_id());
@@ -95,7 +93,7 @@ public class ApplicationAbonQuart {
 		IQuartierRepository repoQuartier = new RepositoryQuartierSql();
 		System.out.println("Veuillez sasir l'Id que vous voulez supprimer ");
 		int id = Saisie.nextInt("son Id");
-		repoQuartier.deletedById(id);
+		repoQuartier.deleteEntry();
 		System.out.println("l'Id # " + (id) + " à été supprimer avec succé ! ");
 		for (Quartier q : repoQuartier.findAll()) {
 			System.out.println(
@@ -108,8 +106,7 @@ public class ApplicationAbonQuart {
 	private static void SupprimerAbonnes() {
 		IAbonnesRepository repoAbonnes = new RepositoryAbonnesSql();
 		System.out.println(" qu'elle abonne vous voulez supprimer !");
-		int id = Saisie.nextInt(" ");
-		repoAbonnes.deletedById(id);
+		repoAbonnes.deleteEntry();
 		for (Abonnes a : repoAbonnes.findAll()) {
 			System.out.println("l'Id " + a.getId() + " l'Id de l'animal abonne " + a.getAnimal_id() + " son pseudo "
 					+ a.getPseudo() + " son age " + a.getAge() + " c'est nombre de patte " + a.getNb_patounes()
