@@ -97,7 +97,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 	}
 
 	@Override
-	public void createEntry(String pseudo) {
+	public void createEntry() {
 
 	}
 

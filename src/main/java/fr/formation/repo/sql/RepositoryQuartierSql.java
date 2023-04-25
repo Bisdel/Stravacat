@@ -128,7 +128,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 
 	@Override
-	public void createEntry(String pseudo) {
+	public void createEntry() {
 		// TODO Auto-generated method stub
 		
 	}

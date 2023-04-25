@@ -28,7 +28,7 @@ public class Application {
             } else {
                 System.out.println("Animal non trouvé :(\nVoulez-vous créer un nouvel animal ?");
                 if (Navigation.choixOuiNon()) {
-                    repoAnimalSql.createEntry(pseudo);
+                    repoAnimalSql.createEntry();
                 }
             }
         } catch (Exception e) {
