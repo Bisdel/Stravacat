@@ -158,7 +158,7 @@ public class RepositoryAnimalSql extends AbstractRepositorySql implements IRepos
 	}
 
 	@Override
-	public void deleteEntry(int id) {
+	public void deleteEntry() {
 		boolean saisieValide = false;
 		while (saisieValide == false) {
 			System.out.println("Entrez le pseudo à supprimer :");

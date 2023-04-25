@@ -10,6 +10,6 @@ public interface IRepository<T> {
     
     public void updateEntry(T entity);
     
-    public void deleteEntry(int id);
+    public void deleteEntry();
 
 }

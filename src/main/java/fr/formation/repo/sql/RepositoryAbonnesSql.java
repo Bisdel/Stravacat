@@ -11,7 +11,6 @@ import java.util.Optional;
 
 
 import fr.formation.model.Abonnes;
-import fr.formation.model.Animal;
 import fr.formation.repo.IAbonnesRepository;
 
 public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbonnesRepository {
@@ -154,7 +153,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 
 
 	@Override
-	public void deleteEntry(int id) {
+	public void deleteEntry() {
 		// TODO Auto-generated method stub
 		
 	}

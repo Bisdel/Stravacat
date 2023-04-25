@@ -11,7 +11,6 @@ import java.util.Optional;
 
 
 import fr.formation.repo.IQuartierRepository;
-import fr.formation.model.Animal;
 import fr.formation.model.Quartier;
 
 public class RepositoryQuartierSql extends AbstractRepositorySql implements IQuartierRepository {
@@ -150,7 +149,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 
 	@Override
-	public void deleteEntry(int id) {
+	public void deleteEntry() {
 		// TODO Auto-generated method stub
 		
 	}
