@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import fr.Stravacat.sql.RepositoryAbonnesSql;
-import fr.Stravact.repo.IAbonnesRepository;
+import fr.formation.repo.sql.IAbonnesRepository;
 
 public class ApplicationAbonnes {
 
