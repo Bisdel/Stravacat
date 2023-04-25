@@ -11,20 +11,20 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "quartier")
-public class Quartier {
+@Table(name = "ville")
+public class Ville {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "quar_id")
+	@Column(name = "vill_id")
 private int id;
 	
-	@Column(name = "quar_ville" , length = 30 , nullable = false)
+	@Column(name = "vill_ville" , length = 30 , nullable = false)
 private String ville;
 	
-	@Column(name = " quar_ambiance" , length = 250 , nullable=false)
+	@Column(name = " vill_ambiance" , length = 250 , nullable=false)
 private String ambiance;
 
-	@OneToMany(mappedBy = "quartier")
+	@OneToMany(mappedBy = "ville")
 	private List<Animal> animaux;
 
 

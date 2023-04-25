@@ -62,8 +62,8 @@ public class ApplicationActu {
 		System.out.println("Id actu_animal_id :");
 		actualite.setActu_animal_id(sc.nextInt());
 		
-		System.out.println("Id actu_quartier_id :");
-		actualite.setActu_quartier_id(sc.nextInt());
+		System.out.println("Id actu_ville_id :");
+		actualite.setActu_ville_id(sc.nextInt());
 		
 		System.out.println("Privé ? (true/false) :");		
 		actualite.setActu_isPrivate(sc.nextBoolean());
@@ -103,10 +103,10 @@ public class ApplicationActu {
 		System.out.println("-------------------------------");
 		try {
             Actualite actualite = new Actualite();
-			System.out.println("actu_animal_id, actu_quartier_id, description, confidentialité");
+			System.out.println("actu_animal_id, actu_ville_id, description, confidentialité");
 			
             actualite.setActu_animal_id(sc.nextInt());
-			actualite.setActu_quartier_id(sc.nextInt());
+			actualite.setActu_ville_id(sc.nextInt());
 			sc.nextLine();
 			actualite.setActu_description(sc.nextLine());
             actualite.setActu_isPrivate(sc.nextBoolean());

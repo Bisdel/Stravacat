@@ -42,7 +42,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
     @Override
     public void createEntry() {
         System.out.println(
-                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredepatounes - quartier");
+                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredepatounes - ville");
         Animal animal = new Animal();
         try {
             String infos = ApplicationAnimalJpa.sc.nextLine();
@@ -50,10 +50,10 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setPassword(String.format(infos.split(" - ")[1]));
             animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
             animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
-            String quartier = String.format(infos.split(" - ")[4]);
-            // if quartier.ispresent in table quartier :
-            //      comment rattacher au bon quartier ?
-            // -> Quartier.findbynom à créer
+            String ville = String.format(infos.split(" - ")[4]);
+            // if ville.ispresent in table ville :
+            //      comment rattacher au bon ville ?
+            // -> Ville.findbynom à créer
         } catch (NumberFormatException e) {
             System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
         } catch (IllegalFormatException e) {

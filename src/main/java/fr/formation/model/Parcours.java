@@ -18,7 +18,7 @@ public class Parcours {
 
 	//------------? A PREVOIR ?-------------
 		
-		// private int idQuartier;
+		// private int idVille;
 		//private List<contacts>;
 		// private JSONB traceGpsParcours;
 		// private boolean isPrivateParcours;
@@ -32,8 +32,8 @@ public class Parcours {
         @Column (name = "parc_ville", length = 100)
 	private String villeParcours;
 
-        @Column (name = "parc_quartier", length = 100)
-	private String quartierParcours;
+        @Column (name = "parc_ville", length = 100)
+	private String villeParcours;
 
         @Column (name = "parc_date")
 	private LocalDateTime datePublicationParcours;
@@ -62,11 +62,11 @@ public class Parcours {
 	public void setVilleParcours(String villeParcours) {
 		this.villeParcours = villeParcours;
 	}
-	public String getQuartierParcours() {
-		return quartierParcours;
+	public String getVilleParcours() {
+		return villeParcours;
 	}
-	public void setQuartierParcours(String quartierParcours) {
-		this.quartierParcours = quartierParcours;
+	public void setVilleParcours(String villeParcours) {
+		this.villeParcours = villeParcours;
 	}
 	public LocalDateTime getDatePublicationParcours() {
 		return datePublicationParcours;

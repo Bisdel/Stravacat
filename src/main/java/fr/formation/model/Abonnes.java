@@ -24,8 +24,8 @@ public class Abonnes {
 	@Column(name ="abon_nb_patounes")
 	private int nb_patounes;
 	
-	@Column(name="abon_quartier_id")
-	private int quartier_id;
+	@Column(name="abon_ville_id")
+	private int ville_id;
 	
 	@Column(name="abon_animal_id")
 	private int animal_id;
@@ -62,12 +62,12 @@ public class Abonnes {
 		this.nb_patounes = nb_patounes;
 	}
 
-	public int getQuartier_id() {
-		return quartier_id;
+	public int getVille_id() {
+		return ville_id;
 	}
 
-	public void setQuartier_id(int quartier_id) {
-		this.quartier_id = quartier_id;
+	public void setVille_id(int ville_id) {
+		this.ville_id = ville_id;
 	}
 
 	public int getAnimal_id() {

@@ -9,55 +9,55 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import fr.formation.repo.IQuartierRepository;
-import fr.formation.model.Quartier;
+import fr.formation.repo.IVilleRepository;
+import fr.formation.model.Ville;
 import fr.formation.model.Saisie;
 
-public class RepositoryQuartierSql extends AbstractRepositorySql implements IQuartierRepository {
+public class RepositoryVilleSql extends AbstractRepositorySql implements IVilleRepository {
 
 	@Override
-	public List<Quartier> findAll() {
+	public List<Ville> findAll() {
 
-		List<Quartier> quartiers = new ArrayList<>();
+		List<Ville> villes = new ArrayList<>();
 
 		try {
-			String query = "Select *from Quartier";
+			String query = "Select *from Ville";
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
-				Quartier quartier = new Quartier();
+				Ville ville = new Ville();
 
-				quartier.setAmbiance(result.getString("quar_ambiance"));
-				quartier.setId(result.getInt("quar_id"));
-				quartier.setVille(result.getString("quar_ville"));
+				ville.setAmbiance(result.getString("vill_ambiance"));
+				ville.setId(result.getInt("vill_id"));
+				ville.setVille(result.getString("vill_ville"));
 
-				quartiers.add(quartier);
+				villes.add(ville);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return quartiers;
+		return villes;
 	}
 
-	public Optional<Quartier> findByid(int id) {
+	public Optional<Ville> findByid(int id) {
 		try {
-			String query = "Select * from quartier where quar_id = ?";
+			String query = "Select * from ville where vill_id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 
 			statement.setInt(1, id);
 			ResultSet result = statement.executeQuery();
 
 			if (result.next()) {
-				Quartier quartier = new Quartier();
+				Ville ville = new Ville();
 
-				quartier.setAmbiance(result.getString("quar_ambiance"));
-				quartier.setId(result.getInt("quar_id"));
-				quartier.setVille(result.getString("quar_ville"));
+				ville.setAmbiance(result.getString("vill_ambiance"));
+				ville.setId(result.getInt("vill_id"));
+				ville.setVille(result.getString("vill_ville"));
 
-				return Optional.of(quartier);
+				return Optional.of(ville);
 			}
 
 		}
@@ -69,20 +69,20 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		return Optional.empty();
 	}
 
-	public List<Quartier> findByVille(String ville) {
+	public List<Ville> findByVille(String ville) {
 		try {
-			String query = "Select * from quartier where quar_ville = ?";
+			String query = "Select * from ville where vill_ville = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, ville);
 
 			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
-				Quartier quartier = new Quartier();
+				Ville ville = new Ville();
 
-				quartier.setAmbiance(result.getString("quar_ambiance"));
-				quartier.setId(result.getInt("quar_id"));
-				quartier.setVille(result.getString("quar_ville"));
+				ville.setAmbiance(result.getString("vill_ambiance"));
+				ville.setId(result.getInt("vill_id"));
+				ville.setVille(result.getString("vill_ville"));
 
 			}
 
@@ -95,29 +95,29 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 
 	@Override
 	public void createEntry() {
-		IQuartierRepository repoQuartier = new RepositoryQuartierSql();
-		System.out.println(" Creer un nouveau quartier ");
-		Quartier quartier = new Quartier();
+		IVilleRepository repoVille = new RepositoryVilleSql();
+		System.out.println(" Creer un nouveau ville ");
+		Ville ville = new Ville();
 		String ville = Saisie.next("le nom de la ville :");
 		String ambiance = Saisie.next(" l'ambiance : ");
-		quartier.setVille(ville);
-		quartier.setAmbiance(ambiance);
-		repoQuartier.updateEntry(quartier);
-		System.out.println("le quartier  " + quartier.getId() + "ajouté");
+		ville.setVille(ville);
+		ville.setAmbiance(ambiance);
+		repoVille.updateEntry(ville);
+		System.out.println("le ville  " + ville.getId() + "ajouté");
 
 	}
 
 	@Override
-	public void updateEntry(Quartier entity) {
+	public void updateEntry(Ville entity) {
 		try {
-			String query = "Insert into quartier (quar_ambiance , quar_ville) values(?,?)";
+			String query = "Insert into ville (vill_ambiance , vill_ville) values(?,?)";
 			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, entity.getAmbiance());
 			statement.setString(2, entity.getVille());
 			statement.executeUpdate();
 			ResultSet result = statement.getGeneratedKeys();
 			if (result.next()) {
-				entity.setId(result.getInt("quar_id"));
+				entity.setId(result.getInt("vill_id"));
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -129,7 +129,7 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 	public void deleteEntry() {
 		try {
 	
-			String query = "delete from quartier where quar_id= ? ";
+			String query = "delete from ville where vill_id= ? ";
 			PreparedStatement statement = connection.prepareStatement(query);
 
 			statement.setInt(1, Saisie.nextInt("son Id"));

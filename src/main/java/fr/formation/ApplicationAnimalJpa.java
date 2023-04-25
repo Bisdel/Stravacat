@@ -38,6 +38,6 @@ public class ApplicationAnimalJpa {
 }
 
 // Afficher tous les animaux
-// Afficher les animaux dans une ville/quartier choisi
+// Afficher les animaux dans une ville/ville choisi
 // Mettre à jour son profil animal
 // Supprimer une info du profil/supprimer son compte

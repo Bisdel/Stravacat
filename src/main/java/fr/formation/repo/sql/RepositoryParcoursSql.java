@@ -24,11 +24,11 @@ public class RepositoryParcoursSql extends AbstractRepositorySql implements IPar
 		while (result.next()) {
 			int id = result.getInt("par_id");
 			String ville = result.getString("par_ville");
-			String quartier = result.getString("par_quartier");
+			String ville = result.getString("par_ville");
 			int gps = result.getInt("par_tracegps");
 			int idcompte = result.getInt("par_compte_id");
 			LocalDateTime date = result.getTimestamp("par_time").toLocalDateTime();
-			System.out.println("id : " + id + " - ville : " + ville + " dans le quartier " + quartier + " - trace GPS : " + gps + " publié par : " + idcompte + " le " + date);
+			System.out.println("id : " + id + " - ville : " + ville + " dans le ville " + ville + " - trace GPS : " + gps + " publié par : " + idcompte + " le " + date);
 			
 			}
 	}
@@ -39,12 +39,12 @@ public class RepositoryParcoursSql extends AbstractRepositorySql implements IPar
 	}
 	public Parcours save (Parcours entity) {
 		try {
-			String query = "INSERT INTO parcours (par_id, par_ville, par_quartier, par_time, par_tracegps) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO parcours (par_id, par_ville, par_ville, par_time, par_tracegps) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement statement = this.connection.prepareStatement(query);
 			
 			statement.setInt(1, entity.getId());
 			statement.setString(2, entity.getVilleParcours());
-			statement.setString(3, entity.getQuartierParcours());
+			statement.setString(3, entity.getVilleParcours());
 			statement.setTimestamp(4, Timestamp.valueOf(entity.getDatePublicationParcours()));
 			statement.setInt(5, entity.getTraceGpsParcours());
 		}

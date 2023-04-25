@@ -2,8 +2,8 @@ package fr.formation.repo;
 
 import java.util.List;
 
-import fr.formation.model.Quartier;
+import fr.formation.model.Ville;
 
-public interface IQuartierRepository extends IRepository<Quartier> {
-	 public  List<Quartier> findByVille(String ville);
+public interface IVilleRepository extends IRepository<Ville> {
+	 public  List<Ville> findByVille(String ville);
 }

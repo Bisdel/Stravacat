@@ -44,10 +44,10 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
         Actualite actualite = new Actualite();
 		try {
 			if (actualite.getActu_id() == 0) {
-				String query = "INSERT INTO actualite (actu_animal_id, actu_quartier_id, actu_description, actu_isprivate, actu_timestamp) VALUES (?, ?, ?, ?, ?)";
+				String query = "INSERT INTO actualite (actu_animal_id, actu_ville_id, actu_description, actu_isprivate, actu_timestamp) VALUES (?, ?, ?, ?, ?)";
 				PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, actualite.getActu_animal_id());
-				statement.setInt(2, actualite.getActu_quartier_id());
+				statement.setInt(2, actualite.getActu_ville_id());
 				statement.setString(3, actualite.getActu_description());
 				statement.setBoolean(4, actualite.getActu_isPrivate());
 				statement.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
@@ -91,14 +91,14 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
             int id = ApplicationActu.sc.nextInt();
 
             int actuanimalId = ApplicationActu.sc.nextInt();
-            int actuquartierId = ApplicationActu.sc.nextInt();
+            int actuvilleId = ApplicationActu.sc.nextInt();
             String actudescription = ApplicationActu.sc.nextLine();
             boolean actuconfid = ApplicationActu.sc.nextBoolean();
 		
-			String query = "UPDATE actualite SET actu_animal_id = ?, actu_quartier_id = ?, actu_description = ?, actu_isprivate = ? , actu_date = ? WHERE actu_id = ?";
+			String query = "UPDATE actualite SET actu_animal_id = ?, actu_ville_id = ?, actu_description = ?, actu_isprivate = ? , actu_date = ? WHERE actu_id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, actuanimalId);
-			statement.setInt(2, actuquartierId);
+			statement.setInt(2, actuvilleId);
 			statement.setString(3, actudescription);
 			statement.setBoolean(4, actuconfid);
             statement.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
@@ -131,7 +131,7 @@ public class RepositoryActualiteSql extends AbstractRepositorySql implements IAc
 
 		actualite.setActu_id(result.getInt("actu_id"));   
 		actualite.setActu_animal_id(result.getInt("actu_animal_id"));
-		actualite.setActu_quartier_id(result.getInt("actu_quartier_id"));
+		actualite.setActu_ville_id(result.getInt("actu_ville_id"));
 		actualite.setActu_timestamp(result.getTimestamp("actu_timestamp").toLocalDateTime());
 		actualite.setActu_coordonneesgps(result.getString("actu_coordonnees_gps"));
 		actualite.setActu_description(result.getString("actu_description"));

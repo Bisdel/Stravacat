@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.formation.model.Abonnes;
-import fr.formation.model.Quartier;
+import fr.formation.model.Ville;
 import fr.formation.model.Saisie;
 import fr.formation.repo.IAbonnesRepository;
-import fr.formation.repo.IQuartierRepository;
+import fr.formation.repo.IVilleRepository;
 
 public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbonnesRepository {
 
@@ -34,7 +34,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 				abonne.setPseudo(result.getString("abon_pseudo"));
 				abonne.setAnimal_id(result.getInt("abon_animal_id"));
 				abonne.setNb_patounes(result.getInt("abon_nb_patounes"));
-				abonne.setQuartier_id(result.getInt("abon_quartier_id"));
+				abonne.setVille_id(result.getInt("abon_ville_id"));
 
 				abonnes.add(abonne);
 
@@ -63,7 +63,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 				abonne.setPseudo(result.getString("abon_pseudo"));
 				abonne.setAnimal_id(result.getInt("abon_animal_id"));
 				abonne.setNb_patounes(result.getInt("abon_nb_patounes"));
-				abonne.setQuartier_id(result.getInt("abon_quartier_id"));
+				abonne.setVille_id(result.getInt("abon_ville_id"));
 
 				return Optional.of(abonne);
 			}
@@ -90,7 +90,7 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 				abonne.setPseudo(result.getString("abon_pseudo"));
 				abonne.setAnimal_id(result.getInt("abon_animal_id"));
 				abonne.setNb_patounes(result.getInt("abon_nb_patounes"));
-				abonne.setQuartier_id(result.getInt("abon_quartier_id"));
+				abonne.setVille_id(result.getInt("abon_ville_id"));
 			}
 
 		} catch (SQLException ex) {
@@ -108,12 +108,12 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 		int age = Saisie.nextInt("Son age : ");
 		String pseudo = Saisie.next("Son pseudo :");
 		int nb_patounes = Saisie.nextInt("nb_patounes : ");
-		int id_quartier = Saisie.nextInt(" l'Id du quartier : ");
+		int id_ville = Saisie.nextInt(" l'Id du ville : ");
 		abonnes.setAnimal_id(id_animal);
 		abonnes.setAge(age);
 		abonnes.setPseudo(pseudo);
 		abonnes.setNb_patounes(nb_patounes);
-		abonnes.setQuartier_id(id_quartier);
+		abonnes.setVille_id(id_ville);
 
 		repoAbonnes.updateEntry(abonnes);
 		System.out.println("l'abonne à été ajouter !");
@@ -122,13 +122,13 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 	@Override
 	public void updateEntry(Abonnes entity) {
 		try {
-			String query = "INSERT INTO ABONNES( abon_age , abon_pseudo, abon_animal_id , abon_nb_patounes ,abon_quartier_id) values (?,?,?,?,?)";
+			String query = "INSERT INTO ABONNES( abon_age , abon_pseudo, abon_animal_id , abon_nb_patounes ,abon_ville_id) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			statement.setFloat(1, entity.getAge());
 			statement.setString(2, entity.getPseudo());
 			statement.setFloat(3, entity.getAnimal_id());
 			statement.setFloat(4, entity.getNb_patounes());
-			statement.setFloat(5, entity.getQuartier_id());
+			statement.setFloat(5, entity.getVille_id());
 
 			ResultSet result = statement.getGeneratedKeys();
 			statement.executeUpdate();

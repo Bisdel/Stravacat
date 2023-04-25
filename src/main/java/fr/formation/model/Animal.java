@@ -34,20 +34,20 @@ public class Animal {
     private int nbPatounes;
     
     @ManyToOne
-    @JoinColumn(name = "anim_quartier_id")
-    private Quartier quartier;
+    @JoinColumn(name = "anim_ville_id")
+    private Ville ville;
 
     @OneToMany(mappedBy = "animal")
     private List<Parcours> parcours;
 
     // Obsolète : pour pouvoir lancer la version SQL des applications
-    // private int quartierId;
-    // public int getQuartierId() {
-    //     return quartierId;
+    // private int villeId;
+    // public int getVilleId() {
+    //     return villeId;
     // }
 
-    // public void setQuartierId(int quartierId) {
-    //     this.quartierId = quartierId;
+    // public void setVilleId(int villeId) {
+    //     this.villeId = villeId;
     // }
 
     public int getId() {
@@ -90,12 +90,12 @@ public class Animal {
         this.nbPatounes = nbPatounes;
     }
 
-    public Quartier getQuartier() {
-        return quartier;
+    public Ville getVille() {
+        return ville;
     }
 
-    public void setQuartier(Quartier quartier) {
-        this.quartier = quartier;
+    public void setVille(Ville ville) {
+        this.ville = ville;
     }
 
     public List<Parcours> getParcours() {

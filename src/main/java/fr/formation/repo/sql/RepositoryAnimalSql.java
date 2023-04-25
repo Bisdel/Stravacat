@@ -31,7 +31,7 @@ public class RepositoryAnimalSql extends AbstractRepositorySql implements IRepos
 				animal.setPassword(results.getString("anim_password"));
 				animal.setAge(results.getInt("anim_age"));
 				animal.setNbPatounes(results.getInt("anim_nb_patounes"));
-				animal.setQuartierId(results.getInt("anim_quartier_id"));
+				animal.setVilleId(results.getInt("anim_ville_id"));
 				animaux.add(animal);
 			}
 
@@ -54,7 +54,7 @@ public class RepositoryAnimalSql extends AbstractRepositorySql implements IRepos
 			animal.setPassword(result.getString("anim_password"));
 			animal.setAge(result.getInt("anim_age"));
 			animal.setNbPatounes(result.getInt("anim_nb_patounes"));
-			animal.setQuartierId(result.getInt("anim_quartier_id"));
+			animal.setVilleId(result.getInt("anim_ville_id"));
 			return Optional.of(animal);
 
 		} catch (SQLException e) {

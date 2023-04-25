@@ -2,13 +2,13 @@ package fr.formation.repo.jpa;
 
 import java.util.List;
 
-import fr.formation.model.Quartier;
-import fr.formation.repo.IQuartierRepository;
+import fr.formation.model.Ville;
+import fr.formation.repo.IVilleRepository;
 
-public class RepositoryQuartierJpa implements IQuartierRepository {
+public class RepositoryVilleJpa implements IVilleRepository {
 
 	@Override
-	public List<Quartier> findAll() {
+	public List<Ville> findAll() {
 		
 		return null;
 	}
@@ -19,7 +19,7 @@ public class RepositoryQuartierJpa implements IQuartierRepository {
 	}
 
 	@Override
-	public void updateEntry(Quartier entity) {
+	public void updateEntry(Ville entity) {
 	
 
 	}
@@ -30,7 +30,7 @@ public class RepositoryQuartierJpa implements IQuartierRepository {
 	}
 
 	@Override
-	public List<Quartier> findByVille(String ville) {
+	public List<Ville> findByVille(String ville) {
 	
 		return null;
 	}

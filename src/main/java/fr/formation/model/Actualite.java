@@ -8,7 +8,7 @@ public class Actualite {
     private String actu_coordonneesgps; // VARCHAR(50)
     private String actu_description; 
     private int actu_animal_id;
-    private int actu_quartier_id;
+    private int actu_ville_id;
     private boolean actu_isPrivate;
 //  private JSONB actu_contactsIdentifies;
     
@@ -42,11 +42,11 @@ public class Actualite {
 	public void setActu_animal_id(int actu_animal_id) {
 		this.actu_animal_id = actu_animal_id;
 	}
-	public int getActu_quartier_id() {
-		return actu_quartier_id;
+	public int getActu_ville_id() {
+		return actu_ville_id;
 	}
-	public void setActu_quartier_id(int actu_quartier_id) {
-		this.actu_quartier_id = actu_quartier_id;
+	public void setActu_ville_id(int actu_ville_id) {
+		this.actu_ville_id = actu_ville_id;
 	}
 	public Boolean getActu_isPrivate() {
 		return actu_isPrivate;
