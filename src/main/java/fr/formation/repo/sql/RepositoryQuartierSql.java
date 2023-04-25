@@ -141,14 +141,16 @@ public class RepositoryQuartierSql extends AbstractRepositorySql implements IQua
 		
 	}
 
+
 	@Override
-	public void updateEntry(Animal animal) {
+	public void updateEntry(Quartier t) {
 		// TODO Auto-generated method stub
 		
 	}
 
+
 	@Override
-	public void deleteEntry() {
+	public void deleteEntry(int id) {
 		// TODO Auto-generated method stub
 		
 	}

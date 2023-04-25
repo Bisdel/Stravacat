@@ -8,8 +8,8 @@ public interface IRepository<T> {
 
     public void createEntry(String pseudo);
     
-    public void updateEntry(T t);
+    public void updateEntry(T entity);
     
-    public void deleteEntry();
+    public void deleteEntry(int id);
 
 }

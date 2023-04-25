@@ -153,4 +153,18 @@ public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbon
 		
 	}
 
+
+	@Override
+	public void updateEntry(Abonnes entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteEntry(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
