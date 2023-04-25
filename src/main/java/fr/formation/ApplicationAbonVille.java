@@ -9,7 +9,7 @@ import fr.formation.repo.IVilleRepository;
 import fr.formation.repo.sql.RepositoryAbonnesSql;
 import fr.formation.repo.sql.RepositoryVilleSql;
 
-public class ApplicationAbonVillt {
+public class ApplicationAbonVille {
 
 	public static void main(String[] args) {
 		int choixMenu = 0;

@@ -32,8 +32,6 @@ public class Parcours {
         @Column (name = "parc_ville", length = 100)
 	private String villeParcours;
 
-        @Column (name = "parc_ville", length = 100)
-	private String villeParcours;
 
         @Column (name = "parc_date")
 	private LocalDateTime datePublicationParcours;
@@ -48,50 +46,54 @@ public class Parcours {
 		@JoinColumn(name = "parc_animal_id")
 	private Animal animal;
 
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getVilleParcours() {
+			return villeParcours;
+		}
+
+		public void setVilleParcours(String villeParcours) {
+			this.villeParcours = villeParcours;
+		}
+
+		public LocalDateTime getDatePublicationParcours() {
+			return datePublicationParcours;
+		}
+
+		public void setDatePublicationParcours(LocalDateTime datePublicationParcours) {
+			this.datePublicationParcours = datePublicationParcours;
+		}
+
+		public int getTraceGpsParcours() {
+			return traceGpsParcours;
+		}
+
+		public void setTraceGpsParcours(int traceGpsParcours) {
+			this.traceGpsParcours = traceGpsParcours;
+		}
+
+		public Time getTempsParcours() {
+			return tempsParcours;
+		}
+
+		public void setTempsParcours(Time tempsParcours) {
+			this.tempsParcours = tempsParcours;
+		}
+
+		public Animal getAnimal() {
+			return animal;
+		}
+
+		public void setAnimal(Animal animal) {
+			this.animal = animal;
+		}
 
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getVilleParcours() {
-		return villeParcours;
-	}
-	public void setVilleParcours(String villeParcours) {
-		this.villeParcours = villeParcours;
-	}
-	public String getVilleParcours() {
-		return villeParcours;
-	}
-	public void setVilleParcours(String villeParcours) {
-		this.villeParcours = villeParcours;
-	}
-	public LocalDateTime getDatePublicationParcours() {
-		return datePublicationParcours;
-	}
-	public void setDatePublicationParcours(LocalDateTime datePublicationParcours) {
-		this.datePublicationParcours = datePublicationParcours;
-	}
-	public int getTraceGpsParcours() {
-		return traceGpsParcours;
-	}
-	public void setTraceGpsParcours(int traceGpsParcours) {
-		this.traceGpsParcours = traceGpsParcours;
-	}
-	public Time getTempsParcours() {
-		return tempsParcours;
-	}
-	public void setTempsParcours(Time tempsParcours) {
-		this.tempsParcours = tempsParcours;
-	}
-	public Animal getAnimal() {
-		return animal;
-	}
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
-	}
-    
 
 }
