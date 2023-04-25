@@ -13,6 +13,7 @@ public class AbonnesRepositoryJpa extends AbstractRepositoryJpa implements IAbon
 
 	@Override
 	public List<Abonnes> findAll() {
+		
 		try (EntityManager em = emf.createEntityManager()) {
 			em.createQuery("select a from Abonnes a", Abonnes.class).getResultList();
 		} catch (Exception ex) {
@@ -25,11 +26,12 @@ public class AbonnesRepositoryJpa extends AbstractRepositoryJpa implements IAbon
 
 	@Override
 	public void createEntry() {
-
+       Abonnes abonne = new Abonnes();
+       
 	}
 
 	@Override
-	public Abonnes updateEntry(Abonnes entity) {
+	public void updateEntry(Abonnes entity) {
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
 			
@@ -55,7 +57,7 @@ public class AbonnesRepositoryJpa extends AbstractRepositoryJpa implements IAbon
 			ex.printStackTrace();
 		}
 		
-		return entity;
+		return ;
 	}
 
 	@Override
