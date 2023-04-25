@@ -22,18 +22,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     }
 
     @Override
-    public Optional <Parcours> findById (int id){
-        try (EntityManager em = emf.createEntityManager()){
-            return Optional.ofNullable(em.find(Parcours.class, id));
-        }
-        catch (Exception ex) {
-			ex.printStackTrace();
-			return Optional.empty();
-		}
-    }
-
-    @Override
-    public Parcours save (Parcours entity){
+    public Parcours updateEntry (Parcours entity){
         try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
@@ -77,30 +66,6 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
             ex.printStackTrace();
         }
         
-    }
-
-    @Override
-    public void createEntry(String pseudo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
-    }
-
-    @Override
-    public void updateEntry(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateEntry'");
-    }
-
-    @Override
-    public void deleteEntry() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteEntry'");
-    }
-
-    @Override
-    public List<Parcours> findByParcoursId(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByParcoursId'");
     }
 
 }
