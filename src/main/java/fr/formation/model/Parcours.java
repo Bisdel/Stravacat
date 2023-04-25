@@ -42,7 +42,7 @@ public class Parcours {
 		@Column (name = "par_temps")
 	private Time tempsParcours; 
 
-		@OneToOne(mappedBy = "Animal")
+		@OneToOne(mappedBy = "anim_id")
 	private Animal animal;
 
 

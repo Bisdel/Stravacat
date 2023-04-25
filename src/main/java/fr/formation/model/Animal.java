@@ -31,8 +31,8 @@ public class Animal {
     private int nbPatounes;
     
     @ManyToOne
-    @JoinColumn(name = "quar_id")
-    private int quartierId;
+    @JoinColumn(name = "anim_quartier_id")
+    private Quartier quartier;
 
     public int getId() {
         return id;
@@ -74,12 +74,11 @@ public class Animal {
         this.nbPatounes = nbPatounes;
     }
 
-    public int getQuartierId() {
-        return quartierId;
+    public Quartier getQuartier() {
+        return quartier;
     }
 
-    public void setQuartierId(int quartierId) {
-        this.quartierId = quartierId;
+    public void setQuartier(Quartier quartier) {
+        this.quartier = quartier;
     }
-
 }
