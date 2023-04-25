@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import fr.formation.model.Animal;
 import fr.formation.repo.IRepositoryAnimal;
-import fr.formation.repo.sql.RepositoryAnimalSql;
+import fr.formation.repo.jpa.RepositoryAnimalJpa;
 
 public class ApplicationAnimalJpa {
     public static Scanner sc = new Scanner(System.in);
@@ -12,23 +12,23 @@ public class ApplicationAnimalJpa {
     public static void main(String[] args) {
         System.out.println("\nBienvenue sur Stravacat, le réseau social de vos compagnons à poils préférés !");
 
-        IRepositoryAnimal repoAnimalSql = new RepositoryAnimalSql();
+        IRepositoryAnimal repoAnimalJpa = new RepositoryAnimalJpa();
 
         System.out.println("\n-- Rechercher un animal par son pseudo :\nEntrez un pseudo :");
         try {
             String pseudo = sc.nextLine();
-            if (repoAnimalSql.findByPseudo(pseudo).isPresent()) {
-                Animal animal = repoAnimalSql.findByPseudo(pseudo).get();
+            if (repoAnimalJpa.findByPseudo(pseudo).isPresent()) {
+                Animal animal = repoAnimalJpa.findByPseudo(pseudo).get();
                 System.out.println("Animal trouvé !\nIl s'appelle " + animal.getPseudo() + ", il a "
                         + animal.getAge() + " ans et " + animal.getNbPatounes() + " patounes.");
                 System.out.println("Voulez-vous mettre à jour une de ces informations ?");
                 if (Navigation.choixOuiNon()){
-                    repoAnimalSql.updateEntry(animal);                    
+                    repoAnimalJpa.updateEntry(animal);                    
                 }
             } else {
                 System.out.println("Animal non trouvé :(\nVoulez-vous créer un nouvel animal ?");
                 if (Navigation.choixOuiNon()) {
-                    repoAnimalSql.createEntry();
+                    repoAnimalJpa.createEntry();
                 }
             }
         } catch (Exception e) {
