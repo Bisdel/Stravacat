@@ -16,7 +16,6 @@ public class AbonnesRepositoryJpa implements IAbonnesRepository {
 	@Override
 	public void createEntry() {
 	
-
 	}
 
 	@Override
