@@ -8,20 +8,13 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
 		<properties>
-<<<<<<< HEAD
+
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/stravact" />
 			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.user" value="postgres" />
 			<property name="hibernate.connection.password" value="0104" />
-=======
-			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/stravacat" />
-			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
-			<property name="hibernate.connection.user" value="postgres" />
-			<property name="hibernate.connection.password" value="SAKpoei" />
->>>>>>> 68dd72bd73dab6894def797c4bba126bdab5b53f
-			
+		
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
 		</properties>

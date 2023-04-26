@@ -42,7 +42,7 @@ public class ApplicationAbonVilleJpa {
 	private static void ListerVille() {
 		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
 		for (Ville v : repoVille.findAll()) {
-			System.out.println("le nom de la ville" + v.getVille() + " son ambiance " + v.getAmbiance());
+			System.out.println("le nom de la ville" + v.getNom() + " son ambiance " + v.getAmbiance());
 		}
 	}
 
