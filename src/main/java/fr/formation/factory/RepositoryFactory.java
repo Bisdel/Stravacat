@@ -11,8 +11,13 @@ public static IAbonnesRepository creatAbonnesRepository() {
 	return new RepositoryAbonnesJpa();
 }
 
-public static IVilleRepository creatQuaertierRepository() {
-	return new RepositoryVilleJpa();
 
+
+
+
+public static IVilleRepository creatVilleRepository() {
+
+
+	return new RepositoryVilleJpa() ;
 }
 }

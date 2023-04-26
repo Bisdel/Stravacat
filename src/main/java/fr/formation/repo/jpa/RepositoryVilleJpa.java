@@ -13,8 +13,12 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 	@Override
 	public List<Ville> findAll() {
 		try (EntityManager em = emf.createEntityManager()) {
-			em.createQuery("select v from Ville v", Ville.class).getResultList();
-		} catch (Exception ex) {
+			
+			return em.createQuery("select v from Ville v", Ville.class).getResultList();
+			
+		}
+
+		catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return new ArrayList<>();
@@ -28,7 +32,7 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 
 		vil.setVille(nom);
 		vil.setAmbiance(ambiance);
-
+          System.out.println("la vaille" +vil.getVille()+ "ajouté");
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
 			try {
