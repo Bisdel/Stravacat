@@ -86,7 +86,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
         }
         catch (Exception ex){
             ex.printStackTrace();
-            em.getTransaction().rollback();
+            return new ArrayList<>();
         }
         
 
