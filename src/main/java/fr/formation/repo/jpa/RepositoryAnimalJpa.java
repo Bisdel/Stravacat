@@ -42,7 +42,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
     @Override
     public void createEntry() {
         System.out.println(
-                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredeespece - ville");
+                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - espece - ville");
         Animal animal = new Animal();
         try {
             String infos = ApplicationAnimalJpa.sc.nextLine();
@@ -61,7 +61,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("Le format de l'age et/ou du nombre de espece est incorrect.");
+            System.out.println("Le format de l'age et/ou de l'espece est incorrect.");
         } catch (IllegalFormatException e) {
             System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
         }
@@ -91,36 +91,29 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             String infos = ApplicationAnimalJpa.sc.nextLine();
 
             try {
-                try {
+
+                if (infos.startsWith("pseudo - ")) {
                     animal.setPseudo(String.format(infos.split("pseudo - ")[1]));
                     saisieValide = true;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // ignores error thrown for the fields not filled by user to update
-                }
-                try {
+                } else if (infos.startsWith("motdepasse - ")) {
                     animal.setPassword(String.format(infos.split("motdepasse - ")[1]));
                     saisieValide = true;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // ignores error thrown for the fields not filled by user to update
-                }
-                try {
+                } else if (infos.startsWith("age - ")) {
                     animal.setAge(Integer.parseInt(infos.split("age - ")[1]));
                     saisieValide = true;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // ignores error thrown for the fields not filled by user to update
-                }
-                try {
+                } else if (infos.startsWith("espece - ")) {
                     animal.setEspece(String.format(infos.split("espece - ")[1]));
                     saisieValide = true;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // ignores error thrown for the fields not filled by user to update
-                }
-                try {
+                } else if (infos.startsWith("ville - ")) {
                     RepositoryVilleJpa repoVille = new RepositoryVilleJpa();
-                    animal.setVille(repoVille.findByNom(String.format(infos.split("ville - ")[1])).get());
-                    saisieValide = repoVille.findByNom(String.format(infos.split("ville - ")[1])).isPresent();
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    // ignores error thrown for the fields not filled by user to update
+                    if (repoVille.findByNom(String.format(infos.split("ville - ")[1])).isPresent()) {
+                        animal.setVille(repoVille.findByNom(String.format(infos.split("ville - ")[1])).get());
+                        saisieValide = true;
+                    } else {
+                        repoVille.createEntry();
+                        animal.setVille(repoVille.findByNom(String.format(infos.split("ville - ")[1])).get());
+                        saisieValide = true;
+                    }
                 }
             } catch (Exception e) {
                 System.out.println(
@@ -140,6 +133,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
                 ex.printStackTrace();
                 em.getTransaction().rollback();
             }
+            System.out.println("Les infos de votre animal ont bien été modifiées.");
         }
     }
 

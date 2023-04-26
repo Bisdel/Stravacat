@@ -44,8 +44,6 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 	@Override
 	public void createEntry() {
 
-        
-
 		Ville ville = new Ville();
 		String nom = Saisie.next("Veuillez entrer le nom de votre ville :");
 		String ambiance = Saisie.next("Veuillez entrer l'ambiance de la ville :");
