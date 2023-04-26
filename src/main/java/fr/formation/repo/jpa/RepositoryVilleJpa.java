@@ -1,9 +1,8 @@
 package fr.formation.repo.jpa;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import fr.formation.model.Abonnes;
+import java.util.List;
 import fr.formation.model.Saisie;
 import fr.formation.model.Ville;
 import fr.formation.repo.IVilleRepository;

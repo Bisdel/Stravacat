@@ -2,18 +2,17 @@ package fr.formation.repo.sql;
 
 import java.sql.PreparedStatement;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import fr.formation.model.Abonnes;
-import fr.formation.model.Ville;
 import fr.formation.model.Saisie;
 import fr.formation.repo.IAbonnesRepository;
-import fr.formation.repo.IVilleRepository;
+
 
 public class RepositoryAbonnesSql extends AbstractRepositorySql implements IAbonnesRepository {
 
