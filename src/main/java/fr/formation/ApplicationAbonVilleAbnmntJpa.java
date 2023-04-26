@@ -41,15 +41,17 @@ public class ApplicationAbonVilleAbnmntJpa {
 	private static void ListerAbonnes() {
 		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
 		for (Abonnes a : repoAbonne.findAll()) {
-			System.out.println(" age : " + a.getAge() + " animal id : " + a.getAnimal_id() + " son id " + a.getId()
-					+ " espece " + a.getEspece() + " pseudo :" + a.getPseudo() + " ville id : "
+			System.out.println(" age : " + a.getAge() + " animal id : " + a.getAnimal_id() + " son id : " + a.getId()
+					+ " espece : " + a.getEspece() + " pseudo :" + a.getPseudo() + " ville id : "
 					+ a.getVille_id());
 		}
 	}
 	private static void ListerAbonnement() {
 		IAbonnementRepository repoAbonnement = RepositoryFactory.creatAbonnementRepository();
 		for(Abonnement a : repoAbonnement.findAll()) {
-			System.out.println(a.getAge()+" - "+ a.getAnimal_id()+" - "+ a.getId()+" - "+a.getEspece()+" - "+a.getPseudo()+" - "+a.getVille_id());
+			System.out.println(" age : " + a.getAge()+" animal id : "+ a.getAnimal_id() +" son id : " + a.getId()
+			+" espece : "+a.getEspece()+" pseudo :" +a.getPseudo()
+			+" ville id : "+a.getVille_id());
 			
 		}
 		

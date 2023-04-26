@@ -18,7 +18,7 @@ public class Ville {
 	@Column(name = "vill_id")
 	private int id;
 
-	@Column(name = "vill_nom", length = 30, nullable = false)
+	@Column(name = "vill_nom", length = 30)
 	private String nom;
 
 	@Column(name = " vill_ambiance", length = 250, nullable = false)

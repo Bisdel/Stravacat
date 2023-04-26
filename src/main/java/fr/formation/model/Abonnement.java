@@ -24,7 +24,7 @@ private String pseudo;
 	@Column(name = "abnm_age" , nullable = false)
 private int age;
 	
-	@Column(name = "abnm_espece" , nullable=false)
+	@Column(name = "abnm_espece" )
 private String espece;
 	@Column(name= "abnn_ville_id" , nullable=false)
 private int ville_id;
