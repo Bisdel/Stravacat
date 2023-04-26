@@ -18,8 +18,8 @@ public class Ville {
 	@Column(name = "vill_id")
 	private int id;
 
-	@Column(name = "vill_ville", length = 30, nullable = false)
-	private String ville;
+	@Column(name = "vill_nom", length = 30, nullable = false)
+	private String nom;
 
 	@Column(name = " vill_ambiance", length = 250, nullable = false)
 	private String ambiance;
@@ -39,11 +39,11 @@ public class Ville {
 	}
 
 	public String getNom() {
-		return ville;
+		return nom;
 	}
 
 	public void setNom(String nom) {
-		this.ville = nom;
+		this.nom = nom;
 	}
 
 	public String getAmbiance() {
