@@ -50,16 +50,18 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setPassword(String.format(infos.split(" - ")[1]));
             animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
             animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
-            String ville = String.format(infos.split(" - ")[4]);
-            // if ville.ispresent in table ville :
-            //      comment rattacher a la bonne ville ?
-            // -> Ville.findbynom à créer
+            String nomVille = String.format(infos.split(" - ")[4]);
+            RepositoryVilleJpa repoVilleCheck = new RepositoryVilleJpa();
+            if (!repoVilleCheck.findByNom(nomVille.toLowerCase()).isPresent()) {
+                System.out.println("La ville entrée n'existe pas encore, mais nous allons la créer ensemble !");
+                repoVilleCheck.createEntry();
+            }
+
         } catch (NumberFormatException e) {
             System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
         } catch (IllegalFormatException e) {
             System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
         }
-
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             try {

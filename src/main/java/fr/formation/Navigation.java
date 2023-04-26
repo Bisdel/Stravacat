@@ -7,7 +7,7 @@ public class Navigation {
         while(true){
             try {
                 System.out.println("Veuillez entrer votre choix (O/N) :");
-                String choix = ApplicationAnimalSql.sc.nextLine();
+                String choix = ApplicationAnimalJpa.sc.nextLine();
                 if (choix.toUpperCase().equals("O")) {
                     return true;
                 }
