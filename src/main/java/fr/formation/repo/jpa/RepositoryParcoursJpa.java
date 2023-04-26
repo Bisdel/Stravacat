@@ -74,16 +74,25 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     }
 
     @Override
-    public List<Parcours> findByDateParcours(LocalDateTime date) {
+    public List<Parcours> findByDateParcours(LocalDateTime start) {
+        
         try (EntityManager em = emf.createEntityManager()){
-            return em.createQuery(null)
+            em.getTransaction().begin();
+            LocalDateTime end = start.plusDays(1);
+            return em.createQuery("select p from Parcours p where p.datePublicationParcours between ?1 and ?2", Parcours.class)
+                    .setParameter(1, start)
+                    .setParameter(2, end)
+                    .getResultList();
         }
-        LocalDateTime end = date.plusDays(1);
+        catch (Exception ex){
+            ex.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        
 
         // where la date est comprise entre le début et la fin
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByDateParcours'");
+        
     }
 
 }

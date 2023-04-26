@@ -23,7 +23,7 @@ public class ApplicationParcoursJpa {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(date, formatter);
             LocalDateTime start = localDate.atStartOfDay();
-
+            
             
         }
 
