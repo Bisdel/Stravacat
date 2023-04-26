@@ -29,12 +29,12 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 		int id_animal = Saisie.nextInt("L'Id de l'animal: ");
 		int age = Saisie.nextInt("Son age : ");
 		String pseudo = Saisie.next("Son pseudo :");
-		int nb_patounes = Saisie.nextInt("nb_patounes : ");
+		String espece = Saisie.nextInt("espece : ");
 		int id_ville = Saisie.nextInt(" l'Id du ville : ");
 		abonne.setAnimal_id(id_animal);
 		abonne.setAge(age);
 		abonne.setPseudo(pseudo);
-		abonne.setNb_patounes(nb_patounes);
+		abonne.setespece(espece);
 		abonne.setVille_id(id_ville);
 
 		try (EntityManager em = emf.createEntityManager()) {

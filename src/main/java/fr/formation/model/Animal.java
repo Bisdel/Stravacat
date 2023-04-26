@@ -30,8 +30,8 @@ public class Animal {
     @Column(name = "anim_age")
     private int age;
     
-    @Column(name = "anim_nb_patounes")
-    private int nbPatounes;
+    @Column(name = "anim_espece")
+    private String espece;
     
     @ManyToOne
     @JoinColumn(name = "anim_ville_id")
@@ -85,12 +85,12 @@ public class Animal {
         this.age = age;
     }
 
-    public int getNbPatounes() {
-        return nbPatounes;
+    public String getEspece() {
+        return espece;
     }
 
-    public void setNbPatounes(int nbPatounes) {
-        this.nbPatounes = nbPatounes;
+    public void setEspece(String espece) {
+        this.espece = espece;
     }
 
     public Ville getVille() {

@@ -21,8 +21,8 @@ public class Abonnes {
 	
 	@Column(name ="abon_age")
 	private int age;
-	@Column(name ="abon_nb_patounes")
-	private int nb_patounes;
+	@Column(name ="abon_espece")
+	private String espece;
 	
 	@Column(name="abon_ville_id")
 	private int ville_id;
@@ -54,12 +54,12 @@ public class Abonnes {
 		this.age = age;
 	}
 
-	public int getNb_patounes() {
-		return nb_patounes;
+	public int getespece() {
+		return espece;
 	}
 
-	public void setNb_patounes(int nb_patounes) {
-		this.nb_patounes = nb_patounes;
+	public void setespece(String espece) {
+		this.espece = espece;
 	}
 
 	public int getVille_id() {

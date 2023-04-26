@@ -42,14 +42,14 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
     @Override
     public void createEntry() {
         System.out.println(
-                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredepatounes - ville");
+                "Veuillez entrer les informations de votre nouvel animal, au format pseudo - motdepasse - age - nombredeespece - ville");
         Animal animal = new Animal();
         try {
             String infos = ApplicationAnimalJpa.sc.nextLine();
             animal.setPseudo(String.format(infos.split(" - ")[0]));
             animal.setPassword(String.format(infos.split(" - ")[1]));
             animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
-            animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
+            animal.setEspece(Integer.parseInt(infos.split(" - ")[3]));
             String nomVille = String.format(infos.split(" - ")[4]);
             RepositoryVilleJpa repoVilleCheck = new RepositoryVilleJpa();
             if (repoVilleCheck.findByNom(nomVille).isPresent()) {
@@ -61,7 +61,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
+            System.out.println("Le format de l'age et/ou du nombre de espece est incorrect.");
         } catch (IllegalFormatException e) {
             System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
         }
@@ -87,7 +87,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
         boolean saisieValide = false;
         while (saisieValide == false) {
             System.out.println(
-                    "\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/patounes/ville) - donnée, exemple : pseudo - Franklinlatortue)");
+                    "\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/espece/ville) - donnée, exemple : pseudo - Franklinlatortue)");
             String infos = ApplicationAnimalJpa.sc.nextLine();
 
             try {
@@ -110,7 +110,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
                     // ignores error thrown for the fields not filled by user to update
                 }
                 try {
-                    animal.setNbPatounes(Integer.parseInt(infos.split("patounes - ")[1]));
+                    animal.setEspece(String.format(infos.split("espece - ")[1]));
                     saisieValide = true;
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // ignores error thrown for the fields not filled by user to update

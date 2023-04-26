@@ -24,8 +24,8 @@ private String pseudo;
 	@Column(name = "abnm_age" , nullable = false)
 private int age;
 	
-	@Column(name = "abnm_nb_patounes" , nullable=false)
-private int nb_patounes;
+	@Column(name = "abnm_espece" , nullable=false)
+private String espece;
 	@Column(name= "abnn_ville_id" , nullable=false)
 private int ville_id;
 
@@ -57,11 +57,11 @@ public int getAge() {
 public void setAge(int age) {
 	this.age = age;
 }
-public int getNb_patounes() {
-	return nb_patounes;
+public String getEspece() {
+	return espece;
 }
-public void setNb_patounes(int nb_patounes) {
-	this.nb_patounes = nb_patounes;
+public void setEspece(String espece) {
+	this.espece = espece;
 }
 public int getVille_id() {
 	return ville_id;

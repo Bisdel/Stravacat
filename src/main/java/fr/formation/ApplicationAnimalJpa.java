@@ -20,7 +20,7 @@ public class ApplicationAnimalJpa {
             if (repoAnimalJpa.findByPseudo(pseudo).isPresent()) {
                 Animal animal = repoAnimalJpa.findByPseudo(pseudo).get();
                 System.out.println("Animal trouvé !\nIl s'appelle " + animal.getPseudo() + ", il a "
-                        + animal.getAge() + " ans et " + animal.getNbPatounes() + " patounes.");
+                        + animal.getAge() + " ans et " + animal.getEspece() + " espece.");
                 System.out.println("Voulez-vous mettre à jour une de ces informations ?");
                 if (Navigation.choixOuiNon()){
                     repoAnimalJpa.updateEntry(animal);                    
