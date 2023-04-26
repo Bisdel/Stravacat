@@ -26,7 +26,10 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 	@Override
 	public Optional<Ville> findByNom(String nom) {
 		try (EntityManager em = emf.createEntityManager()) {
-			return Optional.of(em.createQuery("select v from Ville v ", Ville.class).getSingleResult());
+			return Optional.of(em
+				.createQuery("select v from Ville v where v.nom = ?1", Ville.class)
+				.setParameter(1, nom)
+				.getSingleResult());
 		} catch (NoResultException doesnt_exist){
 			System.out.println("La ville entrée n'est pas encore disponible dans notre base de données, désolé !");
 		} catch (Exception ex) {
@@ -38,11 +41,10 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 	@Override
 	public void createEntry() {
 		Ville ville = new Ville();
-		String nom = Saisie.next("le nom de votre ville : ");
-		String ambiance = Saisie.next(" l'ambiance de la ville ");
-
-		ville.setNom(nom);
-		ville.setAmbiance(ambiance);
+		String nom = Saisie.next("Veuillez entrer le nom de votre ville :");
+		String ambiance = Saisie.next("Veuillez entrer l'ambiance de la ville :");
+		ville.setNom(nom.toLowerCase());
+		ville.setAmbiance(ambiance.toLowerCase());
 
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
@@ -57,6 +59,7 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 				ex.printStackTrace();
 				em.getTransaction().rollback();
 			}
+			System.out.println("Votre nouvelle ville a bien été créée !");
 		}
 	}
 

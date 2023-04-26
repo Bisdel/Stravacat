@@ -52,27 +52,30 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
             String nomVille = String.format(infos.split(" - ")[4]);
             RepositoryVilleJpa repoVilleCheck = new RepositoryVilleJpa();
-            if (repoVilleCheck.findByNom(nomVille).isPresent()) {
-                try (EntityManager em = emf.createEntityManager()) {
-                    em.getTransaction().begin();
-                    try {
-                        if (animal.getId() == 0) {
-                            em.persist(animal);
-                        } else {
-                            animal = em.merge(animal);
-                        }
-                        em.getTransaction().commit();
-                        System.out.println("Votre animal a bien été créé !");
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                        em.getTransaction().rollback();
-                    }
-                }
+            if (!repoVilleCheck.findByNom(nomVille.toLowerCase()).isPresent()) {
+                System.out.println("La ville entrée n'existe pas encore, mais nous allons la créer ensemble !");
+                repoVilleCheck.createEntry();
             }
+
         } catch (NumberFormatException e) {
             System.out.println("Le format de l'age et/ou du nombre de patounes est incorrect.");
         } catch (IllegalFormatException e) {
             System.out.println("Le format du pseudo et/ou du mot de passe est incorrect.");
+        }
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            try {
+                if (animal.getId() == 0) {
+                    em.persist(animal);
+                } else {
+                    animal = em.merge(animal);
+                }
+                em.getTransaction().commit();
+                System.out.println("Votre animal a bien été créé !");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                em.getTransaction().rollback();
+            }
         }
     }
 
