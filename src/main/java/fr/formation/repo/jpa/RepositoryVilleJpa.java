@@ -49,9 +49,8 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 		Ville ville = new Ville();
 		String nom = Saisie.next("Veuillez entrer le nom de votre ville :");
 		String ambiance = Saisie.next("Veuillez entrer l'ambiance de la ville :");
-		ville.setNom(nom.toLowerCase());
-		ville.setAmbiance(ambiance.toLowerCase());
-		System.out.println("la vaille" +ville.getNom()+ "ajouté");
+		ville.setNom(nom);
+		ville.setAmbiance(ambiance);
 
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();

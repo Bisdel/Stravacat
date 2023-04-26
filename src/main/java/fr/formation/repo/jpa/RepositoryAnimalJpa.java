@@ -52,9 +52,12 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setNbPatounes(Integer.parseInt(infos.split(" - ")[3]));
             String nomVille = String.format(infos.split(" - ")[4]);
             RepositoryVilleJpa repoVilleCheck = new RepositoryVilleJpa();
-            if (!repoVilleCheck.findByNom(nomVille.toLowerCase()).isPresent()) {
+            if (repoVilleCheck.findByNom(nomVille).isPresent()) {
+                animal.setVille(repoVilleCheck.findByNom(nomVille).get());
+            } else {
                 System.out.println("La ville entrée n'existe pas encore, mais nous allons la créer ensemble !");
                 repoVilleCheck.createEntry();
+                animal.setVille(repoVilleCheck.findByNom(nomVille).get());
             }
 
         } catch (NumberFormatException e) {
@@ -84,7 +87,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
         boolean saisieValide = false;
         while (saisieValide == false) {
             System.out.println(
-                    "\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/patounes) - donnée, exemple : pseudo - Franklinlatortue)");
+                    "\nVeuillez entrer les informations à modifier, au format champ(pseudo/motdepasse/age/patounes/ville) - donnée, exemple : pseudo - Franklinlatortue)");
             String infos = ApplicationAnimalJpa.sc.nextLine();
 
             try {
@@ -109,6 +112,13 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
                 try {
                     animal.setNbPatounes(Integer.parseInt(infos.split("patounes - ")[1]));
                     saisieValide = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // ignores error thrown for the fields not filled by user to update
+                }
+                try {
+                    RepositoryVilleJpa repoVille = new RepositoryVilleJpa();
+                    animal.setVille(repoVille.findByNom(String.format(infos.split("ville - ")[1])).get());
+                    saisieValide = repoVille.findByNom(String.format(infos.split("ville - ")[1])).isPresent();
                 } catch (ArrayIndexOutOfBoundsException e) {
                     // ignores error thrown for the fields not filled by user to update
                 }
