@@ -2,46 +2,70 @@ package fr.formation.repo.jpa;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
+import java.util.Optional;
+
 import fr.formation.model.Saisie;
 import fr.formation.model.Ville;
 import fr.formation.repo.IVilleRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleRepository {
 
 	@Override
 	public List<Ville> findAll() {
 		try (EntityManager em = emf.createEntityManager()) {
-			em.createQuery("select v from Ville v", Ville.class).getResultList();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+
+			return em.createQuery("select v from Ville v", Ville.class).getResultList();
+
+		}
+
+		catch (Exception ex) {
+
 		}
 		return new ArrayList<>();
 	}
 
 	@Override
-	public void createEntry() {
-		Ville vil = new Ville();
-		String nom = Saisie.next("le nom de votrte ville : ");
-		String ambiance = Saisie.next(" l'ambiance de la ville ");
+	public Optional<Ville> findByNom(String nom) {
+		try (EntityManager em = emf.createEntityManager()) {
+			return Optional.of(em.createQuery("select v from Ville v where v.nom = ?1", Ville.class)
+					.setParameter(1, nom).getSingleResult());
+		} catch (NoResultException doesnt_exist) {
+			System.out.println("La ville entrée n'est pas encore disponible dans notre base de données, désolé !");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return Optional.empty();
+	}
 
-		vil.setVille(nom);
-		vil.setAmbiance(ambiance);
+	@Override
+	public void createEntry() {
+
+        
+
+		Ville ville = new Ville();
+		String nom = Saisie.next("Veuillez entrer le nom de votre ville :");
+		String ambiance = Saisie.next("Veuillez entrer l'ambiance de la ville :");
+		ville.setNom(nom);
+		ville.setAmbiance(ambiance);
 
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
 			try {
-				if (vil.getId() == 0) {
-					em.persist(vil);
+				if (ville.getId() == 0) {
+					em.persist(ville);
 				} else {
-					vil = em.merge(vil);
+					ville = em.merge(ville);
 				}
 				em.getTransaction().commit();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				em.getTransaction().rollback();
 			}
+			System.out.println("Votre nouvelle ville a bien été créée !");
 		}
 	}
 
@@ -88,11 +112,4 @@ public class RepositoryVilleJpa extends AbstractRepositoryJpa implements IVilleR
 			ed.printStackTrace();
 		}
 	}
-
-	@Override
-	public List<Ville> findByVille(String ville) {
-
-		return null;
-	}
-
 }

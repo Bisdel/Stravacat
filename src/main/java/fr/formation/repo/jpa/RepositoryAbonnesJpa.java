@@ -13,13 +13,13 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 	public List<Abonnes> findAll() {
 
 		try (EntityManager em = emf.createEntityManager()) {
-			em.createQuery("select a from Abonnes a", Abonnes.class).getResultList();
+			return em.createQuery("select a from Abonnes a", Abonnes.class).getResultList();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return new ArrayList<>();
 
 		}
-		return null;
+	
 	}
 
 	@Override

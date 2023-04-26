@@ -13,7 +13,7 @@ public class RepositoryAbonnementJpa extends AbstractRepositoryJpa implements IA
 	@Override
 	public List<Abonnement> findAll() {
 		try (EntityManager em = emf.createEntityManager()) {
-			em.createQuery("select b from Abonnement b", Abonnement.class).getResultList();
+		return	em.createQuery("select b from Abonnement b", Abonnement.class).getResultList();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

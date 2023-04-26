@@ -16,40 +16,58 @@ public class Ville {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vill_id")
-private int id;
-	
-	@Column(name = "vill_ville" , length = 30 , nullable = false)
-private String ville;
-	
-	@Column(name = " vill_ambiance" , length = 250 , nullable=false)
-private String ambiance;
+	private int id;
+
+	@Column(name = "vill_nom", length = 30, nullable = false)
+	private String nom;
+
+	@Column(name = " vill_ambiance", length = 250, nullable = false)
+	private String ambiance;
 
 	@OneToMany(mappedBy = "ville")
 	private List<Animal> animaux;
 
+	@OneToMany(mappedBy = "ville")
+	private List<Actualite> actualites;
 
+	public int getId() {
+		return id;
+	}
 
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getVille() {
-	return ville;
-}
-public void setVille(String ville) {
-	this.ville = ville;
-}
-public String getAmbiance() {
-	return ambiance;
-}
-public void setAmbiance(String ambiance) {
-	this.ambiance = ambiance;
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
+	public String getNom() {
+		return nom;
+	}
 
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
+	public String getAmbiance() {
+		return ambiance;
+	}
 
+	public void setAmbiance(String ambiance) {
+		this.ambiance = ambiance;
+	}
 
+	public List<Animal> getAnimaux() {
+		return animaux;
+	}
+
+	public void setAnimaux(List<Animal> animaux) {
+		this.animaux = animaux;
+	}
+
+	public List<Actualite> getActualites() {
+		return actualites;
+	}
+
+	public void setActualites(List<Actualite> actualites) {
+		this.actualites = actualites;
+	}
+	
 }
