@@ -1,6 +1,5 @@
 package fr.formation;
 
-import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -48,7 +47,7 @@ public class ApplicationActu {
 		List<Actualite> actualites = repoActualite.findAll();	
 		for (Actualite a : actualites) {
 //			if (!a.getActu_isPrivate()) {
-				System.out.println("Actu#" + a.getActu_id() + " - " + a.getActu_timestamp().toLocalDate() + " à " + a.getActu_timestamp().toLocalTime() + ", " + a.getActu_description());
+				System.out.println("Actu#" + a.getActu_id() + " - " + a.getActu_isPrivate() + " - " + a.getActu_timestamp().toLocalDate() + " à " + a.getActu_timestamp().toLocalTime() + ", " + a.getActu_description());
 //			}
 		}
 	}
@@ -83,7 +82,7 @@ public class ApplicationActu {
 			
 			List<Actualite> actualites = repoActualite.findByAnimalId(animalId);
 			if (actualites.isEmpty()){
-				System.out.println("Pseudo inexistant donc pas d'actu");
+				System.out.println("Pseudo inexistant, le fil d'actu est vide");
 			} else {
 			for (Actualite a : actualites)
 				if (a.getActu_isPrivate()) {

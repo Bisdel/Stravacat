@@ -2,56 +2,86 @@ package fr.formation.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "actualite")
 public class Actualite {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "actu_id")
     private int actu_id;
+
+	@Column(name = "actu_timestamp", nullable = false)
     private LocalDateTime actu_timestamp;
-    private String actu_coordonneesgps; // VARCHAR(50)
-    private String actu_description; 
-    private int actu_animal_id;
-    private int actu_ville_id;
+
+	@Column(name = "actu_coordonneesgps", length = 50)
+    private String actu_coordonneesgps;
+
+	@Column(name = "actu_description", length = 500, nullable = false)
+    private String actu_description;
+
+	@Column(name = "actu_isPrivate", nullable = false)
     private boolean actu_isPrivate;
 //  private JSONB actu_contactsIdentifies;
     
+	@ManyToOne
+	@JoinColumn(name = "animal_actu_id")
+	private Animal animal;
+
+	@ManyToOne
+	@JoinColumn(name = "ville_actu_id")
+	private Ville ville;
+
 	public int getActu_id() {
 		return actu_id;
 	}
+
 	public void setActu_id(int actu_id) {
 		this.actu_id = actu_id;
 	}
+
 	public LocalDateTime getActu_timestamp() {
 		return actu_timestamp;
 	}
+
 	public void setActu_timestamp(LocalDateTime actu_timestamp) {
 		this.actu_timestamp = actu_timestamp;
 	}
+	
 	public String getActu_coordonneesgps() {
 		return actu_coordonneesgps;
 	}
+
 	public void setActu_coordonneesgps(String actu_coordonneesgps) {
 		this.actu_coordonneesgps = actu_coordonneesgps;
 	}
+
 	public String getActu_description() {
 		return actu_description;
 	}
+
 	public void setActu_description(String actu_description) {
 		this.actu_description = actu_description;
 	}
-	public int getActu_animal_id() {
-		return actu_animal_id;
-	}
-	public void setActu_animal_id(int actu_animal_id) {
-		this.actu_animal_id = actu_animal_id;
-	}
-	public int getActu_ville_id() {
-		return actu_ville_id;
-	}
-	public void setActu_ville_id(int actu_ville_id) {
-		this.actu_ville_id = actu_ville_id;
-	}
+
 	public Boolean getActu_isPrivate() {
 		return actu_isPrivate;
 	}
+
 	public void setActu_isPrivate(Boolean actu_isPrivate) {
 		this.actu_isPrivate = actu_isPrivate;
+	}
+
+	@Override
+	public String toString() {
+		return "Actu#" + this.actu_id + " - "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
 	}
 }
