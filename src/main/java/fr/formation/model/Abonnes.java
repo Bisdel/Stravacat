@@ -54,11 +54,11 @@ public class Abonnes {
 		this.age = age;
 	}
 
-	public int getespece() {
+	public String getEspece() {
 		return espece;
 	}
 
-	public void setespece(String espece) {
+	public void setEspece(String espece) {
 		this.espece = espece;
 	}
 

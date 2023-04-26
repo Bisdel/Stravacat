@@ -49,7 +49,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
             animal.setPseudo(String.format(infos.split(" - ")[0]));
             animal.setPassword(String.format(infos.split(" - ")[1]));
             animal.setAge(Integer.parseInt(infos.split(" - ")[2]));
-            animal.setEspece(Integer.parseInt(infos.split(" - ")[3]));
+            animal.setEspece(String.format(infos.split(" - ")[3]));
             String nomVille = String.format(infos.split(" - ")[4]);
             RepositoryVilleJpa repoVilleCheck = new RepositoryVilleJpa();
             if (repoVilleCheck.findByNom(nomVille).isPresent()) {

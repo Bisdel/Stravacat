@@ -26,13 +26,13 @@ public class RepositoryAbonnementJpa extends AbstractRepositoryJpa implements IA
 		int abnm_animal_id = Saisie.nextInt("l'id de l'animal : ");
 		String abnm_pseudo = Saisie.next("le pseudo de l'animal : ");
 		int abnm_age = Saisie.nextInt("l'age : ");
-		int abnm_espece = Saisie.nextInt("le nombre de pattes : ");
+		String abnm_espece = Saisie.next("l'espece : ");
 		int abnn_ville_id = Saisie.nextInt("l'id de la ville : ");
 
 		abnm.setAnimal_id(abnm_animal_id);
 		abnm.setPseudo(abnm_pseudo);
 		abnm.setAge(abnm_age);
-		abnm.setespece(abnm_espece);
+		abnm.setEspece(abnm_espece);
 		abnm.setVille_id(abnn_ville_id);
 
 		try (EntityManager em = emf.createEntityManager()) {

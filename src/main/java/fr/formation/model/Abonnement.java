@@ -29,10 +29,6 @@ private String espece;
 	@Column(name= "abnn_ville_id" , nullable=false)
 private int ville_id;
 
-
-
-
-
 public int getId() {
 	return id;
 }
