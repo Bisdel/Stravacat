@@ -41,6 +41,12 @@ public class ApplicationParcoursJpa {
     }
 
     private static void ListerParcours() {
+        IParcoursRepository repoParcoursJpa = new RepositoryParcoursJpa();
+        System.out.println("-- Voici la liste des parcours effectué : ");
+        for(Parcours p : repoParcoursJpa.findAll()){
+            System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours());
+            //System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours() + " | TRACE GPS | " + p.getTraceGpsParcours());
+        }
     }
 
     private static void DateParcours() {

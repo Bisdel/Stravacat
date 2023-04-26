@@ -14,7 +14,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     @Override
     public List <Parcours> findAll(){
         try (EntityManager em = emf.createEntityManager()){
-            return em.createQuery ("select p from parcours p", Parcours.class).getResultList();
+            return em.createQuery ("select p from Parcours p", Parcours.class).getResultList();
         }
         catch (Exception ex){
             ex.printStackTrace();
