@@ -89,10 +89,6 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
             return new ArrayList<>();
         }
         
-
-        // where la date est comprise entre le début et la fin
-
-        
     }
 
 }
