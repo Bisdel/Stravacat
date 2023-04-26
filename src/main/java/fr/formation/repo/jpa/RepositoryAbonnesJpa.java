@@ -96,7 +96,7 @@ public class RepositoryAbonnesJpa extends AbstractRepositoryJpa implements IAbon
 		try (EntityManager em = emf.createEntityManager()) {
 			em.getTransaction().begin();
 			try {
-				Abonnes abonneAsupprimer = em.find(Abonnes.class, Saisie.next("l'Id de l'abonnest a supprimé : "));
+				Abonnes abonneAsupprimer = em.find(Abonnes.class, Saisie.next("l'Id de l'abonne a supprimé : "));
 				em.remove(abonneAsupprimer);
 
 			} catch (Exception ex) {
