@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import fr.formation.ApplicationParcoursJpa;
 import fr.formation.model.Animal;
 import fr.formation.model.Parcours;
 import fr.formation.repo.IParcoursRepository;
@@ -46,7 +47,7 @@ public class RepositoryParcoursJpa extends AbstractRepositoryJpa implements IPar
     @Override
     public void deleteEntry (){
         System.out.println("Entrez l'id du parcours à supprimer : ");
-        String id = sc.nextLine();
+        String id = ApplicationParcoursJpa.sc.nextLine();
         try(EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             try{
