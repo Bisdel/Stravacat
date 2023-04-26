@@ -33,8 +33,9 @@ public class ApplicationParcoursJpa {
                 }
             else{
                 System.out.println("Voici la liste des parcours effectués le " + date + " :");
-                for (Parcours parcours2 : parcours) {
-                    System.out.println(parcours2);
+                for (Parcours p : parcours) {
+                    System.out.println(p);
+                    System.out.println(p.getAnimal() + " a publié un parcours le : "+ p.getDatePublicationParcours() + " à " + p.getVilleParcours());
                     }
                     
                 }
