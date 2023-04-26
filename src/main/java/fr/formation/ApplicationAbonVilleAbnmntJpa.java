@@ -1,39 +1,31 @@
 package fr.formation;
 
 import fr.formation.factory.RepositoryFactory;
+import fr.formation.model.Abonnement;
 import fr.formation.model.Abonnes;
 import fr.formation.model.Menu;
-
 import fr.formation.model.Saisie;
 import fr.formation.model.Ville;
+import fr.formation.repo.IAbonnementRepository;
 import fr.formation.repo.IAbonnesRepository;
 import fr.formation.repo.IVilleRepository;
 
-public class ApplicationAbonVilleJpa {
+public class ApplicationAbonVilleAbnmntJpa {
 
 	public static void main(String[] args) {
 		int choixMenu = 0;
 		do {
 			choixMenu = Menu.print();
 			switch (choixMenu) {
-			case 1:
-				ListerVille();
-				break;
-			case 2:
-				ListerAbonnes();
-				break;
-			case 3:
-				AjouterVille();
-				break;
-			case 4:
-				AjouterAbonnes();
-				break;
-			case 5:
-				SupprimerVille();
-				break;
-			case 6:
-				SupprimerAbonnes();
-				break;
+			case 1: ListerVille();break;
+			case 2: ListerAbonnes();break;			
+			case 3: ListerAbonnement();break;
+			case 4: AjouterVille();break;
+			case 5: AjouterAbonnes();break;		
+			case 6: AjouterAbonnement();break;	
+			case 7: SupprimerVille();break;
+			case 8: SupprimerAbonnes();break;
+		    case 9: SupprimerAbonnement();break;
 			}
 		} while (choixMenu != 0);
 		Saisie.sc.close();
@@ -54,7 +46,14 @@ public class ApplicationAbonVilleJpa {
 					+ a.getVille_id());
 		}
 	}
-
+	private static void ListerAbonnement() {
+		IAbonnementRepository repoAbonnement = RepositoryFactory.creatAbonnementRepository();
+		for(Abonnement a : repoAbonnement.findAll()) {
+			System.out.println(a.getAge()+" - "+ a.getAnimal_id()+" - "+ a.getId()+" - "+a.getNb_patounes()+" - "+a.getPseudo()+" - "+a.getVille_id());
+			
+		}
+		
+	}
 	private static void AjouterVille() {
 		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
 		repoVille.createEntry();
@@ -63,6 +62,12 @@ public class ApplicationAbonVilleJpa {
 	private static void AjouterAbonnes() {
 		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
 		repoAbonne.createEntry();
+	}
+	
+
+	private static void AjouterAbonnement() {
+		IAbonnementRepository repoAbonnement = RepositoryFactory.creatAbonnementRepository();
+		repoAbonnement.createEntry();
 	}
 
 	private static void SupprimerVille() {
@@ -76,5 +81,11 @@ public class ApplicationAbonVilleJpa {
 		repoAbonne.deleteEntry();
 
 	}
+	private static void SupprimerAbonnement() {
+		IAbonnementRepository repoAbonnement = RepositoryFactory.creatAbonnementRepository();
+		repoAbonnement.deleteEntry();
+		
+	}
+
 
 }
