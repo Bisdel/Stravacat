@@ -1,16 +1,25 @@
 package fr.formation.repo.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.formation.model.Actualite;
 import fr.formation.repo.IActualiteRepository;
+import jakarta.persistence.EntityManager;
 
 public class RepositoryActualiteJpa extends AbstractRepositoryJpa implements IActualiteRepository{
 
     @Override
     public List<Actualite> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        try (EntityManager em = emf.createEntityManager()) {
+                return em
+                    .createQuery("select a from Actualite a", Actualite.class)
+                    .getResultList();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     @Override
@@ -35,6 +44,12 @@ public class RepositoryActualiteJpa extends AbstractRepositoryJpa implements IAc
     public List<Actualite> findByAnimalId(int animalId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByAnimalId'");
+    }
+
+    @Override
+    public Actualite createEntry(Actualite actualite) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createEntry'");
     }
     
 }

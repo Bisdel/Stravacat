@@ -40,6 +40,9 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     private List<Parcours> parcours;
 
+    @OneToMany(mappedBy = "animal")
+    private List<Actualite> actualites;
+
     // Obsolète : pour pouvoir lancer la version SQL des applications
     // private int villeId;
     // public int getVilleId() {

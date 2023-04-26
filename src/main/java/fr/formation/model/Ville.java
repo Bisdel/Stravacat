@@ -27,6 +27,9 @@ public class Ville {
 	@OneToMany(mappedBy = "ville")
 	private List<Animal> animaux;
 
+	@OneToMany(mappedBy = "ville")
+	private List<Actualite> actualites;
+
 	public int getId() {
 		return id;
 	}
@@ -59,4 +62,12 @@ public class Ville {
 		this.animaux = animaux;
 	}
 
+	public List<Actualite> getActualites() {
+		return actualites;
+	}
+
+	public void setActualites(List<Actualite> actualites) {
+		this.actualites = actualites;
+	}
+	
 }
