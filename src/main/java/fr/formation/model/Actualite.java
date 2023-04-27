@@ -25,19 +25,20 @@ public class Actualite {
 	@Column(name = "actu_coordonneesgps", length = 50)
     private String actu_coordonneesgps;
 
-	@Column(name = "actu_description", length = 500, nullable = false)
+	@Column(name = "actu_description", length = 500)
     private String actu_description;
 
 	@Column(name = "actu_isPrivate", nullable = false)
     private boolean actu_isPrivate;
+
 //  private JSONB actu_contactsIdentifies;
     
 	@ManyToOne
-	@JoinColumn(name = "animal_actu_id")
+	@JoinColumn(name = "actu_animal_id")
 	private Animal animal;
 
 	@ManyToOne
-	@JoinColumn(name = "ville_actu_id")
+	@JoinColumn(name = "actu_ville_id")
 	private Ville ville;
 
 	public int getActu_id() {
@@ -76,12 +77,28 @@ public class Actualite {
 		return actu_isPrivate;
 	}
 
-	public void setActu_isPrivate(Boolean actu_isPrivate) {
+	public void setActu_isPrivate(boolean actu_isPrivate) {
 		this.actu_isPrivate = actu_isPrivate;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
 	}
 
 	@Override
 	public String toString() {
-		return "Actu#" + this.actu_id + " - "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
+		return "Actu#" + this.actu_id + " - Private = "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
 	}
 }
