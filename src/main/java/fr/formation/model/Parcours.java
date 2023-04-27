@@ -20,7 +20,7 @@ public class Parcours {
 		
 		// private int idVille;
 		//private List<contacts>;
-		// private JSONB traceGpsParcours;
+		// private JSON traceGpsParcours;
 		// private boolean isPrivateParcours;
 	// -----------------------------------
 		
