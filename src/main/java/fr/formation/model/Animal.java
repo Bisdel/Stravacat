@@ -108,4 +108,12 @@ public class Animal {
     public void setParcours(List<Parcours> parcours) {
         this.parcours = parcours;
     }
+
+    public List<Actualite> getActualites() {
+        return actualites;
+    }
+
+    public void setActualites(List<Actualite> actualites) {
+        this.actualites = actualites;
+    }
 }
