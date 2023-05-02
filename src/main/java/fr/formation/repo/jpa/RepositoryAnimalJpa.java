@@ -8,12 +8,12 @@ import java.util.Optional;
 import fr.formation.ApplicationAnimalAdminJpa;
 import fr.formation.ApplicationAnimalJpa;
 import fr.formation.model.Animal;
-import fr.formation.repo.IRepositoryAnimal;
+import fr.formation.repo.IAnimalRepository;
 import jakarta.persistence.EntityManager;
 
 import java.lang.String;
 
-public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepositoryAnimal {
+public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IAnimalRepository {
 
     @Override
     public List<Animal> findAll() {
