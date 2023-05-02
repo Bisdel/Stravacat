@@ -10,5 +10,4 @@ public interface IVilleRepository extends JpaRepository<Ville, Integer> {
 
 	public Optional<Ville> findByNom(String nom);
 
-	public void createEntry();
 }
