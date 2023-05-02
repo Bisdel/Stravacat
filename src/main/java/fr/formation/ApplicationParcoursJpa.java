@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import fr.formation.config.AppConfig;
 import fr.formation.model.MenuParcours;
 import fr.formation.model.Parcours;
 import fr.formation.model.Saisie;
@@ -15,7 +19,20 @@ import fr.formation.repo.jpa.RepositoryParcoursJpa;
 public class ApplicationParcoursJpa {
     public static Scanner sc = new Scanner(System.in);
 
+    @Autowired
+    private IParcoursRepository repoParcours;
+
+
     public static void main(String[] args){
+
+            AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);   
+            ApplicationParcoursJpa app = context.getBean(ApplicationParcoursJpa.class);
+            app.run();
+            
+            context.close();
+    }
+
+    public void run(){
         int choixMenu = 0;
         do{
             choixMenu = MenuParcours.print();
@@ -31,7 +48,28 @@ public class ApplicationParcoursJpa {
 
         }
         
-    private static void MajParcours() {
+    private void MajParcours() {
+        System.out.println("-- Quel modification souhaitez vous faire ? --");
+        System.out.println("ville - temps - trace");
+        try{
+            String modif = sc.nextLine();
+            System.out.println("-- Veuillez entrer l'ID du parcours :");
+            int idModif = sc.nextInt();
+            repoParcours.findById(idModif);
+
+
+
+            if (modif == "ville" ){
+                
+                System.out.println("Entrez le nouveau nom de la ville : ");
+                String villeModif = sc.nextLine();
+                
+                
+
+                
+            }
+
+        }
     }
 
     private static void SuppressionParcours() {
