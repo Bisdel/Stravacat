@@ -3,10 +3,7 @@ package fr.formation.repo.jpa;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import fr.formation.ApplicationParcoursJpa;
-import fr.formation.model.Animal;
 import fr.formation.model.Parcours;
 import fr.formation.repo.IParcoursRepository;
 import jakarta.persistence.EntityManager;

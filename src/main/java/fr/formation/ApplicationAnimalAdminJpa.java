@@ -7,7 +7,7 @@ import fr.formation.model.Animal;
 import fr.formation.repo.IRepositoryAnimal;
 import fr.formation.repo.jpa.RepositoryAnimalJpa;
 
-public class ApplicationAdminJpa {
+public class ApplicationAnimalAdminJpa {
 
     public static Scanner scadmin = new Scanner(System.in);
     public static void main(String[] args) {
