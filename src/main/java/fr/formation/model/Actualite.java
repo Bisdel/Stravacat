@@ -99,6 +99,6 @@ public class Actualite {
 
 	@Override
 	public String toString() {
-		return "Actu#" + this.actu_id + " - Private = "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
+		return "Actu#" + this.actu_id + " de " + this.animal.getPseudo() + " - Private = "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
 	}
 }

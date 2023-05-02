@@ -2,32 +2,39 @@ package fr.formation;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
-import fr.formation.model.Actualite;
-<<<<<<< HEAD
-import fr.formation.model.Animal;
-import fr.formation.model.Ville;
-import fr.formation.repo.IActualiteRepository;
-import fr.formation.repo.IRepositoryAnimal;
-import fr.formation.repo.IVilleRepository;
-=======
-import fr.formation.repo.IActualiteRepository;
->>>>>>> 434a87a41460c4fe6301e1e362ea4a76d1ba21f7
-import fr.formation.repo.jpa.RepositoryActualiteJpa;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
-public class ApplicationActuJpa {
+import fr.formation.config.AppConfig;
+import fr.formation.model.Actualite;
+import fr.formation.repo.IActualiteRepository;
+
+@Component
+public class ApplicationActuDataJpa {
     public static Scanner sc = new Scanner(System.in);
 	
+	@Autowired
+	private IActualiteRepository repoActualite;
+
 	public static void main(String[] args) {
-		
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		ApplicationActuDataJpa app = context.getBean(ApplicationActuDataJpa.class);
+		app.run();
+		context.close();
+	}
+
+	public void run() {
 		int choix = 0;	
 		do {
 			System.out.println("-------------------------------");
 			
 			System.out.println("-- 1. Lister les actualités");
 			System.out.println("-- 2. Ajouter une actualité");
-			System.out.println("-- 3. Afficher les actualités d'un animal");
+			System.out.println("-- 3. Afficher le fil d'actualité d'un animal");
 			System.out.println("-- 4. Modifier une actualité");
 			System.out.println("-- 5. Supprimer une actualité");	
 			System.out.println("-- 0. Quitter");
@@ -48,45 +55,36 @@ public class ApplicationActuJpa {
 		sc.close();
 	}
 
-    private static void listerActualites() {
-        IActualiteRepository repoActualite = new RepositoryActualiteJpa();
+    private void listerActualites() { 
 		System.out.println("-------------------------------");
         repoActualite.findAll().forEach(System.out::println);
     }
 
-    private static void ajouterActualite() {
-        IActualiteRepository repoActualite = new RepositoryActualiteJpa();
+    private void ajouterActualite() {
 		System.out.println("-------------------------------");
-        repoActualite.createEntry();
 	}
-    private static void afficherActualite() {
-        IActualiteRepository repoActualite = new RepositoryActualiteJpa();
+
+    private void afficherActualite() {
 		try {
             System.out.println("-------------------------------");
-			System.out.println("Saisir l'id de l'animal pour afficher son actualité");
-			int animalId = sc.nextInt();
+			System.out.println("Saisir le pseudo de l'animal pour afficher son fil d'actualité");
+			String pseudo = sc.nextLine();
 			
-			List<Actualite> actualites = repoActualite.findByAnimalId(animalId);
-			if (actualites.isEmpty()) {
-				System.out.println("L'animal est inexistant ou son fil d'actu est vide");
-			}
-            else {
-                actualites.forEach(System.out::println);
-			}			
+			repoActualite.findByAnimalPseudo(pseudo).ifPresentOrElse(
+				a -> System.out.println("Actu#" + a.getActu_id() + " - Private = "  + a.getActu_isPrivate() + " - " + a.getActu_timestamp().toLocalDate() + " à " + a.getActu_timestamp().toLocalTime() + ", " + a.getActu_description()),
+				() -> System.out.println("L'animal est inexistant ou son fil d'actu est vide")
+			);		
 		}
 		catch (InputMismatchException ex) {
 			ex.printStackTrace();
 		}
     }
 
-    private static void modifierActualite() {
+    private void modifierActualite() {
 	}
 
-    private static void supprimerActualite() {
-		afficherActualite();
-        IActualiteRepository repoActualite = new RepositoryActualiteJpa();
+    private void supprimerActualite() {
         System.out.println("-------------------------------");
         System.out.println("Suppression d'une actualité d'un animal :");
-        repoActualite.deleteEntry();
     }
 }
