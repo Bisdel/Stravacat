@@ -6,3 +6,4 @@ bin/
 target/
 .vscode/
 **/persistence.xml
+**/JpaConfig.java

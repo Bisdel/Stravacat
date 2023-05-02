@@ -43,15 +43,6 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     private List<Actualite> actualites;
 
-    // Obsolète : pour pouvoir lancer la version SQL des applications
-    // private int villeId;
-    // public int getVilleId() {
-    //     return villeId;
-    // }
-
-    // public void setVilleId(int villeId) {
-    //     this.villeId = villeId;
-    // }
 
     public int getId() {
         return id;
