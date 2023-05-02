@@ -14,13 +14,6 @@ public interface IParcoursRepository extends JpaRepository<Parcours, Integer>{
 	@Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
 	public Optional<Parcours> findByDateParcours(LocalDateTime start);
 
-	public List<Parcours> findAll();
 
-	@Query("delete p from Parcours p where p.id = ?1")
-	public void deleteEntry(int ref);
-
-	public void createEntry();
-
-	public void updateEntry();
 
 }
