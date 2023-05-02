@@ -32,6 +32,20 @@ public class ApplicationParcoursJpa {
         }
         
     private static void MajParcours() {
+        IParcoursRepository repoParcoursJpa = new RepositoryParcoursJpa();
+        System.out.println("-- Quel modification souhaitez vous faire ? --");
+        System.out.println("ville - temps - trace");
+        try{
+            String modif = sc.nextLine();
+            System.out.println("-- Veuillez entrer votre ID :");
+            String idModif = sc.nextLine();
+            if (modif == "ville" ){
+                String chgtVille = getVilleParcours().getId(idModif);
+                System.out.println("Entrez le nouveau nom de la ville : ");
+                
+            }
+
+        }
     }
 
     private static void SuppressionParcours() {
