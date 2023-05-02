@@ -2,6 +2,7 @@ package fr.formation.repo;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.formation.model.Abonnes;
@@ -10,7 +11,6 @@ import fr.formation.model.Ville;
 
 public interface IAbonnesRepository extends JpaRepository<Abonnes, Integer> {
 
-	 public  List<Abonnes> findByPseudo(String pseudo);
-
+	public  List<Abonnes> findByPseudo(String pseudo);
 
 }

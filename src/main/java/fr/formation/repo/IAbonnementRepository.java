@@ -14,6 +14,4 @@ public interface IAbonnementRepository extends JpaRepository<Abonnement, Integer
 
 	public  List<Abonnement> findByPseudo(String pseudo);
 
-	
-	
 }

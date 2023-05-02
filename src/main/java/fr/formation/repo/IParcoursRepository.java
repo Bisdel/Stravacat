@@ -13,9 +13,7 @@ public interface IParcoursRepository extends JpaRepository<Parcours, Integer>{
 	// @Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
 	// public List<Parcours> findByDateParcours(LocalDateTime start);
 
-<<<<<<< HEAD
 
-=======
 	// @Query("delete p from Parcours p where p.id = ?1")
 	// public void deleteEntry(int ref);
 
@@ -23,6 +21,5 @@ public interface IParcoursRepository extends JpaRepository<Parcours, Integer>{
 	// public void findbyVillebyId(String ville);
 
 
->>>>>>> fb09e53823d1a82fcb6909b233f49c9212ad4fdb
 
 }
