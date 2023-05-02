@@ -18,7 +18,7 @@
 		<postgres.version>42.6.0</postgres.version>
 		<spring.version>6.0.8</spring.version>
 		<dbcp2.version>2.9.0</dbcp2.version>
-
+	    <data-jpa.version>3.0.5</data-jpa.version>
 
 	</properties>
 
@@ -55,6 +55,13 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
 			<version>${dbcp2.version}</version>
+		</dependency>
+		
+		<!--https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${data-jpa.version}</version>
 		</dependency>
 
 	</dependencies>
