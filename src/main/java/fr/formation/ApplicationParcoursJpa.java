@@ -79,7 +79,7 @@ public class ApplicationParcoursJpa {
                 Time temps = Time.valueOf(tempsModif);
                 parcours.setTempsParcours(temps);
                 repoParcours.save(parcours);
-                System.out.println("--> Vous avez changé votre temps de : " + tempsAncien + ". Le nouveau temps affiché est désormais de : " + temps);
+                System.out.println("--> Vous avez changé votre temps de parcours initiale de : " + tempsAncien + ". Le nouveau temps affiché est désormais de : " + temps);
 
             }
 
@@ -93,17 +93,37 @@ public class ApplicationParcoursJpa {
         }
     }
 
-    private static void SuppressionParcours() {
+    private void SuppressionParcours() {
+        ListerParcours();
+        System.out.println("------------------------------------------------");
+        System.out.println("-- Quel ID de parcours souhaitez vous supprimer ? ");
+        int suppIdParcours = sc.nextInt();
+        repoParcours.deleteById(suppIdParcours);
+        System.out.println("** L'ID " + suppIdParcours + " ** du Parcours a bien été supprimé " );
+        
     }
 
-    private static void PublicationParcours() {
+    private void PublicationParcours() {
+        Parcours newParcours = new Parcours();
+        System.out.println("-- Veuillez entrez le nom de la ville dans laquelle vous souhaitez ajouter votre parcours : ");
+        String newVille = sc.nextLine();
+        System.out.println("-- Veuillez entrer votre temps de parcours sous le format suivant 'HH:mm:ss' : ");
+        String newTemps = sc.nextLine();
+        Time temps = Time.valueOf(newTemps);
+        LocalDateTime newDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        newParcours.setVilleParcours(newVille);
+        newParcours.setTempsParcours(temps);
+        newParcours.setDatePublicationParcours(newDate);
+       // ajouter le save sinon ça va dans le vent
+        System.out.println("-- Votre parcours à bien été ajouté le " + newDate.toLocalDate().format(formatter) + " à " + newVille + " avec un temps de parcours de : " + newTemps);
     }
 
-    private static void ListerParcours() {
-        IParcoursRepository repoParcoursJpa = new RepositoryParcoursJpa();
+    private void ListerParcours() {
         System.out.println("-- Voici la liste des parcours effectué : ");
-        for(Parcours p : repoParcoursJpa.findAll()){
-            System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours());
+        for(Parcours p : repoParcours.findAll()){
+            System.out.println("--" + p.getId()+ "-- " + p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours());
             //System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours() + " | TRACE GPS | " + p.getTraceGpsParcours());
         }
     }
