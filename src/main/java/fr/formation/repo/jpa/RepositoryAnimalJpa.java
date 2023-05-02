@@ -5,7 +5,7 @@ import java.util.IllegalFormatException;
 import java.util.List;
 import java.util.Optional;
 
-import fr.formation.ApplicationAdminJpa;
+import fr.formation.ApplicationAnimalAdminJpa;
 import fr.formation.ApplicationAnimalJpa;
 import fr.formation.model.Animal;
 import fr.formation.repo.IRepositoryAnimal;
@@ -142,7 +142,7 @@ public class RepositoryAnimalJpa extends AbstractRepositoryJpa implements IRepos
         boolean saisieValide = false;
         while (saisieValide == false) {
             System.out.println("Entrez le pseudo à supprimer :");
-            String pseudo = ApplicationAdminJpa.scadmin.nextLine();
+            String pseudo = ApplicationAnimalAdminJpa.scadmin.nextLine();
             try (EntityManager em = emf.createEntityManager()) {
                 em.getTransaction().begin();
                 try {
