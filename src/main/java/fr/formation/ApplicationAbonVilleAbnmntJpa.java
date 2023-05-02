@@ -107,6 +107,7 @@ public class ApplicationAbonVilleAbnmntJpa {
 	    	int age = Saisie.nextInt(" Veuillez saisir l'age ");
 	    	int animal_id = Saisie.nextInt(" l'id de l'anima ");
 	    	int nb_patounes = Saisie.nextInt(" Veuillez saisir le nombre de pattes ");
+	    	
 	    }
 		
 		
