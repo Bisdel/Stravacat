@@ -1,19 +1,20 @@
 package fr.formation;
 
-import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import fr.formation.model.Actualite;
+<<<<<<< HEAD
 import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IActualiteRepository;
 import fr.formation.repo.IRepositoryAnimal;
 import fr.formation.repo.IVilleRepository;
+=======
+import fr.formation.repo.IActualiteRepository;
+>>>>>>> 434a87a41460c4fe6301e1e362ea4a76d1ba21f7
 import fr.formation.repo.jpa.RepositoryActualiteJpa;
-import fr.formation.repo.jpa.RepositoryAnimalJpa;
-import fr.formation.repo.jpa.RepositoryVilleJpa;
 
 public class ApplicationActuJpa {
     public static Scanner sc = new Scanner(System.in);
