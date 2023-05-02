@@ -32,14 +32,14 @@ public class ApplicationAbonVilleAbnmntJpa {
 	}
 
 	private static void ListerVille() {
-		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
+		IVilleRepository repoVille = RepositoryFactory.createVilleRepository();
 		for (Ville v : repoVille.findAll()) {
 			System.out.println("le nom de la ville" + v.getNom() + " son ambiance " + v.getAmbiance());
 		}
 	}
 
 	private static void ListerAbonnes() {
-		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
+		IAbonnesRepository repoAbonne = RepositoryFactory.createAbonnesRepository();
 		for (Abonnes a : repoAbonne.findAll()) {
 			System.out.println(" age : " + a.getAge() + " animal id : " + a.getAnimal_id() + " son id : " + a.getId()
 					+ " espece : " + a.getEspece() + " pseudo :" + a.getPseudo() + " ville id : "
@@ -57,12 +57,12 @@ public class ApplicationAbonVilleAbnmntJpa {
 		
 	}
 	private static void AjouterVille() {
-		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
+		IVilleRepository repoVille = RepositoryFactory.createVilleRepository();
 		repoVille.createEntry();
 	}
 
 	private static void AjouterAbonnes() {
-		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
+		IAbonnesRepository repoAbonne = RepositoryFactory.createAbonnesRepository();
 		repoAbonne.createEntry();
 	}
 	
@@ -73,13 +73,13 @@ public class ApplicationAbonVilleAbnmntJpa {
 	}
 
 	private static void SupprimerVille() {
-		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
+		IVilleRepository repoVille = RepositoryFactory.createVilleRepository();
 		repoVille.deleteEntry();
 
 	}
 
 	private static void SupprimerAbonnes() {
-		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
+		IAbonnesRepository repoAbonne = RepositoryFactory.createAbonnesRepository();
 		repoAbonne.deleteEntry();
 
 	}
