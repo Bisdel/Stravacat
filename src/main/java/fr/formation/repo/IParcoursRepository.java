@@ -10,8 +10,8 @@ import fr.formation.model.Parcours;
 
 public interface IParcoursRepository extends JpaRepository<Parcours, Integer>{
 
-	// @Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
-	// public List<Parcours> findByDateParcours(LocalDateTime start);
+	 @Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
+	 public List<Parcours> findByDateParcours(LocalDateTime start, LocalDateTime end);
 
 
 	// @Query("delete p from Parcours p where p.id = ?1")

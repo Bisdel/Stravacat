@@ -2,6 +2,7 @@ package fr.formation.model;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -82,9 +83,6 @@ public class Parcours {
 			return tempsParcours;
 		}
 
-		public void setTempsParcours(Time tempsParcours) {
-			this.tempsParcours = tempsParcours;
-		}
 
 		public Animal getAnimal() {
 			return animal;
@@ -92,6 +90,10 @@ public class Parcours {
 
 		public void setAnimal(Animal animal) {
 			this.animal = animal;
+		}
+
+		public void setTempsParcours(Time tempsParcours) {
+			this.tempsParcours = tempsParcours;
 		}
 
 
