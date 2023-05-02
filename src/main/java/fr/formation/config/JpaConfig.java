@@ -19,7 +19,7 @@ public class JpaConfig {
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/Stravacat_unit");
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("0104");
+		dataSource.setPassword("0000");
 		dataSource.setMaxTotal(10);
 
 		return dataSource;

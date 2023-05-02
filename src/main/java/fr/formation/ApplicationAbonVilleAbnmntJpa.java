@@ -5,7 +5,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import fr.formation.config.AppConfig;
-import fr.formation.factory.RepositoryFactory;
 import fr.formation.model.Abonnement;
 import fr.formation.model.Abonnes;
 import fr.formation.model.Menu;
@@ -26,12 +25,12 @@ public class ApplicationAbonVilleAbnmntJpa {
 			case 1: ListerVille();break;
 			case 2: ListerAbonnes();break;			
 			case 3: ListerAbonnement();break;
-			case 4: AjouterVille();break;
-			case 5: AjouterAbonnes();break;		
-			case 6: AjouterAbonnement();break;	
-			case 7: SupprimerVille();break;
-			case 8: SupprimerAbonnes();break;
-		    case 9: SupprimerAbonnement();break;
+//			case 4: AjouterVille();break;
+//			case 5: AjouterAbonnes();break;		
+//			case 6: AjouterAbonnement();break;	
+//			case 7: SupprimerVille();break;
+//			case 8: SupprimerAbonnes();break;
+//		    case 9: SupprimerAbonnement();break;
 			}
 		} while (choixMenu != 0);
 		Saisie.sc.close();
@@ -46,13 +45,16 @@ public class ApplicationAbonVilleAbnmntJpa {
 
 	private static  void ListerVille() {
 		IVilleRepository repoVille = context.getBean(IVilleRepository.class);
+
 		for (Ville v : repoVille.findAll()) {
 			System.out.println("le nom de la ville" + v.getNom() + " son ambiance " + v.getAmbiance());
 		}
 	}
 
 	private static void ListerAbonnes() {
+
 		IAbonnesRepository repoAbonne = context.getBean(IAbonnesRepository.class);
+
 		for (Abonnes a : repoAbonne.findAll()) {
 			System.out.println(" age : " + a.getAge() + " animal id : " + a.getAnimal_id() + " son id : " + a.getId()
 					+ " espece : " + a.getEspece() + " pseudo :" + a.getPseudo() + " ville id : "
@@ -69,13 +71,14 @@ public class ApplicationAbonVilleAbnmntJpa {
 		}
 		
 	}
+
 //	private static void AjouterVille() {
-//		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
+//		IVilleRepository repoVille = RepositoryFactory.createVilleRepository();
 //		repoVille.createEntry();
 //	}
 //
 //	private static void AjouterAbonnes() {
-//		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
+//		IAbonnesRepository repoAbonne = RepositoryFactory.createAbonnesRepository();
 //		repoAbonne.createEntry();
 //	}
 //	
@@ -86,21 +89,22 @@ public class ApplicationAbonVilleAbnmntJpa {
 //	}
 //
 //	private static void SupprimerVille() {
-//		IVilleRepository repoVille = RepositoryFactory.creatVilleRepository();
-//		repoVille.deleteAll();
+//		IVilleRepository repoVille = RepositoryFactory.createVilleRepository();
+//		repoVille.deleteEntry();
 //
 //	}
 //
 //	private static void SupprimerAbonnes() {
-//		IAbonnesRepository repoAbonne = RepositoryFactory.creatAbonnesRepository();
-//		repoAbonne.deleteAll();
+//		IAbonnesRepository repoAbonne = RepositoryFactory.createAbonnesRepository();
+//		repoAbonne.deleteEntry();
 //
 //	}
 //	private static void SupprimerAbonnement() {
 //		IAbonnementRepository repoAbonnement = RepositoryFactory.creatAbonnementRepository();
-//		repoAbonnement.deleteAll();
-		
-	}
+//		repoAbonnement.deleteEntry();
+//
+//		
+//	}
 
 
-//}
+}
