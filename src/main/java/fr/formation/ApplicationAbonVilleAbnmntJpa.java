@@ -78,6 +78,7 @@ public class ApplicationAbonVilleAbnmntJpa {
 
 	private void AjouterVille() {
 		System.out.println("---------------------");
+		
 		System.out.println("Voulez vous ajouer une ville ? ");
 		String saisie = Saisie.next("veillez selection o/n ");
 		try {
