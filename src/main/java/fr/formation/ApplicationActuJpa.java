@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 import fr.formation.model.Actualite;
 import fr.formation.model.Animal;
+import fr.formation.model.Ville;
 import fr.formation.repo.IActualiteRepository;
 import fr.formation.repo.IRepositoryAnimal;
+import fr.formation.repo.IVilleRepository;
 import fr.formation.repo.jpa.RepositoryActualiteJpa;
 import fr.formation.repo.jpa.RepositoryAnimalJpa;
 import fr.formation.repo.jpa.RepositoryVilleJpa;
@@ -65,7 +67,7 @@ public class ApplicationActuJpa {
 			
 			List<Actualite> actualites = repoActualite.findByAnimalId(animalId);
 			if (actualites.isEmpty()) {
-				System.out.println("L'animal est inexistant ou le fil d'actu est vide");
+				System.out.println("L'animal est inexistant ou son fil d'actu est vide");
 			}
             else {
                 actualites.forEach(System.out::println);
@@ -77,9 +79,7 @@ public class ApplicationActuJpa {
     }
 
     private static void modifierActualite() {
-		System.out.println("-------------------------------");
-
-    }
+	}
 
     private static void supprimerActualite() {
 		afficherActualite();

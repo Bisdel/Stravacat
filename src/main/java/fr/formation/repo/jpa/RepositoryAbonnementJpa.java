@@ -48,9 +48,7 @@ public class RepositoryAbonnementJpa extends AbstractRepositoryJpa implements IA
 				ex.printStackTrace();
 				em.getTransaction().rollback();
 			}
-
 		}
-
 	}
 
 	@Override

@@ -78,57 +78,42 @@ public class RepositoryActualiteJpa extends AbstractRepositoryJpa implements IAc
         System.out.println(actualite);
     }
 
-
     @Override
     public void updateEntry(Actualite actualite) {
-
-        RepositoryVilleJpa repoVille = new RepositoryVilleJpa();
-        System.out.println("Entrer le nom de la ville");
-        String nomVille = ApplicationActuJpa.sc.nextLine();
-        if (repoVille.findByNom(nomVille).isPresent()) {
-            actualite.setVille(repoVille.findByNom(nomVille).get());
-        }
-        else {
-            repoVille.createEntry();
-            actualite.setVille(repoVille.findByNom(nomVille).get());
-        }
-
-        RepositoryAnimalJpa repoAnimal = new RepositoryAnimalJpa();
-        System.out.println("Entrer le pseudo de l'animal");
-        String nomAnimal = ApplicationActuJpa.sc.nextLine();
-        if (repoAnimal.findByPseudo(nomAnimal).isPresent()) {
-            actualite.setAnimal(repoAnimal.findByPseudo(nomAnimal).get());
-        }
-        else {
-            repoAnimal.createEntry();
-            actualite.setAnimal(repoAnimal.findByPseudo(nomAnimal).get());
-        }
-
-        System.out.println("Entrer une description");
-        actualite.setActu_description(ApplicationActuJpa.sc.nextLine());
-        System.out.println("Spécifier la confidentialité(true/false?)");
-        actualite.setActu_isPrivate(ApplicationActuJpa.sc.nextBoolean());
         actualite.setActu_timestamp(LocalDateTime.now());
-
+        System.out.println(actualite);
         try (EntityManager em = emf.createEntityManager()) {
+
+            System.out.println("Entrer une description");
+            actualite.setActu_description(ApplicationActuJpa.sc.nextLine());
+            System.out.println("Entrer la confidentialité (true/false)");
+            actualite.setActu_isPrivate(ApplicationActuJpa.sc.nextBoolean());
+
+            RepositoryVilleJpa repoVille = new RepositoryVilleJpa();
+            System.out.println("Entrer le nom de la ville");
+            String nomVille = ApplicationActuJpa.sc.nextLine();
+            if (repoVille.findByNom(nomVille).isPresent()) {
+                actualite.setVille(repoVille.findByNom(nomVille).get());
+            }
+            else {
+                repoVille.createEntry();
+                actualite.setVille(repoVille.findByNom(nomVille).get());
+            }
+
             em.getTransaction().begin();
             try {
-                if (actualite.getActu_id() == 0){
+                if (actualite.getActu_id() == 0) {
                     em.persist(actualite);
-                }
-                else {
+                } else {
                     actualite = em.merge(actualite);
                 }
                 em.getTransaction().commit();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 em.getTransaction().rollback();
             }
         }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        System.out.println("Actu#" + actualite.getActu_id() + " modifiée");
         System.out.println(actualite);
     }
 
@@ -154,16 +139,16 @@ public class RepositoryActualiteJpa extends AbstractRepositoryJpa implements IAc
     }
 
     @Override
-    public List<Actualite> findByAnimalId(int id) {
+    public List<Actualite> findByAnimalId(int animalId) {
         try (EntityManager em = emf.createEntityManager()) {
             return em
                 .createQuery("select actu from Actualite actu where actu.animal.id = ?1", Actualite.class)
-                .setParameter(1, id)
+                .setParameter(1, animalId)
                 .getResultList();
         }   
         catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();
         }
-    }
+    }    
 }
