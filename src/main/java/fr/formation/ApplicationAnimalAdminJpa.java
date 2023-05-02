@@ -30,7 +30,7 @@ public class ApplicationAnimalAdminJpa {
             System.out.println("\nVoulez-vous supprimer un animal ?");
 
             if (Navigation.choixOuiNon()) {
-                repoAnimalJpa.deleteEntry();
+                repoAnimalJpa.delete(animal);
             }
 
         } catch (BeansException e) {
