@@ -116,7 +116,8 @@ public class ApplicationParcoursJpa {
         newParcours.setVilleParcours(newVille);
         newParcours.setTempsParcours(temps);
         newParcours.setDatePublicationParcours(newDate);
-       // ajouter le save sinon ça va dans le vent
+        newParcours.setTraceGpsParcours(0);
+        repoParcours.save(newParcours);
         System.out.println("-- Votre parcours à bien été ajouté le " + newDate.toLocalDate().format(formatter) + " à " + newVille + " avec un temps de parcours de : " + newTemps);
     }
 
