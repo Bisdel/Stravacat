@@ -1,11 +1,6 @@
 package fr.formation;
 
-import java.sql.PseudoColumnUsage;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
