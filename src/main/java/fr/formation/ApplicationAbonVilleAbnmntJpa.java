@@ -151,6 +151,10 @@ public class ApplicationAbonVilleAbnmntJpa {
 				System.out.println(" vous allez être redirigé vers le menu principale ");
 			}
 		} catch (InputMismatchException e) {
+			System.out.println("veuillez saisir des caractère pas des entiers");
+			e.printStackTrace();
+		} catch(NumberFormatException e) {
+			System.out.println("veuillez saisir des entiers caractère pas des entier");
 			e.printStackTrace();
 		}
 	}
@@ -169,6 +173,7 @@ public class ApplicationAbonVilleAbnmntJpa {
 			}
 
 		} catch (NumberFormatException n) {
+			System.out.println("veuillez saisir des entiers caractère pas des entier");
 			n.printStackTrace();
 		}
 	}
@@ -187,11 +192,13 @@ public class ApplicationAbonVilleAbnmntJpa {
 			}
 
 		} catch (NumberFormatException n) {
+			System.out.println("veuillez saisir des entiers caractère pas des entier");
 			n.printStackTrace();
 		}
 	}
 
 	private void SupprimerAbonnement() {
+		System.out.println("---------------------");
 		String saisie = Saisie.next("veillez selection o/n ");
 		try {
 		
@@ -204,6 +211,7 @@ public class ApplicationAbonVilleAbnmntJpa {
 			}
 
 		} catch (NumberFormatException n) {
+			System.out.println("veuillez saisir des entiers caractère pas des entier");
 			n.printStackTrace();
 		}
 	}
