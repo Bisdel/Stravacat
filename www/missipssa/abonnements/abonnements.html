@@ -14,7 +14,8 @@
         crossorigin="anonymous"></script>
 
 </head>
-partie liste des abonnements
+<!-- partie liste des abonnements -->
+
 <body>
     <h1>Mes Abonnements</h1>
 
@@ -24,8 +25,7 @@ partie liste des abonnements
                 <th>Pseudo</th>
                 <th>Age(année)</th>
                 <th>Animal_id</th>
-
-                <th>Ville_id</th>
+                <th>Ville_nom</th>
                 <th>Espèce</th>
                 <th>Action</th>
             </tr>
@@ -36,10 +36,9 @@ partie liste des abonnements
                 <td>2</td>
                 <td>1</td>
                 <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> <a class="btn btn-warning">Modifier</a>
+                <td>1</td>
+                <td>canide</td>
+                <td><a class="btn btn-warning">Modifier</a>
                     <a class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
@@ -57,36 +56,25 @@ partie liste des abonnements
             <form method="POST">
                 <div class="mb-3 row">
                     <label for="nom" class="col-sm-2 col-form-label">pseudo</label>
+
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="abnm_pseudo" name="pseudo">
+                        <input type="text" class="form-control" id="abnm_pseudo" name="pseudo"
+                            placeholder="saisir le pseudo  ">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="responsable" class="col-sm-2 col-form-label">Age</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="abnm_age" name="age">
+                        <input type="number" class="form-control" id="abnm_age" name="age" placeholder="Son age ">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="responsable" class="col-sm-2 col-form-label">L'id de l'animal</label>
                     <div class="col-sm-10">
-                        <input type="numeber" class="form-control" id="abnm_animal_id" name="L'id de l'animal">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="responsable" class="col-sm-2 col-form-label">L'id de la ville</label>
-                    <div class="col-sm-10">
-                        <input type="numeber" class="form-control" id="abnm_ville_id" name="L'id de la ville">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="responsable" class="col-sm-2 col-form-label">Espèce</label>
-                    <div class="col-sm-10">
-                        <input type="numeber" class="form-control" id="abnm_espece" name="Espèce">
+                        <input type="numeber" class="form-control" id="abnm_animal_id" name="L'id de l'animal"
+                            placeholder="l'id de l'animal que que vous voulez vous abonnz">
                     </div>
                 </div>
 
