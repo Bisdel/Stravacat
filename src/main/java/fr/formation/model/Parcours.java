@@ -82,9 +82,6 @@ public class Parcours {
 			return tempsParcours;
 		}
 
-		public void setTempsParcours(Time tempsParcours) {
-			this.tempsParcours = tempsParcours;
-		}
 
 		public Animal getAnimal() {
 			return animal;
@@ -92,6 +89,10 @@ public class Parcours {
 
 		public void setAnimal(Animal animal) {
 			this.animal = animal;
+		}
+
+		public void setTempsParcours(Time tempsParcours) {
+			this.tempsParcours = tempsParcours;
 		}
 
 

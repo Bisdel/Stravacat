@@ -9,7 +9,7 @@ public class MenuParcours {
         System.out.println("--4. Supprimer un parcours");
         System.out.println("--5. Mettre à jour un parcours");
         System.out.println("-------------------------");
-        return Saisie.nextInt("choisir le menu parcours");
+        return Saisie.nextInt("Veuillez saisir un numéro : ");
     }
     
 }
