@@ -16,7 +16,6 @@ import fr.formation.model.MenuParcours;
 import fr.formation.model.Parcours;
 import fr.formation.model.Saisie;
 import fr.formation.repo.IParcoursRepository;
-import fr.formation.repo.jpa.RepositoryParcoursJpa;
 
 @Component
 public class ApplicationParcoursJpa {
@@ -99,10 +98,9 @@ public class ApplicationParcoursJpa {
     private static void PublicationParcours() {
     }
 
-    private static void ListerParcours() {
-        IParcoursRepository repoParcoursJpa = new RepositoryParcoursJpa();
+    private void ListerParcours() {
         System.out.println("-- Voici la liste des parcours effectué : ");
-        for(Parcours p : repoParcoursJpa.findAll()){
+        for(Parcours p : repoParcours.findAll()){
             System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours());
             //System.out.println(p.getAnimal() + " a publié le " + p.getDatePublicationParcours() + " à " + p.getVilleParcours() + " avec un temps de parcours de " + p.getTempsParcours() + " | TRACE GPS | " + p.getTraceGpsParcours());
         }

@@ -2,7 +2,6 @@ package fr.formation.model;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

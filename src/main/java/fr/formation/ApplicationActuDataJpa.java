@@ -1,10 +1,8 @@
 package fr.formation;
 
-import java.sql.PseudoColumnUsage;
 import java.time.LocalDateTime;
 import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
+
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,10 +139,8 @@ public class ApplicationActuDataJpa {
 		listerActualites();
         System.out.println("-------------------------------");
         System.out.println("Suppression d'une actualité d'un animal :");
-		System.out.println("Saisir le pseudo de l'animal pour lequel une actu doit être supprimée");
-		String pseudo = sc.nextLine();
 		System.out.println("Saisir l'id de l'actualité à supprimer");
 		int id = sc.nextInt();
-		repoActualite.delete(id, pseudo);
+		repoActualite.delete(repoActualite.findById(id).get());
     }
 }
