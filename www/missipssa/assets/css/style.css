@@ -1,4 +1,48 @@
 :root{
     font-size: 16px;
-    background: rgb(241, 232, 225);
+    background: rgba(220, 217, 215, 0.905);
 }
+.btn-secondary {
+    background-color: #287f2b;
+    color: white;
+    transition: all .4s ease-in-out;
+}
+.btn-success{
+    transition: all .4s ease-in-out;
+}
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.border{
+    border: 1px solid black; /* Style, couleur et largeur de la bordure */
+    padding: 40px; /* Espacement intérieur pour dégager la bordure */
+  }
+  .background-container {
+    background-size: 50;
+    background-position: top;
+    height:800px;
+    width: auto;
+    position: relative;
+
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(234, 216, 200, 0.8);
+    padding: 50px;
+  }
+  .background-container {
+    position: relative;
+    padding-inline-start: 30px;
+   
+   
+  }
+
