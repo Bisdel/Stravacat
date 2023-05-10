@@ -12,53 +12,128 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <base href="/www/">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script defer src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script defer src="assets\js\map.js"></script>
 </head>
 
 <body>
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center py-3 mb-4 border-bottom">
+            <a href="/"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+
+                <img src="assets\images\logo_stravacat.png" alt="Stravacat" height="60">
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="profile.html">Mon profil</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="amis.html">Mes amis</a></li>
+                <li class="nav-item"><a class="nav-link" href="actualites.html">Actualités</a></li>
+                <li class="nav-item"><a class="nav-link" href="apropos.html">A propos</a></li>
+            </ul>
+        </header>
+    </div>
+
     <div class="container text-center">
-        <div class="row">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets\images\logo_stravacat.png" alt="Stravacat" height="50">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="profile.html">Profil</a>
-                            <a class="nav-link" href="amis.html">Amis</a>
-                            <a class="nav-link" href="actualites.html">Actualités</a>
-                            <a class="nav-link" href="apropos.html">A propos</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="row mt-3 align-items-center">
+        <div class="row m-5 align-items-center justify-content-around">
             <div class="col">
                 <img class="border" src="assets\images\example_profile_picture.jpg" alt="Photo du profil" height="150">
             </div>
             <div class="col">
-                <h4>Meow ! Je m'appelle Grisou et je suis un chat de 5 ans.</h4>
+                <h4>Meow 👋 ! Je m'appelle Grisou et je suis un chat de 5 ans.</h4>
             </div>
-            <div class="col">
-                <a href="#">Modifier ces informations</a>
+            <div class="col" style="line-height: 1;">
+                <a href="#" style="color: grey; font-size: small; text-decoration: underline;">Modifier
+                    ces<br>informations</a>
             </div>
-
-
         </div>
-        <div class="row">
+        <div class="row mt-3 align-items-center">
             <div class="col">
-
+                <div class="card" style="height: 400px;">
+                    <div class="card-header">
+                        <strong>Rechercher une actualité</strong>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="height: 400px;">
+                    <div class="card-header">
+                        <strong>Mon fil d'actu</strong>
+                    </div>
+                    <div class="card-body" style="height: 320px; overflow: scroll;">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <strong>13/04/2023 13:37</strong>
+                                <p>Le vieux port, Marseille</p>
+                            </div>
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae neque maxime
+                                    voluptatum explicabo dignissimos beatae dicta repudiandae aspernatur ducimus, at
+                                    culpa ex voluptatibus dolorum error ut exercitationem deserunt.</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <strong>10/04/2023 13:37</strong>
+                                <p>Ecusson, Montpellier</p>
+                            </div>
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae neque
+                                    maxime voluptatum explicabo dignissimos beatae dicta repudiandae aspernatur
+                                    ducimus, at culpa ex voluptatibus dolorum error ut exercitationem deserunt.</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <strong>09/09/2022 13:37</strong>
+                                <p>Paris, France</p>
+                            </div>
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae
+                                    neque maxime voluptatum explicabo dignissimos beatae dicta repudiandae
+                                    aspernatur ducimus, at culpa ex voluptatibus dolorum error ut exercitationem
+                                    deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="col">
+        <div class="card" style="height: 400px;">
+            <div class="card-header">
+                <strong>Mes derniers parcours</strong>
+                <button>fleches a ajouter</button>
+            </div>
+            <div class="card-body">
+                <div id="map" style="height: 300px;">Map</div>
             </div>
         </div>
     </div>
-
-
+    </div>
 </body>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2023 Stravacat, Inc</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="assets\images\logo_stravacat.png" alt="Stravacat" height="60">
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Accueil</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Mon profil</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Mes amis</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Actualités</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">A propos</a></li>
+        </ul>
+    </footer>
+</div>
 
 </html>
