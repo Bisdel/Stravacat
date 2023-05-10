@@ -56,26 +56,94 @@
                     ces<br>informations</a>
             </div>
         </div>
-        <div class="row mt-3 align-items-center">
+        <div class="row mb-5 align-items-center justify-content-around">
             <div class="col">
-                <div class="card" style="height: 400px;">
+                <div class="card" style="height: 120px;">
                     <div class="card-header">
                         <strong>Rechercher une actualité</strong>
                     </div>
                     <div class="card-body">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg></span>
+                            <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher"
+                                aria-describedby="addon-wrapping">
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="height: 260px;margin-top: 20px;">
+                    <div class="card-header">
+                        <strong>Amis en commun</strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row mb-3 justify-content-around">
+                                        <div class="card" style="height: 80px; width: 80px">
+                                            <img src="assets\images\profile_picture_index_2.png" style="height: 50px; width: 50px" alt="...">
+                                        </div>
+                                        <div class="card" style="height: 80px; width: 80px">
+
+                                            <img src="assets\images\profile_picture_index_2.png" class="d-block w-100"
+                                                alt="...">
+                                        </div>
+                                        <div class="card" style="height: 80px; width: 80px">
+
+                                            <img src="assets\images\profile_picture_index_2.png" class="d-block w-100"
+                                                alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-around">
+                                        <div class="card" style="height: 80px; width: 80px">
+                                            <img src="assets\images\profile_picture_index_2.png" class="d-block w-100"
+                                                alt="...">
+                                        </div>
+                                        <div class="card" style="height: 80px; width: 80px">
+
+                                            <img src="assets\images\profile_picture_index_2.png" class="d-block w-100"
+                                                alt="...">
+                                        </div>
+                                        <div class="card" style="height: 80px; width: 80px">
+
+                                            <img src="assets\images\profile_picture_index_2.png" class="d-block w-100"
+                                                alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card" style="height: 400px;">
                     <div class="card-header">
-                        <strong>Mon fil d'actu</strong>
+                        <strong>Mon fil d'actu </strong><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                height="20" fill="currentColor" class="bi bi-arrow-clockwise">
+                                <path fill-rule="evenodd"
+                                    d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                <path
+                                    d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                            </svg></a>
                     </div>
                     <div class="card-body" style="height: 320px; overflow-y: scroll;">
                         <div class="card mb-3">
                             <div class="card-header">
-                                <strong>13/04/2023 13:37</strong>
-                                <p>Le vieux port, Marseille</p>
+                                <strong>13/04/2023 13:37</strong><br>Le vieux port, Marseille
                             </div>
                             <div class="card-body">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae neque maxime
@@ -85,8 +153,7 @@
                         </div>
                         <div class="card mb-3">
                             <div class="card-header">
-                                <strong>10/04/2023 13:37</strong>
-                                <p>Ecusson, Montpellier</p>
+                                <strong>10/04/2023 13:37</strong><br>Ecusson, Montpellier
                             </div>
                             <div class="card-body">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae neque
@@ -96,8 +163,7 @@
                         </div>
                         <div class="card mb-3">
                             <div class="card-header">
-                                <strong>09/09/2022 13:37</strong>
-                                <p>Paris, France</p>
+                                <strong>09/09/2022 13:37</strong><br>Le marais, Paris
                             </div>
                             <div class="card-body">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam amet quae
@@ -110,23 +176,23 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card " style="height: 400px;">
+                <div class="card m-1" style="height: 400px;">
                     <div class="card-header">
                         <strong>Mes derniers parcours</strong>
-                            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-caret-left" viewBox="0 0 16 16">
-                                    <path
-                                        d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z">
-                                    </path>
-                                </svg></a>
-                            <a href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-caret-right" viewBox="0 0 16 16">
-                                    <path
-                                        d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z">
-                                    </path>
-                                </svg>
-                            </a>
+                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-caret-left">
+                                <path
+                                    d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z">
+                                </path>
+                            </svg></a>
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-caret-right">
+                                <path
+                                    d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z">
+                                </path>
+                            </svg>
+                        </a>
                     </div>
                     <div class="card-body">
                         <div id="map" style="height: 320px;">Map</div>
@@ -136,12 +202,12 @@
         </div>
 </body>
 <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center p-2 my-4 border-top">
         <p class="col-md-4 mb-0 text-body-secondary">© 2023 Stravacat, Inc</p>
 
         <a href="/"
             class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <img src="assets\images\logo_stravacat.png" alt="Stravacat" height="60">
+            <img src="assets\images\logo_stravacat.png" alt="Stravacat" height="50">
         </a>
 
         <ul class="nav col-md-4 justify-content-end">
