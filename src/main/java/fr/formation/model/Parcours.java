@@ -3,6 +3,9 @@ package fr.formation.model;
 import java.sql.Time;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,19 +30,23 @@ public class Parcours {
 	    @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column (name = "parc_id")
+		@JsonView(Views.Parcours.class)
 	private int id;
 
         @Column (name = "parc_ville", length = 100)
+		@JsonView(Views.Parcours.class)
 	private String villeParcours;
 
 
         @Column (name = "parc_date")
+		@JsonView(Views.Parcours.class)
 	private LocalDateTime datePublicationParcours;
 
         @Column (name = "parc_trace")
 	private int traceGpsParcours; // JSON ??
 
 		@Column (name = "parc_temps")
+		@JsonView(Views.Parcours.class)
 	private Time tempsParcours; 
 
 		@ManyToOne
