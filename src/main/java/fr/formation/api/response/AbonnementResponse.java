@@ -3,8 +3,6 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnement;
-import io.micrometer.common.lang.NonNull;
-import jakarta.validation.constraints.NotBlank;
 
 public class AbonnementResponse {
 
