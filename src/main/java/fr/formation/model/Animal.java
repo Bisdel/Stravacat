@@ -2,6 +2,9 @@ package fr.formation.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,27 +22,34 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "anim_id", nullable = false)
+    @JsonView(Views.Common.class)
     private int id;
 
+    @JsonView(Views.Animal.class)
     @Column(name = "anim_pseudo", nullable = false)
     private String pseudo;
 
     @Column(name = "anim_password", nullable = false)
     private String password;
     
+    @JsonView(Views.Animal.class)
     @Column(name = "anim_age", nullable = false)
     private int age;
     
+    @JsonView(Views.Animal.class)
     @Column(name = "anim_espece", nullable = false)
     private String espece;
     
+    @JsonView(Views.AnimalDetail.class)
     @ManyToOne
     @JoinColumn(name = "anim_ville_id", nullable = false)
     private Ville ville;
 
+    @JsonView(Views.AnimalDetail.class)
     @OneToMany(mappedBy = "animal")
     private List<Parcours> parcours;
 
+    @JsonView(Views.AnimalDetail.class)
     @OneToMany(mappedBy = "animal")
     private List<Actualite> actualites;
 
