@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +30,12 @@ public class VilleApiController {
 	private IVilleRepository repoville;
 
 	@GetMapping
-	private List<VilleResponse> findAll() {
+	public List<VilleResponse> findAll() {
 		return this.repoville.findAll().stream().map(VilleResponse::convert).toList();
-
 	}
 
 	@PostMapping
-	private VilleResponse add(@Valid @RequestBody VilleRequest villeRequest, BindingResult result) {
+	public VilleResponse add(@Valid @RequestBody VilleRequest villeRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VilleNotValidException();
 		}
@@ -47,13 +47,18 @@ public class VilleApiController {
 	}
 
 	@PutMapping("/{id}")
-	public Ville add(@PathVariable int id, @Valid @RequestBody VilleRequest villeRequest, BindingResult result) {
+	public VilleResponse update(@PathVariable int id, @Valid @RequestBody VilleRequest villeRequest, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new VilleNotFoundException();
+			throw new VilleNotValidException();
 		}
 		Ville ville = this.repoville.findById(id).orElseThrow(VilleNotFoundException::new);
 		BeanUtils.copyProperties(villeRequest, ville);
-		return this.repoville.save(ville);
+		Ville updateVille= this.repoville.save(ville);
+		return VilleResponse.convert(updateVille);
 	}
 
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable int id) {
+		this.repoville.deleteById(id);
+	}
 }
