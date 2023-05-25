@@ -2,6 +2,9 @@ package fr.formation.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +20,7 @@ public class Actualite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "actu_id")
+	@JsonView(Views.Common.class)
     private int actu_id;
 
 	@Column(name = "actu_timestamp", nullable = false)
@@ -26,6 +30,7 @@ public class Actualite {
     private String actu_coordonneesgps;
 
 	@Column(name = "actu_description", length = 500)
+	@JsonView(Views.Actualite.class)
     private String actu_description;
 
 	@Column(name = "actu_isPrivate", nullable = false)
