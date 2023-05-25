@@ -90,84 +90,86 @@
                                     <div class="carousel-item active">
                                         <div class="row mb-3 justify-content-around">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Michel"
                                                 src="assets\images\profile_picture_index_1.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Thomas"
                                                 src="assets\images\profile_picture_index_2.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Sarah"
                                                 src="assets\images\profile_picture_index_3.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         </div>
                                         <div class="row mb-3 justify-content-around">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Grisette"
                                                 src="assets\images\profile_picture_index_4.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Doug"
                                                 src="assets\images\profile_picture_index_5.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_6.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="row mb-3 justify-content-around">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_1.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_2.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_3.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                        </div>
-                                        <div class="row mb-3 justify-content-around">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_4.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_5.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_6.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="row mb-3 justify-content-around">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_1.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_2.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_3.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                        </div>
-                                        <div class="row mb-3 justify-content-around">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_4.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                src="assets\images\profile_picture_index_5.png"
-                                                style="height: 80px; width: 80px; object-fit: cover;" alt="...">
-                                            <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                                data-bs-title="Micheline"
                                                 src="assets\images\profile_picture_index_6.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         </div>
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <div class="carousel-item">
+                                    <div class="row mb-3 justify-content-around">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Tito"
+                                            src="assets\images\profile_picture_index_1.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Samba"
+                                            src="assets\images\profile_picture_index_2.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Minouche"
+                                            src="assets\images\profile_picture_index_3.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                    </div>
+                                    <div class="row mb-3 justify-content-around">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Le rouquin"
+                                            src="assets\images\profile_picture_index_4.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Charabia"
+                                            src="assets\images\profile_picture_index_5.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                        <img class="border border-secondary-subtle border-3 rounded-4 px-0"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
+                                            data-bs-title="Chatofort"
+                                            src="assets\images\profile_picture_index_6.png"
+                                            style="height: 80px; width: 80px; object-fit: cover;" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
-                                  </button>
-                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
-                                  </button>
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -29,6 +29,10 @@ public class Animal {
     @Column(name = "anim_pseudo", nullable = false)
     private String pseudo;
 
+    @JsonView(Views.AnimalDetail.class)
+    @Column(name = "anim_email", nullable = false)
+    private String email;
+    
     @Column(name = "anim_password", nullable = false)
     private String password;
     
