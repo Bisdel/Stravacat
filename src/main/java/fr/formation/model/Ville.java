@@ -2,6 +2,8 @@ package fr.formation.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,9 +27,11 @@ public class Ville {
 	private String ambiance;
 
 	@OneToMany(mappedBy = "ville")
+
 	private List<Animal> animaux;
 
 	@OneToMany(mappedBy = "ville")
+
 	private List<Actualite> actualites;
 
 	public int getId() {
@@ -69,5 +73,5 @@ public class Ville {
 	public void setActualites(List<Actualite> actualites) {
 		this.actualites = actualites;
 	}
-	
+
 }
