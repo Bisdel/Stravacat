@@ -34,7 +34,7 @@ public class AnimalController {
 	public String add(@Valid Animal animal, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("erreurs", result);
-			return "animal/form";
+			return "animal/inscription";
 		}
 		
 		this.repoAnimal.save(animal);
@@ -49,18 +49,6 @@ public class AnimalController {
 		return "animal/form";
 	}
 	
-	@PostMapping("/animal/modifier/{id}")
-	public String edit(@Valid Animal animal, BindingResult result, Model model) {
-		System.out.println(animal.getId());
-		if (result.hasErrors()) {
-			model.addAttribute("erreurs", result);
-			return "animal/form";
-		}
-		
-		this.repoAnimal.save(animal);
-		
-		return "redirect:/animal";
-	}
 	
 	@GetMapping("/animal/supprimer/{id}")
 	public String deleteById(@PathVariable int id) {

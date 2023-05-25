@@ -12,13 +12,29 @@
     transition: all .4s ease-in-out;
 }
 
-
-
-.pagination {
+.pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
 
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #ccc;
+  color: #000;
+  text-decoration: none;
+}
+
+.page-link:hover {
+  background-color: #aaa;
 }
 
 .sticky-top {

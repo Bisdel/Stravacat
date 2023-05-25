@@ -2,9 +2,13 @@ package fr.formation.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.api.Views;
+import fr.formation.exception.VilleNotFoundException;
+import fr.formation.repo.IVilleRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +23,9 @@ import jakarta.persistence.Table;
 @Table(name = "animal")
 public class Animal {
     
+    @Autowired
+    private IVilleRepository repoVille; 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "anim_id", nullable = false)
@@ -57,7 +64,6 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     private List<Actualite> actualites;
 
-
     public int getId() {
         return id;
     }
@@ -72,6 +78,14 @@ public class Animal {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -106,6 +120,10 @@ public class Animal {
         this.ville = ville;
     }
 
+    public void setVilleByNom(String nomVille) {
+        this.ville = repoVille.findByNom(nomVille).orElseThrow(VilleNotFoundException::new);
+    }
+
     public List<Parcours> getParcours() {
         return parcours;
     }
@@ -121,4 +139,7 @@ public class Animal {
     public void setActualites(List<Actualite> actualites) {
         this.actualites = actualites;
     }
+
+
+
 }

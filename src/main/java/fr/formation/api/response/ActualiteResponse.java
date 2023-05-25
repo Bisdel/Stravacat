@@ -2,13 +2,16 @@ package fr.formation.api.response;
 
 import java.time.LocalDateTime;
 
-import fr.formation.model.Animal;
+import org.springframework.beans.BeanUtils;
+
+import fr.formation.model.Actualite;
 
 public class ActualiteResponse {
     private int id;
-    private LocalDateTime actu_timestamp;
     private String description;
-    private Animal animal;
+    private String pseudo;
+    private String ville;
+    private LocalDateTime date;
 
     public int getId() {
         return id;
@@ -22,16 +25,28 @@ public class ActualiteResponse {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Animal getAnimal() {
-        return animal;
+    public String getPseudo() {
+        return pseudo;
     }
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
-    public LocalDateTime getActu_timestamp() {
-        return actu_timestamp;
+    public String getVille() {
+        return ville;
     }
-    public void setActu_timestamp(LocalDateTime actu_timestamp) {
-        this.actu_timestamp = actu_timestamp;
+    public void setVille(String ville) {
+        this.ville = ville;
     }
+    public LocalDateTime getDate() {
+        return date;
+    }
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public static ActualiteResponse convert(Actualite actualite) {
+		ActualiteResponse response = new ActualiteResponse();	
+		BeanUtils.copyProperties(actualite, response);	
+		return response;
+	}
 }

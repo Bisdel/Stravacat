@@ -20,18 +20,15 @@ public class Actualite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "actu_id")
-	@JsonView(Views.Common.class)
     private int actu_id;
 
 	@Column(name = "actu_timestamp", nullable = false)
-	@JsonView(Views.Actualite.class)
     private LocalDateTime actu_timestamp;
 
 	@Column(name = "actu_coordonneesgps", length = 50)
     private String actu_coordonneesgps;
 
 	@Column(name = "actu_description", length = 500)
-	@JsonView(Views.Actualite.class)
     private String actu_description;
 
 	@Column(name = "actu_isPrivate", nullable = false)
@@ -41,7 +38,6 @@ public class Actualite {
     
 	@ManyToOne
 	@JoinColumn(name = "actu_animal_id")
-	@JsonView(Views.Actualite.class)
 	private Animal animal;
 
 	@ManyToOne
