@@ -39,32 +39,27 @@
                     <div class="col-md-10 mx-auto col-lg-5">
                         <form method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput"
-                                    placeholder="Grisette">
+                                <input type="text" class="form-control" id="floatingInput" name="pseudo" value="${ animal.pseudo }">
                                 <label for="floatingInput">Ton pseudo</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="grisette.petichat@example.com">
+                                <input type="email" class="form-control" id="floatingInput" name="email" value="${ animal.email }">
                                 <label for="floatingInput">Adresse email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Mot de passe secret">
-                                <label for="floatingPassword">Mot de passe</label>
+                                <input type="password" class="form-control" id="floatingPassword" name="password" value="${ animal.password }">
+                                <label for="floatingPassword">Mot de passe secret</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="J'ai...">
+                                <input type="number" class="form-control" id="floatingInput" name="age" value="${ animal.age }">
                                 <label for="floatingInput">Ton âge</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput"
-                                    placeholder="Je suis un...">
+                                <input type="text" class="form-control" id="floatingInput" name="espece" value="${ animal.espece }">
                                 <label for="floatingInput">Quel animal es-tu ?</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput"
-                                    placeholder="J'habite...">
+                                <input type="text" class="form-control" id="floatingInput" name="ville" value="${ animal.ville.nom }">
                                 <label for="floatingInput">Quelle ville habites-tu ?</label>
                             </div>
 
@@ -73,6 +68,15 @@
                                     <input type="checkbox" value="remember-me"> Se souvenir de moi
                                 </label>
                             </div>
+                            <c:if test="${ erreurs.hasErrors() }">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        <c:forEach var="err" items="${ erreurs.allErrors }">
+                                            <li>${ err.defaultMessage }</li>
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </c:if>
                             <button class="w-100 btn btn-lg btn-primary" type="submit">J'arrive !</button>
                             <hr class="my-4">
                             <small class="text-body-secondary">En cliquant sur J'arrive, j'accepte les termes et conditions d'utilisation de Stravacat©.</small>
