@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import fr.formation.model.Actualite;
 import fr.formation.model.Animal;
 import fr.formation.model.Ville;
-import io.micrometer.common.lang.NonNull;
 
 public class VilleResponse {
  

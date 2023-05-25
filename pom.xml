@@ -33,8 +33,7 @@
 		    <artifactId>spring-context</artifactId>
 		    <version>${spring.version}</version>
 		</dependency>
-		
-		
+				
 		<!-- SPRING ORM -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -69,7 +68,8 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>${postgres.version}</version>
 		</dependency>
-			<!-- SPRING WEBMVC -->
+
+		<!-- SPRING WEBMVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -96,13 +96,12 @@
 			<version>${validator.version}</version>
 		</dependency>
 
-		<!--jason-databind -->
+		<!-- Jackson databind -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
 
 	</dependencies>
 </project>
