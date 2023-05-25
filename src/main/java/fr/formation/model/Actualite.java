@@ -24,6 +24,7 @@ public class Actualite {
     private int actu_id;
 
 	@Column(name = "actu_timestamp", nullable = false)
+	@JsonView(Views.Actualite.class)
     private LocalDateTime actu_timestamp;
 
 	@Column(name = "actu_coordonneesgps", length = 50)
@@ -40,6 +41,7 @@ public class Actualite {
     
 	@ManyToOne
 	@JoinColumn(name = "actu_animal_id")
+	@JsonView(Views.Actualite.class)
 	private Animal animal;
 
 	@ManyToOne
