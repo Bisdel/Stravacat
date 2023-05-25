@@ -25,12 +25,12 @@ public class AnimalController {
 		return "animal/profile";
 	}
 	
-	@GetMapping("/animal/ajouter")
+	@GetMapping("/animal/inscription")
 	public String add() {
-		return "animal/form";
+		return "animal/inscription";
 	}
 	
-	@PostMapping({ "/animal/ajouter", "/animal/modifier/{id}" })
+	@PostMapping({ "/animal/inscription", "/animal/modifier/{id}" })
 	public String add(@Valid Animal animal, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("erreurs", result);
