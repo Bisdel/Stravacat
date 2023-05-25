@@ -1,30 +1,27 @@
 package fr.formation.api.request;
 
+import io.micrometer.common.lang.NonNull;
 import jakarta.validation.constraints.NotBlank;
 
 public class AbonnementRequest {
 
-	@NotBlank
-	private int id;
-	@NotBlank
+
+	@NonNull
 	private int animal_id;
+	
 	@NotBlank
 	private String pseudo;
-	@NotBlank
+	
+	@NonNull
 	private int age;
+	
 	@NotBlank
 	private String espece;
-	@NotBlank
+	
+	@NonNull
 	private int Ville_id;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	public int getAnimal_id() {
 		return animal_id;
 	}

@@ -3,21 +3,17 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnement;
+import io.micrometer.common.lang.NonNull;
 import jakarta.validation.constraints.NotBlank;
 
 public class AbonnementResponse {
 
-	@NotBlank
+
 	private int id;
-	@NotBlank
 	private int animal_id;
-	@NotBlank
 	private String pseudo;
-	@NotBlank
 	private int age;
-	@NotBlank
 	private String espece;
-	@NotBlank
 	private int Ville_id;
 
 	public int getId() {

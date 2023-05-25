@@ -35,7 +35,7 @@ public class AbonnementApiController {
 	}
 
 	// Ajouter
-	@PostMapping("/ajouter")
+	@PostMapping
 	public AbonnementResponse add(@Valid @RequestBody AbonnementRequest abonnementRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new AboonementNotFoundException();
