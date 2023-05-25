@@ -2,7 +2,6 @@
     <%@ taglib uri="jakarta.tags.core" prefix="c" %>
         <!DOCTYPE html>
         <html lang="fr">
-
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,7 @@
             <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
                 crossorigin="anonymous"></script>
-            <base href="/Stravacat/">
+            <base href="/stravacat/">
         </head>
 
         <body>
@@ -61,7 +60,7 @@
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput"
                                     placeholder="Je suis un...">
-                                <label for="floatingInput">Quel animal est-tu ?</label>
+                                <label for="floatingInput">Quel animal es-tu ?</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput"
