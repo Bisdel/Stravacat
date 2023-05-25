@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/abonnes")
 public class AbonneApiController {
 	@Autowired
-	IAbonnesRepository repoARepository;
+	private IAbonnesRepository repoARepository;
 
 	// LIste des ABonnes
 	@GetMapping
