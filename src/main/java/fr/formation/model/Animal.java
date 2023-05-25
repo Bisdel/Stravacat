@@ -18,23 +18,23 @@ public class Animal {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "anim_id")
+    @Column(name = "anim_id", nullable = false)
     private int id;
 
-    @Column(name = "anim_pseudo")
+    @Column(name = "anim_pseudo", nullable = false)
     private String pseudo;
 
-    @Column(name = "anim_password")
+    @Column(name = "anim_password", nullable = false)
     private String password;
     
-    @Column(name = "anim_age")
+    @Column(name = "anim_age", nullable = false)
     private int age;
     
-    @Column(name = "anim_espece")
+    @Column(name = "anim_espece", nullable = false)
     private String espece;
     
     @ManyToOne
-    @JoinColumn(name = "anim_ville_id")
+    @JoinColumn(name = "anim_ville_id", nullable = false)
     private Ville ville;
 
     @OneToMany(mappedBy = "animal")
