@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.api.request.AbonnementRequest;
 import fr.formation.api.response.AbonnementResponse;
-import fr.formation.exception.AboonementNotFoundException;
+import fr.formation.exception.AbonnementNotFoundException;
+import fr.formation.exception.AbonnementNotValidException;
 import fr.formation.model.Abonnement;
 import fr.formation.repo.IAbonnementRepository;
 import jakarta.validation.Valid;
@@ -38,7 +39,7 @@ public class AbonnementApiController {
 	@PostMapping
 	public AbonnementResponse add(@Valid @RequestBody AbonnementRequest abonnementRequest, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new AboonementNotFoundException();
+			throw new AbonnementNotValidException();
 		}
 		Abonnement nouveauAbonnement = new Abonnement();
 		BeanUtils.copyProperties(abonnementRequest, nouveauAbonnement);
@@ -53,10 +54,10 @@ public class AbonnementApiController {
 	public Abonnement add(@PathVariable int id, @Valid @RequestBody AbonnementRequest abonnementRequest,
 			BindingResult result) {
 		if(result.hasErrors()) {
-			throw new AboonementNotFoundException();
+			throw new AbonnementNotFoundException();
 		}
 		
-		Abonnement abonnement = this.repoAbonnement.findById(id).orElseThrow(AboonementNotFoundException :: new);
+		Abonnement abonnement = this.repoAbonnement.findById(id).orElseThrow(AbonnementNotFoundException :: new);
 		
 		BeanUtils.copyProperties(abonnementRequest, abonnement);
 		
