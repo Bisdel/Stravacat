@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fil d'actualités Stravacat</title>
 
-    <base href="/Stravacat/">
+    <base href="/stravacat/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -63,6 +63,28 @@
         <h4 style="text-align:center">Fil d'actualités</h4>
     </header>
 
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+
+        <tbody>
+            <c:forEach var="actualite" items="${ actualites }">
+                <tr class="align-middle">
+                    <td>${ actualite.id }</td>
+                    <td>${ actualite.description }</td>
+                    <td>
+                        <a href="actualite/modifier/${ fournisseur.id }" class="btn btn-outline-warning">Modifier</a>
+                        <a href="actualite/supprimer/${ fournisseur.id }" class="btn btn-outline-danger">Supprimer</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 
 </body>
 
