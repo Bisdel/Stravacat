@@ -19,11 +19,11 @@ public class AbonneController {
 	@Autowired
 	private IAbonnesRepository repoAbonnes;
 
-	@GetMapping("abonne")
+	@GetMapping("/abonne")
 	public String findAll(Model model) {
 		model.addAttribute("abonnes", this.repoAbonnes.findAll());
 
-		return "abonne/liste";
+		return "abonne/listes";
 	}
 
 	@PostMapping({ "/abonne/ajouter", "/abonne/modifier/{id}" })
@@ -46,7 +46,7 @@ public class AbonneController {
 	}
 
 	@GetMapping("/abonne/supprimer/{id}")
-	public String deletById(@PathVariable int id) {
+	public String deleteById(@PathVariable int id) {
 		try {
 			this.repoAbonnes.deleteById(id);
 		} catch (Exception ex) {
