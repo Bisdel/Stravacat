@@ -2,6 +2,9 @@ package fr.formation.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "actualite")
@@ -17,6 +21,7 @@ public class Actualite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "actu_id")
+	@JsonView(Views.Common.class)
     private int actu_id;
 
 	@Column(name = "actu_timestamp", nullable = false)
@@ -26,19 +31,24 @@ public class Actualite {
     private String actu_coordonneesgps;
 
 	@Column(name = "actu_description", length = 500)
+	@NotBlank
+	@JsonView(Views.Actualite.class)
     private String actu_description;
 
 	@Column(name = "actu_isPrivate", nullable = false)
+	@JsonView(Views.Actualite.class)
     private boolean actu_isPrivate;
 
 //  private JSONB actu_contactsIdentifies;
     
 	@ManyToOne
 	@JoinColumn(name = "actu_animal_id")
+	@JsonView(Views.ActualiteDetail.class)
 	private Animal animal;
 
 	@ManyToOne
 	@JoinColumn(name = "actu_ville_id")
+	@JsonView(Views.ActualiteDetail.class)
 	private Ville ville;
 
 	public int getActu_id() {
