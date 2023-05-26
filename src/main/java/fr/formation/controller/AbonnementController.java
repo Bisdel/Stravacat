@@ -19,17 +19,21 @@ public class AbonnementController {
 	@Autowired
 	private IAbonnementRepository repoAbonnement;
 	
-	@GetMapping("Abonnement")
+	@GetMapping("/abonnement")
 	public String findAll(Model model ) {
-		model.addAttribute("aboonement" , this.repoAbonnement.findAll());
+		model.addAttribute("abonnements" , this.repoAbonnement.findAll());
 		
 		return "abonnement/liste";
+	}
+	@GetMapping("/abonnement/ajouter")
+	public String add() {
+		return "abonnement/ajouter";
 	}
 	
 	@PostMapping({"/abonnement/ajouter" ,"/abonnement/modifier/{id}"})
 	public String add(@Valid Abonnement abonnement, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("abonnement" , result);
+			model.addAttribute("erreurs" , result);
 			return "abonnement/ajouter";
 		}
 		
@@ -46,7 +50,7 @@ public class AbonnementController {
 	}
 	
 	@GetMapping("/abonnement/supprimer/{id}")
-	public String deletByid(@PathVariable int id) {
+	public String deleteById(@PathVariable int id) {
 		try {
 			this.repoAbonnement.deleteById(id);
 		} catch (Exception ex) {
