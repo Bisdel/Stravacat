@@ -14,6 +14,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "animal")
@@ -26,10 +29,12 @@ public class Animal {
 
     @JsonView(Views.Animal.class)
     @Column(name = "anim_pseudo", nullable = false)
+    @NotBlank
     private String pseudo;
 
     @JsonView(Views.AnimalDetail.class)
     @Column(name = "anim_email", nullable = false)
+    @NotBlank
     private String email;
     
     @Column(name = "anim_password", nullable = false)
@@ -37,15 +42,18 @@ public class Animal {
     
     @JsonView(Views.Animal.class)
     @Column(name = "anim_age", nullable = false)
+    @Positive
     private int age;
     
     @JsonView(Views.Animal.class)
     @Column(name = "anim_espece", nullable = false)
+    @NotBlank
     private String espece;
     
     @JsonView(Views.AnimalDetail.class)
     @ManyToOne
     @JoinColumn(name = "anim_ville_id", nullable = false)
+    @Valid
     private Ville ville;
 
     @JsonView(Views.AnimalDetail.class)

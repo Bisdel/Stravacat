@@ -107,7 +107,7 @@
 
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a class="nav-link" href="animal/inscription">S'inscrire</a></li>
-                    <li class="nav-item"><a class="nav-link" href="connexion">Se connecter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="animal/connexion">Se connecter</a></li>
                     <li class="nav-item"><a class="nav-link" href="apropos">A propos</a></li>
                 </ul>
             </footer>

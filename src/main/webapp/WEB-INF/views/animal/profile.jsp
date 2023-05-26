@@ -44,8 +44,22 @@
                     </ul>
                 </header>
             </div>
-
             <div class="container text-center">
+                <c:if test="${ failed }">
+                    <div class="alert alert-danger">
+                        <p>${message}</p>
+                        <ul>
+                            <c:forEach var="err" items="${ erreurs.allErrors }">
+                                <li>${ err.objectName } ${ err.defaultMessage }</li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:if>
+                <c:if test="${ success }">
+                    <div class="alert alert-success">
+                        <p>${message}</p>
+                    </div>
+                </c:if>
                 <div class="row m-5 align-items-center justify-content-around">
                     <div class="col">
                         <a href="modifierphotoprofil.html" data-bs-toggle="tooltip" data-bs-offset="0,70"
@@ -55,7 +69,8 @@
                                 style="border-radius: 10%;"></a>
                     </div>
                     <div class="col">
-                        <h4>Meow 👋 ! Je m'appelle Grisou et je suis un chat de 5 ans.</h4>
+                        <h4>Meow 👋 ! Je m'appelle ${animal.pseudo} et je suis un ${animal.espece} de ${animal.age} ans.
+                        </h4>
                     </div>
                     <div class="col" style="line-height: 1;">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -64,7 +79,7 @@
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
-                            <div class="modal-dialog">
+                            <form method="post" class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier mes informations
@@ -73,7 +88,9 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                                        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                                            <p>Remplis les champs que tu souhaites modifier et laisse les autres vides,
+                                                puis clique sur Enregistrer 😸</p>
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control" id="floatingInput" name="pseudo"
                                                     value="${ animal.pseudo }">
@@ -86,7 +103,7 @@
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input type="password" class="form-control" id="floatingPassword"
-                                                    name="password" value="${ animal.password }">
+                                                    name="password">
                                                 <label for="floatingPassword">Mot de passe secret</label>
                                             </div>
                                             <div class="form-floating mb-3">
@@ -104,25 +121,16 @@
                                                     name="ville.nom" value="${ animal.ville.nom }">
                                                 <label for="floatingInput">Ta ville</label>
                                             </div>
-                                            <c:if test="${ erreurs.hasErrors() }">
-                                                <div class="alert alert-danger">
-                                                    <ul>
-                                                        <c:forEach var="err" items="${ erreurs.allErrors }">
-                                                            <li>${ err.defaultMessage }</li>
-                                                        </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </c:if>
-                                        </form>
+                                        </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-danger">Supprimer mon compte</button>
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Annuler</button>
-                                        <button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
+                                        data-bs-dismiss="modal">Annuler</button>
+                                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="liveToastBtn">Enregistrer</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

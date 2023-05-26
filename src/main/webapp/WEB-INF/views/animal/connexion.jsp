@@ -43,12 +43,11 @@
                         <form method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput" name="pseudo"
-                                    value="${ animal.pseudo }">
+                                    value="${ pseudo }">
                                 <label for="floatingInput">Ton pseudo</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" name="password"
-                                    value="${ animal.password }">
+                                <input type="password" class="form-control" id="floatingPassword" name="password">
                                 <label for="floatingPassword">Mot de passe secret</label>
                             </div>
                             <div class="checkbox mb-3">
@@ -62,6 +61,13 @@
                                         <c:forEach var="err" items="${ erreurs.allErrors }">
                                             <li>${ err.defaultMessage }</li>
                                         </c:forEach>
+                                    </ul>
+                                </div>
+                            </c:if>
+                            <c:if test="${ erreur.length() > 0 }">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        <li>${ erreur }</li>
                                     </ul>
                                 </div>
                             </c:if>
@@ -82,7 +88,7 @@
 
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a class="nav-link" href="animal/inscription">S'inscrire</a></li>
-                    <li class="nav-item"><a class="nav-link" href="connexion">Se connecter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="animal/connexion">Se connecter</a></li>
                     <li class="nav-item"><a class="nav-link" href="apropos">A propos</a></li>
                 </ul>
             </footer>
