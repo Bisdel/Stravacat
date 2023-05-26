@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -51,7 +54,7 @@
                 <div class="mb-3 row">
                   <label for="responsable" class="col-sm-2 col-form-label">Age</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" id="abnm_age" name="age" placeholder="Saisir l'âge">
+                    <input type="number" class="form-control" id="abnm_age" name="age" placeholder="Saisir l'Ã¢ge">
                   </div>
                 </div>
         
@@ -59,7 +62,7 @@
                   <label for="responsable" class="col-sm-2 col-form-label">L'id de l'animal</label>
                   <div class="col-sm-10">
                     <input type="numeber" class="form-control" id="abnm_animal_id" name="L'ID de l'animal"
-                      placeholder="ID de l'animal abonné">
+                      placeholder="ID de l'animal abonnÃ©">
                   </div>
                 </div>
         
