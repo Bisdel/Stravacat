@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 public class AnimalController {
 	@Autowired
 	private IAnimalRepository repoAnimal;
-	
+
 	@GetMapping("/animal")
 	public String findAll(Model model) {
 		model.addAttribute("animaux", this.repoAnimal.findAll());

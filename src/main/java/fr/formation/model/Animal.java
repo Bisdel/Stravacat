@@ -127,7 +127,4 @@ public class Animal {
     public void setActualites(List<Actualite> actualites) {
         this.actualites = actualites;
     }
-
-
-
 }

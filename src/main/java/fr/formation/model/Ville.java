@@ -18,18 +18,16 @@ public class Ville {
 	@Column(name = "vill_id")
 	private int id;
 
-	@Column(name = "vill_nom", length = 30)
+	@Column(name = "vill_nom", length = 30, nullable = false)
 	private String nom;
 
-	@Column(name = " vill_ambiance", length = 250, nullable = false)
+	@Column(name = " vill_ambiance", length = 250)
 	private String ambiance;
 
 	@OneToMany(mappedBy = "ville")
-
 	private List<Animal> animaux;
 
 	@OneToMany(mappedBy = "ville")
-
 	private List<Actualite> actualites;
 
 	public int getId() {
