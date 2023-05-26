@@ -103,5 +103,12 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
+		<!-- Jackson Datatype -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>
