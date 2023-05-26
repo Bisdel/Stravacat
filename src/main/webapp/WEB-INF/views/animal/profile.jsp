@@ -58,8 +58,72 @@
                         <h4>Meow 👋 ! Je m'appelle Grisou et je suis un chat de 5 ans.</h4>
                     </div>
                     <div class="col" style="line-height: 1;">
-                        <a href="#" style="color: grey; font-size: small; text-decoration: underline;">Modifier
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            style="color: grey; font-size: small; text-decoration: underline;">Modifier
                             ces<br>informations</a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier mes informations
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput" name="pseudo"
+                                                    value="${ animal.pseudo }">
+                                                <label for="floatingInput">Ton pseudo</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" id="floatingInput" name="email"
+                                                    value="${ animal.email }">
+                                                <label for="floatingInput">Adresse email</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="password" class="form-control" id="floatingPassword"
+                                                    name="password" value="${ animal.password }">
+                                                <label for="floatingPassword">Mot de passe secret</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="floatingInput" name="age"
+                                                    value="${ animal.age }">
+                                                <label for="floatingInput">Ton âge</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput" name="espece"
+                                                    value="${ animal.espece }">
+                                                <label for="floatingInput">Ton animal</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput"
+                                                    name="ville.nom" value="${ animal.ville.nom }">
+                                                <label for="floatingInput">Ta ville</label>
+                                            </div>
+                                            <c:if test="${ erreurs.hasErrors() }">
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        <c:forEach var="err" items="${ erreurs.allErrors }">
+                                                            <li>${ err.defaultMessage }</li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </c:if>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-danger">Supprimer mon compte</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-5 align-items-center justify-content-around">
@@ -90,35 +154,29 @@
                                     <div class="carousel-item active">
                                         <div class="row mb-3 justify-content-around">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Michel"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Michel"
                                                 src="assets\images\profile_picture_index_1.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Thomas"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Thomas"
                                                 src="assets\images\profile_picture_index_2.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Sarah"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Sarah"
                                                 src="assets\images\profile_picture_index_3.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         </div>
                                         <div class="row mb-3 justify-content-around">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Grisette"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Grisette"
                                                 src="assets\images\profile_picture_index_4.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Doug"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Doug"
                                                 src="assets\images\profile_picture_index_5.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                             <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                                data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                                data-bs-title="Micheline"
+                                                data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Micheline"
                                                 src="assets\images\profile_picture_index_6.png"
                                                 style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         </div>
@@ -127,35 +185,29 @@
                                 <div class="carousel-item">
                                     <div class="row mb-3 justify-content-around">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Tito"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Tito"
                                             src="assets\images\profile_picture_index_1.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Samba"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Samba"
                                             src="assets\images\profile_picture_index_2.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Minouche"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Minouche"
                                             src="assets\images\profile_picture_index_3.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                     </div>
                                     <div class="row mb-3 justify-content-around">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Le rouquin"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Le rouquin"
                                             src="assets\images\profile_picture_index_4.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Charabia"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Charabia"
                                             src="assets\images\profile_picture_index_5.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                         <img class="border border-secondary-subtle border-3 rounded-4 px-0"
-                                            data-bs-toggle="tooltip" data-bs-offset="0,10"
-                                            data-bs-title="Chatofort"
+                                            data-bs-toggle="tooltip" data-bs-offset="0,10" data-bs-title="Chatofort"
                                             src="assets\images\profile_picture_index_6.png"
                                             style="height: 80px; width: 80px; object-fit: cover;" alt="...">
                                     </div>
