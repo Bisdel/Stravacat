@@ -2,9 +2,6 @@ package fr.formation.model;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import fr.formation.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
