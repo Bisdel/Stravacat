@@ -21,7 +21,7 @@ public class AnimalController {
 
 	@Autowired
 	private IVilleRepository repoVille;
-	
+
 	@GetMapping("/animal")
 	public String findAll(Model model) {
 		model.addAttribute("animaux", this.repoAnimal.findAll());	

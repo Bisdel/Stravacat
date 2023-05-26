@@ -87,6 +87,7 @@ public class ActualiteApiController {
 
 		BeanUtils.copyProperties(actuRequest, actualite);
 		actualite.setActu_timestamp(LocalDateTime.now());
+		actualite.setActu_id(id);
 		
 		this.repoActualite.save(actualite);
 		return ActualiteResponse.convert(actualite);
