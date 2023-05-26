@@ -43,7 +43,7 @@ public class Ville {
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom;
+		this.nom = nom.substring(0, 1).toUpperCase() + nom.substring(1).toLowerCase();
 	}
 
 	public String getAmbiance() {

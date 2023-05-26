@@ -24,8 +24,7 @@ public class AnimalController {
 	
 	@GetMapping("/animal")
 	public String findAll(Model model) {
-		model.addAttribute("animaux", this.repoAnimal.findAll());
-		
+		model.addAttribute("animaux", this.repoAnimal.findAll());	
 		return "animal/profile";
 	}
 	
@@ -40,7 +39,7 @@ public class AnimalController {
 			model.addAttribute("erreurs", result);
 			return "animal/inscription";
 		}
-		animal.getVille().s
+		repoVille.save(animal.getVille());
 		this.repoAnimal.save(animal);
 		
 		return "redirect:/animal";
