@@ -21,15 +21,20 @@ public class VilleController {
 
 	@GetMapping("/ville")
 	public String findAll(Model model) {
-		model.addAttribute("ville", this.repoVille.findAll());
+		model.addAttribute("villes", this.repoVille.findAll());
 
 		return "ville/liste";
+	}
+	
+	@GetMapping("/ville/ajouter")
+	public String add() {
+		return "ville/ajouter";
 	}
 
 	@PostMapping({ "/ville/ajouter", "/ville/modifier/{id}" })
 	private String edit(@Valid Ville ville, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("ville", result);
+			model.addAttribute("erreurs", result);
 			return "/ville/ajouter";
 		}
 		this.repoVille.save(ville);
