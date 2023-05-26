@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "abonne")
@@ -17,6 +18,7 @@ public class Abonnes {
 	private int id;
 	
 	@Column(name = "abon_pseudo" , length = 20 , nullable = false)
+	@NotBlank(message = "Le pseudo est obligatoire")
 	private String pseudo;
 	
 	@Column(name ="abon_age")

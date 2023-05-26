@@ -39,7 +39,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-			    <th class="col-3">Id</th>
+				<th class="col-3">Id</th>
 				<th class="col-3">Pseudo</th>
 				<th class="col-3">age (annee)</th>
 				<th class="col-3">Animal_id</th>
@@ -50,20 +50,20 @@
 		</thead>
 
 		<tbody>
-		<c:forEach var="abonne" items = "${ abonnes }">
-			<tr>
-			    <td>${ abonne.id }</td>
-				<td>${ abonne.pseudo }</td>
-				<td>${ abonne.age }</td>
-				<td>${ abonne.animal_id }</td>
-				<td>${ abonne.ville_id }</td>
-				<td>${ abonne.espece } </td>
-				<td>
-				<a href="abonne/modifier/${ abonne.id }"class="btn btn-outline-warning">Modifier</a>
-				<a href="abonne/supprimer/${ fournisseur.id }" class="btn btn-outline-danger">Supprimer</a>
-				</td>
-			</tr>
-		</c:forEach>
+			<c:forEach var="abonne" items="${ abonnes }">
+				<tr>
+					<td>${ abonne.id }</td>
+					<td>${ abonne.pseudo }</td>
+					<td>${ abonne.age }</td>
+					<td>${ abonne.animal_id }</td>
+					<td>${ abonne.ville_id }</td>
+					<td>${ abonne.espece }</td>
+					<td><a href="abonne/modifier/${ abonne.id }"
+						class="btn btn-outline-warning">Modifier</a> <a
+						href="abonne/supprimer/${ abonne.id }"
+						class="btn btn-outline-danger">Supprimer</a></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 

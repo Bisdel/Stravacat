@@ -25,6 +25,11 @@ public class AbonneController {
 
 		return "abonne/listes";
 	}
+	
+	@GetMapping("/abonne/ajouter")
+	public String add() {
+		return "abonne/ajouter";
+	}
 
 	@PostMapping({ "/abonne/ajouter", "/abonne/modifier/{id}" })
 	public String add(@Valid Abonnes abonnes, BindingResult result, Model model) {
