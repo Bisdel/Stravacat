@@ -156,23 +156,23 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="assets\images\profile_picture_index_1.png" class="d-block w-100" alt="...">
+                <img src="assets\images\profile_picture_index_11.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h5><font color="black">First slide label</font> </h5>
                   <p><font color ="black">Some representative placeholder content for the first slide.</font></p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="assets\images\profile_picture_index_2.png" class="d-block w-100" alt="...">
+                <img src="assets\images\profile_picture_index_12.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h5>Second slide label</h5>
                   <p>Some representative placeholder content for the second slide.</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="assets\images\profile_picture_index_3.png" class="d-block w-100" alt="...">
+                <img src="assets\images\profile_picture_index_13.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
+                  <h5>Third slide label</h5> 
                   <p>Some representative placeholder content for the third slide.</p>
                 </div>
               </div>
