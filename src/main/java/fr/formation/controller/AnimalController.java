@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import fr.formation.exception.AnimalNotFoundException;
 import fr.formation.model.Animal;
 import fr.formation.repo.IAnimalRepository;
+import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
 @Controller
 public class AnimalController {
 	@Autowired
 	private IAnimalRepository repoAnimal;
+
+	@Autowired
+	private IVilleRepository repoVille;
 	
 	@GetMapping("/animal")
 	public String findAll(Model model) {
@@ -36,7 +40,7 @@ public class AnimalController {
 			model.addAttribute("erreurs", result);
 			return "animal/inscription";
 		}
-		
+		animal.getVille().s
 		this.repoAnimal.save(animal);
 		
 		return "redirect:/animal";

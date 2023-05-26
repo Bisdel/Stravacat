@@ -59,7 +59,7 @@
                                 <label for="floatingInput">Quel animal es-tu ?</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" name="ville" value="${ animal.ville.nom }">
+                                <input type="text" class="form-control" id="floatingInput" name="ville.nom" value="${ animal.ville.nom }">
                                 <label for="floatingInput">Quelle ville habites-tu ?</label>
                             </div>
 
