@@ -1,11 +1,6 @@
 package fr.formation.api.request;
 
-import java.util.List;
-
-import fr.formation.model.Actualite;
-import fr.formation.model.Animal;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class VilleRequest {
 

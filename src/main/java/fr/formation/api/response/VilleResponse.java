@@ -1,11 +1,7 @@
 package fr.formation.api.response;
 
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 
-import fr.formation.model.Actualite;
-import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 
 public class VilleResponse {
