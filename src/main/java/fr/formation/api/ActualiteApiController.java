@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.formation.api.request.ActualiteRequest;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import fr.formation.api.response.ActualiteResponse;
 import fr.formation.exception.ActualiteNotFoundException;
 import fr.formation.exception.ActualiteNotValidException;
@@ -40,12 +41,12 @@ public class ActualiteApiController {
 		
 		for (Actualite actu : actualites) {
 			ActualiteResponse actualiteResponse = new ActualiteResponse();
-			actualiteResponse.setId(actu.getActu_id());
+			actualiteResponse.setActu_id(actu.getActu_id());
 			actualiteResponse.setPseudo(actu.getAnimal().getPseudo());
-			actualiteResponse.setDescription(actu.getActu_description());
+			actualiteResponse.setActu_description(actu.getActu_description());
 			actualiteResponse.setVille(actu.getVille().getNom());
-			actualiteResponse.setDate(actu.getActu_timestamp());
-			
+			// actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
+
 			response.add(actualiteResponse);
 		}
 		return response;
@@ -65,32 +66,25 @@ public class ActualiteApiController {
 	}
 
 	@PostMapping
-	public ActualiteResponse add(@Valid @RequestBody ActualiteRequest actuRequest, BindingResult result) {
+	@JsonView(Views.ActualiteDetail.class)
+	public Actualite add(@Valid @RequestBody Actualite actualite, BindingResult result) {
 		if (result.hasErrors()){
             throw new ActualiteNotValidException();
         }
-		Actualite actualite = new Actualite();
-
-		BeanUtils.copyProperties(actuRequest, actualite);
 		actualite.setActu_timestamp(LocalDateTime.now());
-
-		this.repoActualite.save(actualite);
-		return ActualiteResponse.convert(actualite);
+		return this.repoActualite.save(actualite);
 	}
 	
 	@PutMapping("/{id}")
-	public ActualiteResponse update(@PathVariable int id, @Valid @RequestBody ActualiteRequest actuRequest, BindingResult result) {
+	@JsonView(Views.Actualite.class)
+	public Actualite update(@PathVariable int id, @Valid @RequestBody Actualite actualite, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ActualiteNotValidException();
 		}
-		Actualite actualite = this.repoActualite.findById(id).orElseThrow(ActualiteNotFoundException::new);
-
-		BeanUtils.copyProperties(actuRequest, actualite);
-		actualite.setActu_timestamp(LocalDateTime.now());
 		actualite.setActu_id(id);
+		actualite.setActu_timestamp(LocalDateTime.now());
 		
-		this.repoActualite.save(actualite);
-		return ActualiteResponse.convert(actualite);
+		return this.repoActualite.save(actualite);
 	}
 
 	@DeleteMapping("/{id}")
