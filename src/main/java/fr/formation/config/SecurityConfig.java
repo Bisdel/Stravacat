@@ -31,15 +31,16 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(authorize -> {
 //			authorize.requestMatchers("/api/hello").permitAll(); // Autorisé à tout le monde
 //			authorize.requestMatchers("/api/utilisateur/**").permitAll(); // Autorisé à tout le monde
-			
-			authorize.requestMatchers("/api/hello", "/api/utilisateur/**").permitAll(); // Autorisé à tout le monde
-			
+
 			// Les accès seront configurés via les annotations PrePost
 //			authorize.requestMatchers("/api/fournisseur/**").hasRole("ADMIN"); // Autotisé aux utilisateurs "admin"
 			
-			authorize.requestMatchers("/**").authenticated(); // Autorisé aux utilisateurs connectés
+			// authorize.requestMatchers("/**").authenticated(); // Autorisé aux utilisateurs connectés
+			authorize.requestMatchers("/**").permitAll(); // TODO Changer autorisé à tout le monde
 		});
 		
+
+
 		// Méthode d'authentification par formulaire HTML
 //		http.formLogin(Customizer.withDefaults());
 		
