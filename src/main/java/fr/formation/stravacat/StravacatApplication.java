@@ -1,0 +1,13 @@
+package fr.formation.stravacat;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class StravacatApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(StravacatApplication.class, args);
+	}
+
+}
