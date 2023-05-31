@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Abonnements</title>
+<title>Page ville</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -24,47 +24,39 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
 		<div>
 			<ul>
-				<li><a class="nav-link" href="abonnement">Listes
-						de mes abonnements</a></li>
+				<li><a class="nav-link" href="ville">Listes
+						des villes</a></li>
 			</ul>
 		</div>
-	</nav>
-<!-- limage -->
+	<!-- limage -->
+<div class="background-container">
+	<div class="text-overlay">
+		<alt ="Ma photo" class="image-with-border">
+	</div>
+</div>
 
-
-<div>
-	<div class="container">
+<div class="container">
 		<p>Veuillez remplir le formulaire ci-dessous :</p>
 		<form method="POST">
 			<div class="mb-3 row">
-				<label for="nom" class="col-sm-2 col-form-label">Pseudo</label>
+				<label for="nom" class="col-sm-2 col-form-label">Nom</label>
 
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="abnm_pseudo"
-						name="pseudo" placeholder="Saisir le pseudo  ">
+					<input type="text" class="form-control" id="ville_nom"
+						name="nom" placeholder="Saisir le nom de votre ville  ">
 				</div>
 			</div>
 
 			<div class="mb-3 row">
-				<label for="responsable" class="col-sm-2 col-form-label">Age</label>
+				<label for="ambiance" class="col-sm-2 col-form-label">ambiance</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="abnm_age" name="age"
-						placeholder="Saisir l'âge">
+					<input type="text" class="form-control" id="ville_ambiance" name="ambiance"
+						placeholder="decrire l'ambiance ">
 				</div>
 			</div>
-
-			<div class="mb-3 row">
-				<label for="responsable" class="col-sm-2 col-form-label">L'id
-					de l'animal</label>
-				<div class="col-sm-10">
-					<input type="numeber" class="form-control" id="abnm_animal_id"
-						name="L'ID de l'animal" placeholder="ID de l'animal abonné">
-				</div>
-			</div>
-
+			
 			<div class="mb-3 row">
 				<div class="col d-grid">
 					<input type="submit" class="btn btn-success" value="Ajouter !">
@@ -72,5 +64,8 @@
 			</div>
 		</form>
 	</div>
-	</body>
+
+
+
+</body>
 </html>

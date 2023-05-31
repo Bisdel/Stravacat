@@ -21,7 +21,7 @@ public class ActualiteController {
 	@GetMapping("/actualite")
 	public String findAll(Model model) {
 		model.addAttribute("actualites", this.repoActualite.findAll());	
-		return "actualite/liste-actu";
+		return "actualite/actualite";
 	}
 	
 	@GetMapping("/actualite/ajouter")
@@ -44,7 +44,7 @@ public class ActualiteController {
 	public String edit(@PathVariable int id, Model model) {
 		Actualite actualite = this.repoActualite.findById(id).orElseThrow(ActualiteNotFoundException::new);
 		model.addAttribute("actualite", actualite);
-		return "actualite/form";
+		return "actualite/form-actu";
 	}
 	
 	@GetMapping("/actualite/supprimer/{id}")
