@@ -40,3 +40,4 @@ bin/
 target/
 **/persistence.xml
 **/JpaConfig.java
+**/application-dev.properties

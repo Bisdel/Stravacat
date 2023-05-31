@@ -39,7 +39,10 @@ public class Animal {
     
     @Column(name = "anim_password", nullable = false)
     private String password;
-    
+
+    @Column(name = "anim_admin", nullable = false)
+    private boolean isAdmin;
+
     @JsonView(Views.Animal.class)
     @Column(name = "anim_age", nullable = false)
     @Positive
@@ -134,5 +137,13 @@ public class Animal {
 
     public void setActualites(List<Actualite> actualites) {
         this.actualites = actualites;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
