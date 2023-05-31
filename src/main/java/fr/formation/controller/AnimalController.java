@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import fr.formation.api.request.AnimalRequest;
+import fr.formation.api.request.ConnexionRequest;
 import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IVilleRepository;
-import fr.formation.request.AnimalLogin;
 import jakarta.validation.Valid;
 
 @Controller
@@ -88,7 +88,7 @@ public class AnimalController {
 	}
 
 	@PostMapping("/connexion")
-	public String connexion(@Valid AnimalLogin animalLogin, BindingResult result, Model model) {
+	public String connexion(@Valid ConnexionRequest animalLogin, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("erreurs", result);
 			return "animal/connexion";

@@ -39,7 +39,7 @@ public class SecurityConfig {
 //			authorize.requestMatchers("/api/fournisseur/**").hasRole("ADMIN"); // Autotisé aux utilisateurs "admin"
 			
 			// authorize.requestMatchers("/**").authenticated(); // Autorisé aux utilisateurs connectés
-			authorize.requestMatchers("/**").permitAll(); // Autorisé à tout le monde
+			authorize.requestMatchers("/**").permitAll(); // TODO Changer : Autorisé à tout le monde
 		});
 		
 
