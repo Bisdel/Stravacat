@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import fr.formation.api.request.AnimalRequest;
 import fr.formation.model.Animal;
+import fr.formation.model.Ville;
 import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IVilleRepository;
 import fr.formation.request.AnimalLogin;
@@ -42,20 +43,26 @@ public class AnimalController {
 			model.addAttribute("message", "La modification a échoué pour les raisons suivantes :");
 			model.addAttribute("erreurs", result);
 			return "animal/"+id;
-		} else {
-			repoVille.save(animalRequest.getVille());
+		}
+		// saves new Ville if doesn't exist
+		if (repoVille.findByNom(animalRequest.getVille()).isEmpty()){
+			Ville ville = new Ville();
+			ville.setNom(animalRequest.getVille());
+			repoVille.save(ville);
+		}
 
-			// recover password from db if not modified
-			if (animalRequest.getPassword().length() == 0){
+		// recover password from db if not modified by user in form
+		if (animalRequest.getPassword().length() == 0){
 			animalRequest.setPassword(repoAnimal.findById(id).get().getPassword());
 			}
-			Animal animal = animalRequest.convertToAnimal();
-			animal.setId(id);
-			this.repoAnimal.save(animal);
-			model.addAttribute("success", true);
-			model.addAttribute("message", "Vos modifications ont bien été enregistrées !");
-			return "animal/"+animal.getId();
-		}
+
+		Animal animal = animalRequest.convertToAnimal();
+		animal.setId(id);
+		animal.setVille(repoVille.findByNom(animalRequest.getVille()).get());
+		this.repoAnimal.save(animal);
+		model.addAttribute("success", true);
+		model.addAttribute("message", "Vos modifications ont bien été enregistrées !");
+		return "animal/"+animal.getId();
 	}
 	
 	@GetMapping("/inscription")

@@ -7,8 +7,6 @@ import org.springframework.beans.BeanUtils;
 import fr.formation.model.Actualite;
 import fr.formation.model.Animal;
 import fr.formation.model.Parcours;
-import fr.formation.model.Ville;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
@@ -28,8 +26,7 @@ public class AnimalRequest {
     @NotBlank
     private String espece;
     
-    @Valid
-    private Ville ville;
+    private String ville;
 
     private List<Parcours> parcours;
 
@@ -81,11 +78,11 @@ public class AnimalRequest {
 		this.espece = espece;
 	}
 
-	public Ville getVille() {
+	public String getVille() {
 		return ville;
 	}
 
-	public void setVille(Ville ville) {
+	public void setVille(String ville) {
 		this.ville = ville;
 	}
 

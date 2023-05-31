@@ -7,6 +7,7 @@ import org.springframework.security.access.expression.method.MethodSecurityExpre
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,14 +30,16 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http, JwtHeaderAuthorizationFilter jwtFilter) throws Exception {
 		// Mise en place des authorisations
 		http.authorizeHttpRequests(authorize -> {
-//			authorize.requestMatchers("/api/hello").permitAll(); // Autorisé à tout le monde
+
+
+			// authorize.requestMatchers("/api/animal/inscri").permitAll(); // Autorisé à tout le monde
 //			authorize.requestMatchers("/api/utilisateur/**").permitAll(); // Autorisé à tout le monde
 
 			// Les accès seront configurés via les annotations PrePost
 //			authorize.requestMatchers("/api/fournisseur/**").hasRole("ADMIN"); // Autotisé aux utilisateurs "admin"
 			
 			// authorize.requestMatchers("/**").authenticated(); // Autorisé aux utilisateurs connectés
-			authorize.requestMatchers("/**").permitAll(); // TODO Changer autorisé à tout le monde
+			authorize.requestMatchers("/**").permitAll(); // Autorisé à tout le monde
 		});
 		
 
@@ -45,7 +48,7 @@ public class SecurityConfig {
 //		http.formLogin(Customizer.withDefaults());
 		
 		// Méthode d'authentification par HTTP Basic
-//		http.httpBasic(Customizer.withDefaults());
+		http.httpBasic(Customizer.withDefaults());
 		
 		// Désactiver la protection CSRF
 		http.csrf(c -> c.disable());

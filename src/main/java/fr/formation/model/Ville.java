@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "ville")
@@ -17,7 +18,8 @@ public class Ville {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vill_id")
 	private int id;
-
+	
+	@NotBlank
 	@Column(name = "vill_nom", length = 30, nullable = false)
 	private String nom;
 
@@ -43,7 +45,7 @@ public class Ville {
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom.substring(0, 1).toUpperCase() + nom.substring(1).toLowerCase();
+		this.nom = nom;
 	}
 
 	public String getAmbiance() {
