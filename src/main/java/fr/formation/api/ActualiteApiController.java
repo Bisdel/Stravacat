@@ -45,7 +45,7 @@ public class ActualiteApiController {
 			actualiteResponse.setPseudo(actu.getAnimal().getPseudo());
 			actualiteResponse.setActu_description(actu.getActu_description());
 			actualiteResponse.setVille(actu.getVille().getNom());
-			// actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
+			actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
 
 			response.add(actualiteResponse);
 		}
@@ -76,7 +76,7 @@ public class ActualiteApiController {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.Actualite.class)
+	@JsonView(Views.ActualiteDetail.class)
 	public Actualite update(@PathVariable int id, @Valid @RequestBody Actualite actualite, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ActualiteNotValidException();

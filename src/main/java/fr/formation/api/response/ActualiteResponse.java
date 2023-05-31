@@ -1,5 +1,7 @@
 package fr.formation.api.response;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Actualite;
@@ -9,7 +11,7 @@ public class ActualiteResponse {
     private String actu_description;
     private String pseudo;
     private String ville;
-    // private LocalDateTime actu_timestamp;
+    private LocalDateTime actu_timestamp;
 
     public int getActu_id() {
         return actu_id;
@@ -43,13 +45,13 @@ public class ActualiteResponse {
         this.ville = ville;
     }
 
-    // public LocalDateTime getActu_timestamp() {
-    //     return actu_timestamp;
-    // }
+    public LocalDateTime getActu_timestamp() {
+        return actu_timestamp;
+    }
 
-    // public void setActu_timestamp(LocalDateTime actu_timestamp) {
-    //     this.actu_timestamp = actu_timestamp;
-    // }
+    public void setActu_timestamp(LocalDateTime actu_timestamp) {
+        this.actu_timestamp = actu_timestamp;
+    }
 
     public static ActualiteResponse convert(Actualite actualite) {
         ActualiteResponse response = new ActualiteResponse();	

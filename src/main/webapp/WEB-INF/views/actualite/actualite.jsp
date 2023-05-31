@@ -19,7 +19,7 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary"></nav>
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><strong>STRAVACAT</strong>
                     <div class="spinner-border spinner-border-sm" role="status">
@@ -32,60 +32,50 @@
                 <a class="navbar-brand" href="#">
                     <img src="assets\images\logo_stravacat.png"  alt="Stravacat" height="75">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="\www\anoussak\actualites.html">Fil d'actualités</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html">Mon profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="abonnements\listes-abonnements.html">Mes amis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="abonnes\listes-abonnes.html">Mes followers</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="parcours">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="actualite">Fil d'actualités</a></li>
+                        <li class="nav-item"><a class="nav-link" href="animal">Mon profil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="abonnement">Mes amis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="abonne">Mes followers</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 
-    <header>
-        <h4 style="text-align:center">Fil d'actualités</h4>
-    </header>
+    <p><h4 style="text-align:center">Fil d'actualités</h4></p>
 
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Description</th>
+                    <th>Ville</th>
+                    <th></th>
+                </tr>
             </thead>
 
-        <tbody>
-            <c:forEach var="actualite" items="${ actualites }">
-                <tr class="align-middle">
-                    <td>${ actualite.id }</td>
-                    <td>${ actualite.description }</td>
-                    <td>
-                        <a href="actualite/modifier/${ fournisseur.id }" class="btn btn-outline-warning">Modifier</a>
-                        <a href="actualite/supprimer/${ fournisseur.id }" class="btn btn-outline-danger">Supprimer</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-
+            <tbody>
+                <c:forEach var="actualite" items="${ actualites }">
+                    <tr class="align-middle">
+                        <td>${ actualite.animal.pseudo }</td>
+                        <td>${ actualite.actu_description }</td>
+                        <td>${ actualite.ville.nom }</td>
+                        <td>
+                            <a href="actualite/modifier/${ actualite.actu_id }" class="btn btn-outline-warning">Modifier</a>
+                            <a href="actualite/supprimer/${ actualite.actu_id }" class="btn btn-outline-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 <div class="container">
