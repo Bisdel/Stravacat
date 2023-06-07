@@ -5,6 +5,7 @@ import { FournisseurComponent } from './views/fournisseur/fournisseur.component'
 import { ProduitComponent } from './views/produit/produit.component';
 import { LoginComponent } from './views/login/login.component';
 import { authenticatedGuard } from './guards/authenticated.guard';
+import { InscriptionComponent } from './views/inscription/inscription.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -13,6 +14,11 @@ export const routes: Routes = [
     path: 'accueil',
     component: HomeComponent,
     canActivate: [ authenticatedGuard ]
+  },
+
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
   },
 
   {

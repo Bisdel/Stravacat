@@ -16,6 +16,8 @@ import { LoginComponent } from './views/login/login.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { ProduitComponent } from './views/produit/produit.component';
 import { FormCardComponent } from './components/form-card/form-card.component';
+import { InscriptionComponent } from './views/inscription/inscription.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { FormCardComponent } from './components/form-card/form-card.component';
     NavigationComponent,
     FormCardComponent,
     FormInputComponent,
-    FormSelectComponent
+    FormSelectComponent,
+    InscriptionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
