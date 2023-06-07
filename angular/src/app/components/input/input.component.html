@@ -1,0 +1,14 @@
+<div class="form-floating mb-3">
+  <input
+    class="form-control"
+    [disabled]="disabled"
+    [type]="type"
+    [id]="id"
+    [placeholder]="id"
+    [ngModel]="value"
+    (ngModelChange)="onChange($event)"
+    [class.is-invalid]="formControl?.invalid"
+  />
+  <label [for]="id">{{ label }}</label>
+  <div class="invalid-feedback">{{ invalidMessage }}</div>
+</div>

@@ -18,6 +18,7 @@ import { ProduitComponent } from './views/produit/produit.component';
 import { FormCardComponent } from './components/form-card/form-card.component';
 import { InscriptionComponent } from './views/inscription/inscription.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { InputComponent } from './components/input/input.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FormInputComponent,
     FormSelectComponent,
     InscriptionComponent,
-    FooterComponent
+    FooterComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
