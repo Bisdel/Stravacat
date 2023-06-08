@@ -6,6 +6,9 @@ import { ProduitComponent } from './views/produit/produit.component';
 import { LoginComponent } from './views/login/login.component';
 import { authenticatedGuard } from './guards/authenticated.guard';
 import { InscriptionComponent } from './views/inscription/inscription.component';
+import { AbonnesComponent } from './views/abonnes/abonnes.component';
+import { AbonnementComponent } from './views/abonnement/abonnement.component';
+import { VilleComponent } from './views/ville/ville.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -13,9 +16,27 @@ export const routes: Routes = [
   {
     path: 'accueil',
     component: HomeComponent,
-    canActivate: [ authenticatedGuard ]
+    canActivate: [authenticatedGuard]
   },
 
+  {
+    path: 'abonne',
+    component: AbonnesComponent,
+    canActivate: [authenticatedGuard]
+  },
+
+  {
+    path: 'abonnement',
+    component: AbonnementComponent,
+    canActivate: [authenticatedGuard]
+  },
+
+  {
+    path: 'ville',
+    component: VilleComponent,
+    canActivate: [authenticatedGuard]
+  },
+  
   {
     path: 'inscription',
     component: InscriptionComponent,
@@ -29,13 +50,13 @@ export const routes: Routes = [
   {
     path: 'fournisseur',
     component: FournisseurComponent,
-    canActivate: [ authenticatedGuard ]
+    canActivate: [authenticatedGuard]
   },
 
   {
     path: 'produit',
     component: ProduitComponent,
-    canActivate: [ authenticatedGuard ]
+    canActivate: [authenticatedGuard]
   },
 
   {
