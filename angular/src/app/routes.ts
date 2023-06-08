@@ -22,19 +22,19 @@ export const routes: Routes = [
   {
     path: 'abonnes',
     component: AbonnesComponent,
-  
+    canActivate: [authenticatedGuard]
   },
 
   {
     path: 'abonnement',
     component: AbonnementComponent,
- 
+    canActivate: [authenticatedGuard]
   },
 
   {
     path: 'ville',
     component: VilleComponent,
-    
+    canActivate: [authenticatedGuard]
   },
    
   {
@@ -50,6 +50,7 @@ export const routes: Routes = [
   {
     path: 'actualite',
     component: ActualiteComponent,
+   
   },
 
   {
