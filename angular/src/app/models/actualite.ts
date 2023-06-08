@@ -2,6 +2,13 @@ import { Animal } from "./animal";
 import { Ville } from "./ville";
 
 export class Actualite {
+    public get actu_timestamp(): Date {
+        return this._actu_timestamp;
+    }
+    public set actu_timestamp(value: Date) {
+        this._actu_timestamp = value;
+    }
+    
     public get ville(): Ville {
         return this._ville;
     }

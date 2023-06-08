@@ -1,1 +1,28 @@
-<p>actualite works!</p>
+<h1>Fil d'actualités</h1>
+
+<button class="btn btn-success" (click)="voir()">Voir plus</button>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Pseudo</th>
+        <th>Description</th>
+        <th>Ville</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let actualite of actualites$ | async">
+        <td>{{ actualite.animal.pseudo }}</td>
+        <td>{{ actualite.actu_description }}</td>
+        <td>{{ actualite.ville }}</td>
+        <td>
+          <button (click)="modifier(actualite)" class="btn btn-outline-warning">Modifier</button>
+          <button (click)="supprimer(actualite)" class="btn btn-outline-danger ms-2">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
