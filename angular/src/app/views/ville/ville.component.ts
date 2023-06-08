@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Ville } from 'src/app/models/ville';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { VilleService } from 'src/app/services/ville.service';
   templateUrl: './ville.component.html',
   styleUrls: ['./ville.component.css']
 })
-export class VilleComponent {
+export class VilleComponent implements OnInit {
   erreur: boolean = false;
   villeForm!: FormGroup | null;
   ville$!: Observable<Ville[]>;

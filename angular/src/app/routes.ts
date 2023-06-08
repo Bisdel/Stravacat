@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'abonnes',
+    path: 'abonne',
     component: AbonnesComponent,
     canActivate: [authenticatedGuard]
   },

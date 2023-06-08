@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit  } from '@angular/core';
 import { Abonne } from 'src/app/models/abonne';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,8 +11,8 @@ import { AbonneService } from 'src/app/services/abonne.service';
   templateUrl: './abonnes.component.html',
   styleUrls: ['./abonnes.component.css']
 })
-export class AbonnesComponent {
-  erreur: boolean = false;
+export class AbonnesComponent implements OnInit{
+
   abonneForm!: FormGroup | null;
   abonne$!: Observable<Abonne[]>;
   pseudoCtrl!: FormControl;
