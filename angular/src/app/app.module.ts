@@ -13,7 +13,6 @@ import { routes } from './routes';
 import { FournisseurComponent } from './views/fournisseur/fournisseur.component';
 import { HomeComponent } from './views/home/home.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
-import { ProduitComponent } from './views/produit/produit.component';
 import { FormCardComponent } from './components/form-card/form-card.component';
 import { InscriptionComponent } from './views/inscription/inscription.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,6 +22,8 @@ import { VilleComponent } from './views/ville/ville.component';
 import { ConnexionComponent } from './views/connexion/connexion.component';
 import { ActualiteComponent } from './views/actualite/actualite.component';
 import { AbonnementComponent } from './views/abonnement/abonnement.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
@@ -31,7 +32,6 @@ import { AbonnementComponent } from './views/abonnement/abonnement.component';
     HomeComponent,
     PageNotFoundComponent,
     FournisseurComponent,
-    ProduitComponent,
     NavigationComponent,
     FormCardComponent,
     FormInputComponent,
@@ -43,7 +43,9 @@ import { AbonnementComponent } from './views/abonnement/abonnement.component';
     VilleComponent,
     ConnexionComponent,
     ActualiteComponent,
-    AbonnementComponent
+    AbonnementComponent,
+    ProfileComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

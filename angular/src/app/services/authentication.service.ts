@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthResponse } from '../models/auth-response';
+import { AuthResponse } from '../models/response/auth-response';
 import { environment } from '../environments/environment';
+import { AnimalResponse } from '../models/response/animal-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   private _token: string = '';
+  private _animalResponse!: AnimalResponse; 
 
   public get token(): string {
     return this._token;
@@ -19,6 +21,13 @@ export class AuthenticationService {
 
     this._token = value;
   }
+  
+  public get animalResponse(): AnimalResponse {
+    return this._animalResponse;
+  }
+  public set animalResponse(value: AnimalResponse) {
+    this._animalResponse = value;
+  }
 
   constructor(private httpClient: HttpClient) {
     // Récupération du jeton stocké dans le navigateur
@@ -27,29 +36,6 @@ export class AuthenticationService {
 
   public isLogged() {
     return !!(this.token && this.token != '');
-  }
-
-  public login(username: string, password: string, options: any) {
-    this.httpClient
-      .post<AuthResponse>(`${environment.apiUrl}/animal/connexion`, {
-        username,
-        password,
-      })
-      .subscribe({
-        next: (result) => {
-          this.token = result.token;
-
-          if (options.next) {
-            options.next(result);
-          }
-        },
-
-        error: () => {
-          if (options.error) {
-            options.error();
-          }
-        },
-      });
   }
 
   public register(
@@ -96,6 +82,7 @@ export class AuthenticationService {
       .subscribe({
         next: (result) => {
           this.token = result.token;
+          this._animalResponse = result.animalResponse;
 
           if (options.next) {
             options.next(result);
