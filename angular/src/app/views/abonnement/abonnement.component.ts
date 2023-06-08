@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { AbonnementService } from 'src/app/services/abonnement.service';
   templateUrl: './abonnement.component.html',
   styleUrls: ['./abonnement.component.css']
 })
-export class AbonnementComponent {
+export class AbonnementComponent implements OnInit{
   abonnementForm!: FormGroup | null;
   abonnement$!: Observable<Abonnement[]>;
   pseudoCtrl!: FormControl;
