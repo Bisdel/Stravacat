@@ -9,6 +9,7 @@ import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { VilleComponent } from './views/ville/ville.component';
 import { ConnexionComponent } from './views/connexion/connexion.component';
+import { ActualiteComponent } from './views/actualite/actualite.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -20,23 +21,23 @@ export const routes: Routes = [
   },
 
   {
-    path: 'abonne',
+    path: 'abonnes',
     component: AbonnesComponent,
-    canActivate: [authenticatedGuard]
+  
   },
 
   {
     path: 'abonnement',
     component: AbonnementComponent,
-    canActivate: [authenticatedGuard]
+ 
   },
 
   {
     path: 'ville',
     component: VilleComponent,
-    canActivate: [authenticatedGuard]
+    
   },
-  
+   
   {
     path: 'inscription',
     component: InscriptionComponent,
@@ -45,6 +46,11 @@ export const routes: Routes = [
   {
     path: 'connexion',
     component: ConnexionComponent
+  },
+
+  {
+    path: 'actualite',
+    component: ActualiteComponent,
   },
 
   {

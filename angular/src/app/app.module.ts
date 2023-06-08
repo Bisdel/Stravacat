@@ -21,6 +21,7 @@ import { InputComponent } from './components/input/input.component';
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { VilleComponent } from './views/ville/ville.component';
 import { ConnexionComponent } from './views/connexion/connexion.component';
+import { ActualiteComponent } from './views/actualite/actualite.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ConnexionComponent } from './views/connexion/connexion.component';
     InputComponent,
     AbonnesComponent,
     VilleComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    ActualiteComponent
   ],
   imports: [
     BrowserModule,
