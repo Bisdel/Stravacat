@@ -8,6 +8,7 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements AfterViewInit {
   private map:any;
+  private popup:any;
 
   private initMap(): void {
     this.map = L.map('map').setView([43.610684, 3.876514], 14);
