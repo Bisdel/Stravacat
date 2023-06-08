@@ -76,6 +76,11 @@ public class AnimalApiController {
 		
 		response.setSuccess(true);
 		response.setToken(token); // On donne le jeton en réponse
+
+		Animal animal = repoAnimal.findByPseudo(connexionRequest.getPseudo()).get();
+		AnimalResponse animalResponse = new AnimalResponse();
+		BeanUtils.copyProperties(animal, animalResponse);
+		response.setAnimalResponse(animalResponse);
 		
 		return response;
 	}

@@ -25,8 +25,8 @@ export class ConnexionComponent {
   }
   
   ngOnInit(): void {
-    // this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    // this.passwordCtrl = this.formBuilder.control('', Validators.required);
+    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
+    this.passwordCtrl = this.formBuilder.control('', Validators.required);
 
     this.userForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
@@ -35,18 +35,11 @@ export class ConnexionComponent {
   }
 
   connexion() {
-    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    this.passwordCtrl = this.formBuilder.control('', Validators.required);
-
-    // this.userForm = this.formBuilder.group({
-    //   pseudo: this.pseudoCtrl,
-    //   password: this.passwordCtrl,
-    // });
     this.erreur = false;
 
     this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
       next: () => {
-        this.router.navigate([ '/accueil' ]);
+        this.router.navigate([ '/profile/'+ this.srvAuth.animalResponse.id]);
       },
 
       error: () => {

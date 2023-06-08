@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { FournisseurComponent } from './views/fournisseur/fournisseur.component';
-import { ProduitComponent } from './views/produit/produit.component';
 import { authenticatedGuard } from './guards/authenticated.guard';
 import { InscriptionComponent } from './views/inscription/inscription.component';
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
@@ -10,6 +9,7 @@ import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { VilleComponent } from './views/ville/ville.component';
 import { ConnexionComponent } from './views/connexion/connexion.component';
 import { ActualiteComponent } from './views/actualite/actualite.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -17,7 +17,6 @@ export const routes: Routes = [
   {
     path: 'accueil',
     component: HomeComponent,
-    canActivate: [authenticatedGuard]
   },
 
   {
@@ -60,8 +59,8 @@ export const routes: Routes = [
   },
 
   {
-    path: 'produit',
-    component: ProduitComponent,
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [authenticatedGuard]
   },
 

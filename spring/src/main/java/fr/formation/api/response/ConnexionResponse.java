@@ -1,6 +1,7 @@
 package fr.formation.api.response;
 
 public class ConnexionResponse {
+	private AnimalResponse animalResponse;
 	private boolean success;
 	private String token;
 
@@ -18,5 +19,13 @@ public class ConnexionResponse {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public AnimalResponse getAnimalResponse() {
+		return animalResponse;
+	}
+
+	public void setAnimalResponse(AnimalResponse animalResponse) {
+		this.animalResponse = animalResponse;
 	}
 }

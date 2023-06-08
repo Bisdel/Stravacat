@@ -5,6 +5,15 @@ public class AnimalResponse {
 	private String pseudo;
 	private int age;
 	private String espece;
+	private VilleResponse villeResponse;
+
+	public VilleResponse getVilleResponse() {
+		return villeResponse;
+	}
+
+	public void setVilleResponse(VilleResponse villeResponse) {
+		this.villeResponse = villeResponse;
+	}
 
 	public int getId() {
 		return id;
