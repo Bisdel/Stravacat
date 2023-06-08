@@ -31,7 +31,7 @@ export class AuthenticationService {
 
   public login(username: string, password: string, options: any) {
     this.httpClient
-      .post<AuthResponse>(`${environment.apiUrl}/utilisateur/connexion`, {
+      .post<AuthResponse>(`${environment.apiUrl}/animal/connexion`, {
         username,
         password,
       })
@@ -86,4 +86,28 @@ export class AuthenticationService {
         },
       });
   }
+
+  public connexion(pseudo: string, password: string, options: any) {
+    this.httpClient
+      .post<AuthResponse>(`${environment.apiUrl}/animal/connexion`, {
+        pseudo,
+        password,
+      })
+      .subscribe({
+        next: (result) => {
+          this.token = result.token;
+
+          if (options.next) {
+            options.next(result);
+          }
+        },
+
+        error: () => {
+          if (options.error) {
+            options.error();
+          }
+        },
+      });
+  }
+
 }

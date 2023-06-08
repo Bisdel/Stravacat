@@ -12,7 +12,6 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
 import { routes } from './routes';
 import { FournisseurComponent } from './views/fournisseur/fournisseur.component';
 import { HomeComponent } from './views/home/home.component';
-import { LoginComponent } from './views/login/login.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { ProduitComponent } from './views/produit/produit.component';
 import { FormCardComponent } from './components/form-card/form-card.component';
@@ -21,6 +20,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { InputComponent } from './components/input/input.component';
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { VilleComponent } from './views/ville/ville.component';
+import { ConnexionComponent } from './views/connexion/connexion.component';
+import { ActualiteComponent } from './views/actualite/actualite.component';
 
 
 @NgModule({
@@ -30,7 +31,6 @@ import { VilleComponent } from './views/ville/ville.component';
     PageNotFoundComponent,
     FournisseurComponent,
     ProduitComponent,
-    LoginComponent,
     NavigationComponent,
     FormCardComponent,
     FormInputComponent,
@@ -39,7 +39,9 @@ import { VilleComponent } from './views/ville/ville.component';
     FooterComponent,
     InputComponent,
     AbonnesComponent,
-    VilleComponent
+    VilleComponent,
+    ConnexionComponent,
+    ActualiteComponent
   ],
   imports: [
     BrowserModule,
