@@ -3,12 +3,12 @@ import { HomeComponent } from './views/home/home.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { FournisseurComponent } from './views/fournisseur/fournisseur.component';
 import { ProduitComponent } from './views/produit/produit.component';
-import { LoginComponent } from './views/login/login.component';
 import { authenticatedGuard } from './guards/authenticated.guard';
 import { InscriptionComponent } from './views/inscription/inscription.component';
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { VilleComponent } from './views/ville/ville.component';
+import { ConnexionComponent } from './views/connexion/connexion.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -44,7 +44,7 @@ export const routes: Routes = [
 
   {
     path: 'connexion',
-    component: LoginComponent
+    component: ConnexionComponent
   },
 
   {
