@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit  } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Abonne } from 'src/app/models/abonne';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { AbonneService } from 'src/app/services/abonne.service';
   templateUrl: './abonnes.component.html',
   styleUrls: ['./abonnes.component.css']
 })
-export class AbonnesComponent implements OnInit{
+export class AbonnesComponent implements OnInit {
 
   abonneForm!: FormGroup | null;
   abonne$!: Observable<Abonne[]>;
@@ -38,37 +38,76 @@ export class AbonnesComponent implements OnInit{
   }
 
   ajouter() {
+
+
+
     this.editing = 0;
-    this.pseudoCtrl = this.formBuilder.control(' ', Validators.required);
+
+
+    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
+
+
     this.ageCtrl = this.formBuilder.control('', Validators.required);
+
+
     this.especeCtrl = this.formBuilder.control('', Validators.required);
-    this.villeCtrl = this.formBuilder.control('', Validators.required);
+
+
     this.villeCtrl = this.formBuilder.control('', Validators.required);
 
+
+    this.animalCtrl = this.formBuilder.control('', Validators.required);
+
+
+
     this.abonneForm = this.formBuilder.group({
+
+
       pseudo: this.pseudoCtrl,
+
+
       age: this.ageCtrl,
+
+
       espece: this.especeCtrl,
+
+
       ville: this.villeCtrl,
+
+
       animal: this.animalCtrl,
     });
   }
 
   modifier(abonne: Abonne) {
+  
+ 
     this.editing = abonne.id;
+      
+     
     this.abonne$ = this.srvAbonne.findAll();
+      
+     
     this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
+      
+     
     this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
+      
+     
     this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
+      
+     
     this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required);
-    this.villeCtrl = this.formBuilder.control(abonne.animal, Validators.required);
-
-    this.abonneForm = this.formBuilder.group({
-      pseudo: this.pseudoCtrl,
-      age: this.ageCtrl,
-      espece: this.especeCtrl,
-      ville: this.villeCtrl,
-      animal: this.animalCtrl,
+      this.animalCtrl = this.formBuilder.control(abonne.animal, Validators.required);
+    
+      
+    
+      this.abonneForm = this.formBuilder.group({
+        pseudo: this.pseudoCtrl,
+        age: this.ageCtrl,
+        espece: this.especeCtrl,  
+        ville: this.villeCtrl,
+        animal: this.animalCtrl,
     });
   }
 
