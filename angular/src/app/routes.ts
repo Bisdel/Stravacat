@@ -20,23 +20,23 @@ export const routes: Routes = [
   },
 
   {
-    path: 'abonne',
+    path: 'abonnes',
     component: AbonnesComponent,
-    canActivate: [authenticatedGuard]
+  
   },
 
   {
     path: 'abonnement',
     component: AbonnementComponent,
-    canActivate: [authenticatedGuard]
+ 
   },
 
   {
     path: 'ville',
     component: VilleComponent,
-    canActivate: [authenticatedGuard]
+    
   },
-  
+   
   {
     path: 'inscription',
     component: InscriptionComponent,
