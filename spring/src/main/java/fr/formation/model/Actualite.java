@@ -35,9 +35,9 @@ public class Actualite {
 	@JsonView(Views.Actualite.class)
     private String actu_description;
 
-	@Column(name = "actu_isPrivate", nullable = false)
+	@Column(name = "actu_isprivate", nullable = false)
 	@JsonView(Views.Actualite.class)
-    private boolean actu_isPrivate;
+    private boolean actu_isprivate;
 
 //  private JSONB actu_contactsIdentifies;
     
@@ -83,12 +83,12 @@ public class Actualite {
 		this.actu_description = actu_description;
 	}
 
-	public Boolean getActu_isPrivate() {
-		return actu_isPrivate;
+	public Boolean getActu_isprivate() {
+		return actu_isprivate;
 	}
 
-	public void setActu_isPrivate(boolean actu_isPrivate) {
-		this.actu_isPrivate = actu_isPrivate;
+	public void setActu_isprivate(boolean actu_isprivate) {
+		this.actu_isprivate = actu_isprivate;
 	}
 
 	public Animal getAnimal() {
@@ -109,6 +109,6 @@ public class Actualite {
 
 	@Override
 	public String toString() {
-		return "Actu#" + this.actu_id + " de " + this.animal.getPseudo() + " - Private = "  + this.getActu_isPrivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
+		return "Actu#" + this.actu_id + " de " + this.animal.getPseudo() + " - Private = "  + this.getActu_isprivate() + " - " + this.getActu_timestamp().toLocalDate() + " à " + this.getActu_timestamp().toLocalTime() + ", " + this.getActu_description();
 	}
 }
