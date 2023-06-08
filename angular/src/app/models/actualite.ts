@@ -23,11 +23,11 @@ export class Actualite {
         this._actu_coordonneesgps = value;
     }
     
-    public get actu_isPrivate(): boolean {
-        return this._actu_isPrivate;
+    public get actu_isprivate(): boolean {
+        return this._actu_isprivate;
     }
-    public set actu_isPrivate(value: boolean) {
-        this._actu_isPrivate = value;
+    public set actu_isprivate(value: boolean) {
+        this._actu_isprivate = value;
     }
 
     public get actu_description(): string {
@@ -46,8 +46,9 @@ export class Actualite {
 
     constructor(private _actu_id: number,
         private _actu_description: string,
-        private _actu_isPrivate: boolean,
+        private _actu_isprivate: boolean,
         private _actu_coordonneesgps: string,
+        private _actu_timestamp: Date,
         private _animal: Animal,
         private _ville: Ville
         ) { }
