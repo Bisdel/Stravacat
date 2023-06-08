@@ -19,6 +19,8 @@ import { FormCardComponent } from './components/form-card/form-card.component';
 import { InscriptionComponent } from './views/inscription/inscription.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InputComponent } from './components/input/input.component';
+import { AbonnesComponent } from './views/abonnes/abonnes.component';
+import { VilleComponent } from './views/ville/ville.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { InputComponent } from './components/input/input.component';
     FormSelectComponent,
     InscriptionComponent,
     FooterComponent,
-    InputComponent
+    InputComponent,
+    AbonnesComponent,
+    VilleComponent
   ],
   imports: [
     BrowserModule,
