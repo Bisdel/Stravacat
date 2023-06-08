@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { InputComponent } from './components/input/input.component';
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { VilleComponent } from './views/ville/ville.component';
+import { ActualiteComponent } from './views/actualite/actualite.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { VilleComponent } from './views/ville/ville.component';
     FooterComponent,
     InputComponent,
     AbonnesComponent,
-    VilleComponent
+    VilleComponent,
+    ActualiteComponent
   ],
   imports: [
     BrowserModule,

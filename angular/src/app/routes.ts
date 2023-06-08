@@ -9,6 +9,7 @@ import { InscriptionComponent } from './views/inscription/inscription.component'
 import { AbonnesComponent } from './views/abonnes/abonnes.component';
 import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { VilleComponent } from './views/ville/ville.component';
+import { ActualiteComponent } from './views/actualite/actualite.component';
 
 // Configuration des routes
 export const routes: Routes = [
@@ -45,6 +46,11 @@ export const routes: Routes = [
   {
     path: 'connexion',
     component: LoginComponent
+  },
+
+  {
+    path: 'actualite',
+    component: ActualiteComponent,
   },
 
   {
