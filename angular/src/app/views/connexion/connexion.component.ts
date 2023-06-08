@@ -39,7 +39,7 @@ export class ConnexionComponent {
 
     this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
       next: () => {
-        this.router.navigate([ '/profile/'+ this.srvAuth.animalResponse.id]);
+        this.router.navigate([ '/profile']);
       },
 
       error: () => {

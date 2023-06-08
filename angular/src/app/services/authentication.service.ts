@@ -9,7 +9,7 @@ import { AnimalResponse } from '../models/response/animal-response';
 })
 export class AuthenticationService {
   private _token: string = '';
-  private _animalResponse!: AnimalResponse; 
+  private _animalId:string = ''; 
 
   public get token(): string {
     return this._token;
@@ -22,11 +22,12 @@ export class AuthenticationService {
     this._token = value;
   }
   
-  public get animalResponse(): AnimalResponse {
-    return this._animalResponse;
+  public get animalId(): string {
+    return this._animalId;
   }
-  public set animalResponse(value: AnimalResponse) {
-    this._animalResponse = value;
+  public set animalId(value: string) {
+    localStorage.setItem('animal', value);
+    this._animalId = value;
   }
 
   constructor(private httpClient: HttpClient) {
@@ -82,7 +83,7 @@ export class AuthenticationService {
       .subscribe({
         next: (result) => {
           this.token = result.token;
-          this._animalResponse = result.animalResponse;
+          this._animalId = result.animalResponse.id.toString();
 
           if (options.next) {
             options.next(result);

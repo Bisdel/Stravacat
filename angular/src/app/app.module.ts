@@ -24,6 +24,7 @@ import { ActualiteComponent } from './views/actualite/actualite.component';
 import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { MapComponent } from './components/map/map.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MapComponent } from './components/map/map.component';
     BrowserModule,
     FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     {

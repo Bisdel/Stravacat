@@ -50,7 +50,7 @@ export class InscriptionComponent {
 
     this.srvAuth.register(this.pseudoCtrl.value, this.emailCtrl.value, this.passwordCtrl.value, this.ageCtrl.value, this.especeCtrl.value, this.villeCtrl.value, {
       next: () => {
-        this.router.navigate([ '/profile/'+ this.srvAuth.animalResponse.id]);
+        this.router.navigate([ '/profile']);
       },
 
       error: () => {
