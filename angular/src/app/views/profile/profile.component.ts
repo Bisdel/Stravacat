@@ -18,6 +18,7 @@ import { AnimalService } from 'src/app/services/animal.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
+  loaded:boolean = false;
   animalId: string = this.srvAuth.animalId;
   animal!: AnimalResponse;
 
@@ -39,16 +40,16 @@ export class ProfileComponent {
     private srvAnimal: AnimalService
   ) {
     title.setTitle('Mon profil');
-    this.srvAnimal.findById(this.animalId).subscribe({
+        this.srvAnimal.findById(this.animalId).subscribe({
       next: (result) => {
-        let animal: AnimalResponse = new AnimalResponse(
+        this.animal = new AnimalResponse(
           result.id,
           result.pseudo,
           result.age,
           result.espece,
-          result.villeResponse
+          result.ville
         );
-        return result;
+        this.loaded = true;
       },
     });
   }

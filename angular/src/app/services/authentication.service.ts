@@ -26,17 +26,25 @@ export class AuthenticationService {
     return this._animalId;
   }
   public set animalId(value: string) {
-    localStorage.setItem('animal', value);
+    localStorage.setItem('animalId', value);
     this._animalId = value;
   }
 
   constructor(private httpClient: HttpClient) {
     // Récupération du jeton stocké dans le navigateur
     this.token = localStorage.getItem('token') ?? '';
+    this.animalId = localStorage.getItem('animalId') ?? '';
   }
 
   public isLogged() {
     return !!(this.token && this.token != '');
+  }
+
+  public logout(){
+    this.token = '';
+    this.animalId = '';
+    localStorage.setItem('animalId', '');
+    localStorage.setItem('token', '');
   }
 
   public register(
@@ -83,7 +91,7 @@ export class AuthenticationService {
       .subscribe({
         next: (result) => {
           this.token = result.token;
-          this._animalId = result.animalResponse.id.toString();
+          this.animalId = result.animalResponse.id.toString();
 
           if (options.next) {
             options.next(result);

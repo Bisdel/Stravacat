@@ -2,6 +2,9 @@ package fr.formation.model;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
+import fr.formation.api.response.VilleResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -72,4 +75,9 @@ public class Ville {
 		this.actualites = actualites;
 	}
 
+	public VilleResponse convert(){
+		VilleResponse villeResponse = new VilleResponse();
+		BeanUtils.copyProperties(this, villeResponse);
+		return villeResponse;
+	}
 }

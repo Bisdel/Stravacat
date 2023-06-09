@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.formation.api.request.AnimalRequest;
 import fr.formation.api.request.ConnexionRequest;
 import fr.formation.api.response.ConnexionResponse;
+import fr.formation.api.response.VilleResponse;
 import fr.formation.api.response.AnimalResponse;
 import fr.formation.config.jwt.JwtUtil;
+import fr.formation.exception.AnimalNotFoundException;
 import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IAnimalRepository;
@@ -45,15 +48,25 @@ public class AnimalApiController {
 	public List<AnimalResponse> findAll() {
 		return this.repoAnimal.findAll()
 				.stream()
-				.map(u -> {
+				.map(animal -> {
 					AnimalResponse resp = new AnimalResponse();
 					
-					resp.setId(u.getId());
-					resp.setPseudo(u.getPseudo());
+					resp.setId(animal.getId());
+					resp.setPseudo(animal.getPseudo());
+					resp.setAge(animal.getAge());
+					resp.setEspece(animal.getEspece());
+					resp.setVille(VilleResponse.convert(animal.getVille()));
 					
 					return resp;
 				})
 				.toList();
+	}
+	
+	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('USER')")
+	public AnimalResponse findById(@PathVariable int id) {
+		
+		return AnimalResponse.convert(this.repoAnimal.findById(id).orElseThrow(AnimalNotFoundException::new));		
 	}
 	
 	@PostMapping("/connexion")

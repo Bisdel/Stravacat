@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div *ngIf="loaded" class="container text-center">
   <!-- <c:if test=" failed ">
         <div class="alert alert-danger">
             <p>message</p>
@@ -28,8 +28,8 @@
     </div>
     <div class="col">
       <h4>
-        Meow 👋 ! Je m'appelle {{animal.pseudo}} et je suis un animal.espece de
-        animal.age ans.
+        Meow 👋 ! Je m'appelle {{animal.pseudo}} et je suis un {{animal.espece}} de
+        {{animal.age}} ans. J'habite à {{animal.ville.nom}} !
       </h4>
     </div>
     <div class="col" style="line-height: 1">
@@ -69,8 +69,7 @@
             <div class="modal-body">
               <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
                 <p>
-                  Remplis les champs que tu souhaites modifier et laisse les
-                  autres vides, puis clique sur Enregistrer 😸
+                  Remplis les champs que tu souhaites modifier, puis clique sur Enregistrer 😸
                 </p>
                 <app-input
                   id="pseudo"

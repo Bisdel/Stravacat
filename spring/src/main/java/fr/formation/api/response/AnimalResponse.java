@@ -1,18 +1,22 @@
 package fr.formation.api.response;
 
+import org.springframework.beans.BeanUtils;
+
+import fr.formation.model.Animal;
+
 public class AnimalResponse {
 	private int id;
 	private String pseudo;
 	private int age;
 	private String espece;
-	private VilleResponse villeResponse;
+	private VilleResponse ville;
 
-	public VilleResponse getVilleResponse() {
-		return villeResponse;
+	public VilleResponse getVille() {
+		return ville;
 	}
 
-	public void setVilleResponse(VilleResponse villeResponse) {
-		this.villeResponse = villeResponse;
+	public void setVille(VilleResponse ville) {
+		this.ville = ville;
 	}
 
 	public int getId() {
@@ -45,6 +49,15 @@ public class AnimalResponse {
 
 	public void setEspece(String espece) {
 		this.espece = espece;
+	}
+
+	public static AnimalResponse convert(Animal animal){
+		AnimalResponse animalResponse = new AnimalResponse();
+		// Ne fonctionne pas avec Ville car != VilleResponse
+		BeanUtils.copyProperties(animal, animalResponse);
+		// Donc on le rajoute alamano
+		animalResponse.setVille(animal.getVille().convert());
+		return animalResponse;
 	}
 
 }

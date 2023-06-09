@@ -39,7 +39,10 @@ export class ConnexionComponent {
 
     this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
       next: () => {
-        this.router.navigate([ '/profile']);
+        this.router.navigate([ '/profile'])
+        .then(() =>
+        window.location.reload());
+        // This is to reload the navigation bar 
       },
 
       error: () => {

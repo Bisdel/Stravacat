@@ -1,11 +1,11 @@
 import { VilleResponse } from "./ville-response";
 
 export class AnimalResponse {
-    public get villeResponse(): VilleResponse {
-        return this._villeResponse;
+    public get ville(): VilleResponse {
+        return this._ville;
     }
-    public set villeResponse(value: VilleResponse) {
-        this._villeResponse = value;
+    public set ville(value: VilleResponse) {
+        this._ville = value;
     }
     public get espece(): string {
         return this._espece;
@@ -37,7 +37,7 @@ export class AnimalResponse {
         private _pseudo: string,
         private _age: number,
         private _espece: string,
-        private _villeResponse: VilleResponse,
+        private _ville: VilleResponse,
         ) { }
 
 }

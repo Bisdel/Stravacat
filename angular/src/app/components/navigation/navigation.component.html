@@ -1,5 +1,5 @@
 <nav>
-  <div class="container">
+  <div *ngIf="!authOk" class="container">
     <header
       class="d-flex flex-wrap align-items-center py-3 mb-4 border-bottom"
     >
@@ -22,6 +22,32 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="apropos">A propos</a>
+        </li>
+      </ul>
+    </header>
+  </div>  <div *ngIf="authOk" class="container">
+    <header
+      class="d-flex flex-wrap align-items-center py-3 mb-4 border-bottom"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+      >
+        <img
+          src="assets\images\logo_stravacat.png"
+          alt="Stravacat"
+          height="60"
+        />
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="profile">Mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="abonnes">Mes amis</a>
+        </li>        
+        <li class="nav-item">
+          <a (click)="logout()" class="nav-link" href="accueil">Déconnexion</a>
         </li>
       </ul>
     </header>
