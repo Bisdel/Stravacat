@@ -1,5 +1,6 @@
 <p>Liste des abonnes</p>
 
+
 <table class="table table-striped"></table>
 <thead>
     <tr>
@@ -7,3 +8,8 @@
         <th>ambiance</th>
     </tr>
 </thead>
+
+<button *ngIf="!villeForm" class="btn btn-success" (click)="ajouter()">Ajouter une Ville</button>
+
+<div *ngIf="villeForm"></div>
+  <!-- <sost-form-card [formGroup]="villeForm" [title]="editing ? 'Modifier ville' : 'ajouter une ville'" [ok-label]="editing ? "></sost-form-card>  -->
