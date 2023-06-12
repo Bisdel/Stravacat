@@ -8,6 +8,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent {
   constructor(title: Title) {
-    title.setTitle("Bienvenue sur e-shop");
+    title.setTitle("Bienvenue sur Stravacat");
   }
 }
