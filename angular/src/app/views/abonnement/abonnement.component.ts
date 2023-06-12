@@ -35,8 +35,8 @@ export class AbonnementComponent implements OnInit {
 
   ajouter() {
     this.editing = 0;
-    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    this.ageCtrl = this.formBuilder.control('', Validators.required);
+    this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
+    this.ageCtrl = this.formBuilder.control('', Validators.max(100));
     this.especeCtrl = this.formBuilder.control('', Validators.required);
     this.villeCtrl = this.formBuilder.control('', Validators.required);
     this.abonnementForm = this.formBuilder.group({
@@ -50,7 +50,7 @@ export class AbonnementComponent implements OnInit {
   modifier(abonnement: Abonnement) {
     this.editing = abonnement.id;
     this.abonnement$ = this.srvAbonnement.findAll();
-    this.pseudoCtrl = this.formBuilder.control(abonnement.pseudo, Validators.required);
+    this.pseudoCtrl = this.formBuilder.control(abonnement.pseudo, Validators.minLength(1));
     this.ageCtrl = this.formBuilder.control(abonnement.age, Validators.required);
     this.especeCtrl = this.formBuilder.control(abonnement.espece, Validators.required);
     this.villeCtrl = this.formBuilder.control(abonnement.ville.nom, Validators.required);
