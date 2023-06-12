@@ -42,8 +42,8 @@ public class Parcours {
 		@JsonView(Views.Parcours.class)
 	private LocalDateTime datePublicationParcours;
 
-        @Column (name = "parc_trace")
-	private int traceGpsParcours; // JSON ??
+        @Column (name = "parc_trace", columnDefinition="text")
+	private String traceGpsParcours;
 
 		@Column (name = "parc_temps")
 		@JsonView(Views.Parcours.class)
@@ -77,11 +77,11 @@ public class Parcours {
 			this.datePublicationParcours = datePublicationParcours;
 		}
 
-		public int getTraceGpsParcours() {
+		public String getTraceGpsParcours() {
 			return traceGpsParcours;
 		}
 
-		public void setTraceGpsParcours(int traceGpsParcours) {
+		public void setTraceGpsParcours(String traceGpsParcours) {
 			this.traceGpsParcours = traceGpsParcours;
 		}
 
