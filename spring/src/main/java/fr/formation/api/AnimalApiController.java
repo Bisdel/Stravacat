@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,5 +119,10 @@ public class AnimalApiController {
 		BeanUtils.copyProperties(animal, response);
 		
 		return response;
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable int id){
+		this.repoAnimal.delete(this.repoAnimal.findById(id).get());
 	}
 }

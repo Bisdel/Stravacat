@@ -14,4 +14,6 @@ export class ActualiteService {
   public findAll(): Observable<Actualite[]> {
     return this.httpClient.get<Actualite[]>(`${ environment.apiUrl }/actualite`);
   }
+
+  
 }

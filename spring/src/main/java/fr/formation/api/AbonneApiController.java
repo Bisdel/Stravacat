@@ -18,7 +18,9 @@ import fr.formation.api.response.AbonnesResponse;
 import fr.formation.exception.AbonnesNotFoundException;
 import fr.formation.exception.AbonnesNotValidException;
 import fr.formation.model.Abonnes;
+import fr.formation.model.Ville;
 import fr.formation.repo.IAbonnesRepository;
+import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,10 +29,19 @@ public class AbonneApiController {
 	@Autowired
 	private IAbonnesRepository repoARepository;
 
+	@Autowired
+	private IVilleRepository villeRepository;
+
 	// LIste des ABonnes
 	@GetMapping
 	public List<AbonnesResponse> findAll() {
-		return this.repoARepository.findAll().stream().map(AbonnesResponse::convert).toList();
+		List<AbonnesResponse> result = this.repoARepository.findAll().stream().map(AbonnesResponse::convert).toList();
+		result.forEach(abo -> {
+			Ville ville = this.villeRepository.findById(abo.getVille_id()).get();
+			abo.setVille(ville);
+		});
+
+		return result;
 
 	}
 
@@ -58,7 +69,7 @@ public class AbonneApiController {
 		BeanUtils.copyProperties(abonnesRequest, abonnes);
 		return this.repoARepository.save(abonnes);
 	}
-	
+
 	// Supprimer
 	@DeleteMapping("/{id}")
 	public void deletById(@PathVariable int id) {

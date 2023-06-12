@@ -1,30 +1,5 @@
 <p>Liste de mes abonnement</p>
 
-<button *ngIf="!abonnementForm" class="btn btn-success" (click)="ajouter()">Ajouter un Abonnement</button>
-
-<div *ngIf="abonnementForm">
-  <sost-form-card [formGroup]="abonnementForm" [title]="editing ? 'Modifier abonnement' : 'ajouter un abonnement'"
-    [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()"
-    (cancel)="stopAjouterOuModifier()">
-
-    <sost-form-input id="pseudo" label="pseudo" formControlName="pseudo" [formControl]="pseudoCtrl"
-      message-when-not-valid="le pseudo est obligatoire" />
-
-    <sost-form-input id="age" label="age" formControlName="age" [formControl]="ageCtrl"
-      message-when-not-valid=" l'age est obligatoire" />
-
-    <sost-form-input id="espece" label="espece" formArrayName="espece" [formControl]="especeCtrl"
-      message-when-not-valid="l'espece est obligatoire" />
-
-    <sost-form-input id="ville" label="ville" formControlName="ville" [formControl]="villeCtrl"
-      message-when-not-valid="la ville est obligatoire" />
-
-  </sost-form-card>
-</div>
-
-
-<hr />
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -41,7 +16,7 @@
       <td>{{ abonnement.pseudo }}</td>
       <td>{{ abonnement.age }} </td>
       <td>{{ abonnement.espece }}</td>
-      <td>{{ abonnement.ville }}</td>
+      <td>{{ abonnement.ville ? abonnement.ville.nom : ' ' }}</td>
       <td>
         <button (click)="modifier(abonnement)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonnement)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -49,3 +24,31 @@
     </tr>
   </tbody>
 </table>
+
+<hr />
+ 
+<button *ngIf="!abonnementForm" class="btn btn-success" (click)="ajouter()">Ajouter un Abonnement</button>
+
+<div *ngIf="abonnementForm">
+  <sost-form-card [formGroup]="abonnementForm" [title]="editing ? 'Modifier abonnement' : 'ajouter un abonnement'"
+    [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()"
+    (cancel)="stopAjouterOuModifier()">
+
+    <sost-form-input id="pseudo" label="pseudo" formControlName="pseudo" [formControl]="pseudoCtrl"
+      message-when-not-valid="le pseudo est obligatoire" />
+
+    <sost-form-input id="age" label="age" formControlName="age" [formControl]="ageCtrl"
+      message-when-not-valid=" l'age est inférieur à 100" />
+
+    <sost-form-input id="espece" label="espece" formArrayName="espece" [formControl]="especeCtrl"
+      message-when-not-valid="l'espece est obligatoire" />
+
+    <sost-form-input id="ville" label="ville" formControlName="ville" [formControl]="villeCtrl"
+      message-when-not-valid="la ville est obligatoire" />
+
+  </sost-form-card>
+</div>
+
+
+<hr />
+

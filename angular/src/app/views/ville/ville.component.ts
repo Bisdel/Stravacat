@@ -11,7 +11,6 @@ import { VilleService } from 'src/app/services/ville.service';
   styleUrls: ['./ville.component.css']
 })
 export class VilleComponent implements OnInit {
-  erreur: boolean = false;
   villeForm!: FormGroup | null;
   ville$!: Observable<Ville[]>;
   nomCtrl!: FormControl;

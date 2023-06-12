@@ -1,7 +1,15 @@
+
 import { Animal } from "./animal";
 import { Ville } from "./ville";
 
 export class Actualite {
+    public get animal(): Animal {
+        return this._animal;
+    }
+    public set animal(value: Animal) {
+        this._animal = value;
+    }
+
     public get actu_timestamp(): Date {
         return this._actu_timestamp;
     }
@@ -14,13 +22,6 @@ export class Actualite {
     }
     public set ville(value: Ville) {
         this._ville = value;
-    }
-
-    public get animal(): Animal {
-        return this._animal;
-    }
-    public set animal(value: Animal) {
-        this._animal = value;
     }
 
     public get actu_coordonneesgps(): string {

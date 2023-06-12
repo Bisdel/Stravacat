@@ -1,10 +1,11 @@
 package fr.formation.api.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class VilleRequest {
 
-	@NotBlank
+	@NotNull
 	private int id;
 
 	@NotBlank

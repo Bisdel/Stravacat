@@ -34,7 +34,6 @@ public class Animal {
 
     @JsonView(Views.AnimalDetail.class)
     @Column(name = "anim_email", nullable = false)
-    @NotBlank
     private String email;
     
     @Column(name = "anim_password", nullable = false)
