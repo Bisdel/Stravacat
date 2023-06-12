@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,7 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
   ]
 })
 export class InputComponent implements ControlValueAccessor {
+
   @Input() id!: string;
   @Input() label!: string;
   @Input() type: string = "text";

@@ -25,9 +25,9 @@ export class ConnexionComponent {
   }
   
   ngOnInit(): void {
-    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    this.passwordCtrl = this.formBuilder.control('', Validators.required);
-
+    this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
+    this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
+    
     this.userForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
       password: this.passwordCtrl,
@@ -35,6 +35,7 @@ export class ConnexionComponent {
   }
 
   connexion() {
+
     this.erreur = false;
 
     this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
@@ -42,7 +43,7 @@ export class ConnexionComponent {
         this.router.navigate([ '/profile'])
         .then(() =>
         window.location.reload());
-        // This is to reload the navigation bar 
+        // This is to reload the navigation bar properly
       },
 
       error: () => {
