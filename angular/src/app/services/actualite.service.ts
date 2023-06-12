@@ -15,5 +15,19 @@ export class ActualiteService {
     return this.httpClient.get<Actualite[]>(`${ environment.apiUrl }/actualite`);
   }
 
-  
+  public findById(animalId: number): Observable<Actualite> {
+    return this.httpClient.get<Actualite>(`${ environment.apiUrl }/actualite/${ animalId }`);
+  }
+
+  public add(actualite: any): Observable<Actualite> {
+    return this.httpClient.post<Actualite>(`${ environment.apiUrl }/actualite`, actualite);
+  }
+
+  public edit(actualite: any): Observable<Actualite> {
+    return this.httpClient.put<Actualite>(`${ environment.apiUrl }/actualite/${ actualite.actu_id }`, actualite);
+  }
+
+  public delete(actualite: Actualite): Observable<void> {
+    return this.httpClient.delete<void>(`${ environment.apiUrl }/actualite/${ actualite.actu_id }`);
+  }
 }

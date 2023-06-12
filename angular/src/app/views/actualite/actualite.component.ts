@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Actualite } from 'src/app/models/actualite';
-import { Animal } from 'src/app/models/animal';
 import { ActualiteService } from 'src/app/services/actualite.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -15,7 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class ActualiteComponent implements OnInit {
   actualites$!: Observable<Actualite[]>;
-  
+
   constructor(
     title: Title,
     private srvActualite: ActualiteService,
@@ -30,7 +29,7 @@ export class ActualiteComponent implements OnInit {
     this.actualites$ = this.srvActualite.findAll();
   }
 
-  voir() {
+  plus() {
   }
 
   modifier(actualite: Actualite) {
