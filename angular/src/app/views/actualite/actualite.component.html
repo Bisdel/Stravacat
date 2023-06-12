@@ -1,31 +1,43 @@
 
 <h1>Fil d'actualités</h1>
 
-<button class="btn btn-success" (click)="voir()">Voir plus</button>
-
 <!-- à mettre sous forme de card -->
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Pseudo</th>
-        <th>Ville</th>
-        <th>Date</th>
-        <th>Description</th>
-        <th></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr *ngFor="let actualite of actualites$ | async">
-        <td>{{ actualite.animal.pseudo }}</td>
-        <td>{{ actualite.ville }}</td>
-        <td>{{ actualite.actu_timestamp }}</td>
-        <td>{{ actualite.actu_description }}</td>
-        <td>
-          <button (click)="modifier(actualite)" class="btn btn-outline-warning">Modifier</button>
-          <button (click)="supprimer(actualite)" class="btn btn-outline-danger ms-2">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
+  <div class="col">
+    <div class="card" style="height: 400px">
+      <div class="card-header">
+        <strong>Le fil d'actu</strong
+        ><a href=""
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-arrow-clockwise"
+          >
+          <path
+          fill-rule="evenodd"
+          d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+          />
+          <path
+          d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+          /></svg></a>
+          <button class="btn btn-success" (click)="voir()">Ajouter</button>
+      </div>
+
+      <div class="card-body" style="height: 320px; overflow-y: scroll">
+        <div class="card mb-3" *ngFor="let actualite of actualites$ | async">
+          <div class="card-header">
+            <span ></span>
+            {{ actualite.animal.pseudo.toUpperCase() }}, <strong>{{ actualite.actu_timestamp }}</strong><span> à {{ actualite.ville.nom }}</span>
+          </div>
+          <div class="card-body">
+            <p>
+              {{ actualite.actu_description }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
