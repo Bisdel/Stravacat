@@ -21,7 +21,7 @@ public class Ville {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vill_id")
 	private int id;
-	
+
 	@NotBlank
 	@Column(name = "vill_nom", length = 30, nullable = false)
 	private String nom;
@@ -75,7 +75,7 @@ public class Ville {
 		this.actualites = actualites;
 	}
 
-	public VilleResponse convert(){
+	public VilleResponse convert() {
 		VilleResponse villeResponse = new VilleResponse();
 		BeanUtils.copyProperties(this, villeResponse);
 		return villeResponse;

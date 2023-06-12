@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Abonne } from 'src/app/models/abonne';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,12 +21,12 @@ export class AbonnesComponent implements OnInit {
   villeCtrl!: FormControl;
   animalCtrl!: FormControl;
   editing: number = 0;
-  @Output() ok: EventEmitter<void> = new EventEmitter<void>();
+
 
   constructor(title: Title, private srvAbonne: AbonneService, private formBuilder: FormBuilder) {
 
 
-    title.setTitle("Liste des abonnés");
+    title.setTitle("Liste des abonne");
   }
 
   ngOnInit(): void {
@@ -80,34 +80,34 @@ export class AbonnesComponent implements OnInit {
   }
 
   modifier(abonne: Abonne) {
-  
- 
+
+
     this.editing = abonne.id;
-      
-     
+
+
     this.abonne$ = this.srvAbonne.findAll();
-      
-     
+
+
     this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
-      
-     
+
+
     this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
-      
-     
+
+
     this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
-      
-     
+
+
     this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required);
-      this.animalCtrl = this.formBuilder.control(abonne.animal, Validators.required);
-    
-      
-    
-      this.abonneForm = this.formBuilder.group({
-        pseudo: this.pseudoCtrl,
-        age: this.ageCtrl,
-        espece: this.especeCtrl,  
-        ville: this.villeCtrl,
-        animal: this.animalCtrl,
+    this.animalCtrl = this.formBuilder.control(abonne.animal, Validators.required);
+
+
+
+    this.abonneForm = this.formBuilder.group({
+      pseudo: this.pseudoCtrl,
+      age: this.ageCtrl,
+      espece: this.especeCtrl,
+      ville: this.villeCtrl,
+      animal: this.animalCtrl,
     });
   }
 

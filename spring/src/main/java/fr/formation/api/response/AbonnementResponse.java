@@ -6,7 +6,6 @@ import fr.formation.model.Abonnement;
 
 public class AbonnementResponse {
 
-
 	private int id;
 	private int animal_id;
 	private String pseudo;

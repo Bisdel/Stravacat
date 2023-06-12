@@ -11,18 +11,18 @@ export class AbonneService {
   constructor(private httpClient: HttpClient) { }
 
   public findAll(): Observable<Abonne[]> {
-    return this.httpClient.get<Abonne[]>(`${ environment.apiUrl }/abonne`);
+    return this.httpClient.get<Abonne[]>(`${ environment.apiUrl }/abonnes`);
   }
 
   public add(abonne: any): Observable<Abonne> {
-    return this.httpClient.post<Abonne>(`${ environment.apiUrl }/abonne`, abonne);
+    return this.httpClient.post<Abonne>(`${ environment.apiUrl }/abonnes`, abonne);
   }
 
   public edit(abonne: any): Observable<Abonne> {
-    return this.httpClient.put<Abonne>(`${ environment.apiUrl }/abonne/${ abonne.id }`, abonne);
+    return this.httpClient.put<Abonne>(`${ environment.apiUrl }/abonnes/${ abonne.id }`, abonne);
   }
 
   public delete(abonne: Abonne): Observable<void> {
-    return this.httpClient.delete<void>(`${ environment.apiUrl }/abonne/${ abonne.id }`);
+    return this.httpClient.delete<void>(`${ environment.apiUrl }/abonnes/${ abonne.id }`);
   }
 }

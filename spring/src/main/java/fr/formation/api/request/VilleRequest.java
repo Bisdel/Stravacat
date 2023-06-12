@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 public class VilleRequest {
 
 	@NotBlank
+	private int id;
+
+	@NotBlank
 	private String nom;
 	@NotBlank
 	private String ambiance;
@@ -23,6 +26,14 @@ public class VilleRequest {
 
 	public void setAmbiance(String ambiance) {
 		this.ambiance = ambiance;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

@@ -53,37 +53,21 @@ public class AbonnementApiController {
 	@PutMapping("/{id}")
 	public Abonnement add(@PathVariable int id, @Valid @RequestBody AbonnementRequest abonnementRequest,
 			BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			throw new AbonnementNotFoundException();
 		}
-		
-		Abonnement abonnement = this.repoAbonnement.findById(id).orElseThrow(AbonnementNotFoundException :: new);
-		
+
+		Abonnement abonnement = this.repoAbonnement.findById(id).orElseThrow(AbonnementNotFoundException::new);
+
 		BeanUtils.copyProperties(abonnementRequest, abonnement);
-		
+
 		return this.repoAbonnement.save(abonnement);
 	}
-	
+
 	// Supprimer
 	@DeleteMapping("/{id}")
 	public void deletByid(@PathVariable int id) {
 		this.repoAbonnement.deleteById(id);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
