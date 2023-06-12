@@ -12,10 +12,11 @@ import jakarta.validation.constraints.Positive;
 
 public class AnimalRequest {
 
-    @NotBlank
+	private int id;
+
+	@NotBlank
     private String pseudo;
 
-    @NotBlank
     private String email;
     
     private String password;
@@ -26,6 +27,7 @@ public class AnimalRequest {
     @NotBlank
     private String espece;
     
+	@NotBlank
     private String ville;
 
     private List<Parcours> parcours;
@@ -36,6 +38,14 @@ public class AnimalRequest {
 		Animal animal = new Animal();
 		BeanUtils.copyProperties(this, animal);
 		return animal;
+	}
+		
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getPseudo() {

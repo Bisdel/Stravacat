@@ -50,32 +50,48 @@ export class ProfileComponent {
           result.ville
         );
         this.loaded = true;
+        this.pseudoCtrl = this.formBuilder.control(this.animal.pseudo, Validators.minLength(1));
+        this.emailCtrl = this.formBuilder.control('', Validators.email);
+        this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
+        this.ageCtrl = this.formBuilder.control(this.animal.age, Validators.min(1));
+        this.especeCtrl = this.formBuilder.control(this.animal.espece, Validators.minLength(1));
+        this.villeCtrl = this.formBuilder.control(this.animal.ville.nom, Validators.minLength(1));
+    
+        this.userForm = this.formBuilder.group({
+          pseudo: this.pseudoCtrl,
+          email: this.emailCtrl,
+          password: this.passwordCtrl,
+          age: this.ageCtrl,
+          espece: this.especeCtrl,
+          ville: this.villeCtrl,
+        });
       },
     });
   }
 
   ngOnInit(): void {
-    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    this.emailCtrl = this.formBuilder.control('', Validators.required);
-    this.passwordCtrl = this.formBuilder.control('', Validators.required);
-    this.ageCtrl = this.formBuilder.control('', Validators.min(1));
-    this.especeCtrl = this.formBuilder.control('', Validators.required);
-    this.villeCtrl = this.formBuilder.control('', Validators.required);
+    // this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
+    // this.emailCtrl = this.formBuilder.control('', Validators.email);
+    // this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
+    // this.ageCtrl = this.formBuilder.control('', Validators.min(1));
+    // this.especeCtrl = this.formBuilder.control('', Validators.minLength(1));
+    // this.villeCtrl = this.formBuilder.control('', Validators.minLength(1));
 
-    this.userForm = this.formBuilder.group({
-      pseudo: this.pseudoCtrl,
-      email: this.emailCtrl,
-      password: this.passwordCtrl,
-      age: this.ageCtrl,
-      espece: this.especeCtrl,
-      ville: this.villeCtrl,
-    });
+    // this.userForm = this.formBuilder.group({
+    //   pseudo: this.pseudoCtrl,
+    //   email: this.emailCtrl,
+    //   password: this.passwordCtrl,
+    //   age: this.ageCtrl,
+    //   espece: this.especeCtrl,
+    //   ville: this.villeCtrl,
+    // });
   }
 
-  sInscrire() {
+  modifier() {
     this.erreur = false;
 
-    this.srvAuth.register(
+    this.srvAuth.modifyAnimalData(
+      this.srvAuth.animalId,
       this.pseudoCtrl.value,
       this.emailCtrl.value,
       this.passwordCtrl.value,
@@ -84,7 +100,7 @@ export class ProfileComponent {
       this.villeCtrl.value,
       {
         next: () => {
-          this.router.navigate(['/profile']);
+          window.location.reload();
         },
 
         error: () => {

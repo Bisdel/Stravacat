@@ -47,7 +47,7 @@ export class AuthenticationService {
     localStorage.setItem('token', '');
   }
 
-  public register(
+  public signUp(
     pseudo: string,
     email: string,
     password: string,
@@ -92,6 +92,43 @@ export class AuthenticationService {
         next: (result) => {
           this.token = result.token;
           this.animalId = result.animalResponse.id.toString();
+
+          if (options.next) {
+            options.next(result);
+          }
+        },
+
+        error: () => {
+          if (options.error) {
+            options.error();
+          }
+        },
+      });
+  }
+
+  public modifyAnimalData(
+    id:string,
+    pseudo: string,
+    email: string,
+    password: string,
+    age:number,
+    espece:string,
+    ville:string,
+    options: any
+  ) {
+    this.httpClient
+      .post<AuthResponse>(`${environment.apiUrl}/animal/inscription`, {
+        id,
+        pseudo,
+        email,
+        password,
+        age,
+        espece,
+        ville,
+      })
+      .subscribe({
+        next: (result) => {
+          this.token = result.token;
 
           if (options.next) {
             options.next(result);
