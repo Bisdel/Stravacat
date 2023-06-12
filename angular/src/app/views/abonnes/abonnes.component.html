@@ -14,9 +14,9 @@
   <tbody>
     <tr *ngFor="let abonne of abonne$ | async">
       <td>{{ abonne.pseudo }}</td>
-      <td>{{ abonne.age }} </td>
+      <td>{{ abonne.age }}</td>
       <td>{{ abonne.espece }}</td>
-      <td>{{ abonne.ville }}</td>
+      <td>{{ abonne.ville ? abonne.ville.nom :  ' '}}</td>
       <td>
         <button (click)="modifier(abonne)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -25,27 +25,25 @@
   </tbody>
 </table>
 
-
 <button *ngIf="!abonneForm" class="btn btn-success" (click)="ajouter()">Ajouter un Abonné</button>
 
 <div *ngIf="abonneForm">
-  <sost-form-card [formGroup]="abonneForm" [title]="editing ? 'Modifier abonne' : 'ajouter un abonne'"
+  <sost-form-card [formGroup]="abonneForm" [title]="editing ? 'Modifier abonne' : 'Ajouter un abonne'"
     [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()"
     (cancel)="stopAjouterOuModifier()">
 
     <sost-form-input id="pseudo" label="pseudo" formControlName="pseudo" [formControl]="pseudoCtrl"
-      message-when-not-valid="le pseudo est obligatoire" />
+      message-when-not-valid="Le pseudo est obligatoire" />
 
     <sost-form-input id="age" label="age" formControlName="age" [formControl]="ageCtrl"
-      message-when-not-valid=" l'age est obligatoire" />
+      message-when-not-valid="L'âge est obligatoire" />
 
-    <sost-form-input id="espece" label="espece" formArrayName="espece" [formControl]="especeCtrl"
-      message-when-not-valid="l'espece est obligatoire" />
+    <sost-form-input id="espece" label="espèce" formArrayName="espece" [formControl]="especeCtrl"
+      message-when-not-valid="L'espèce est obligatoire" />
 
-    <sost-form-input id="ville" label="ville" formControlName="espece" [formControl]="villeCtrl"
-      message-when-not-valid="la ville est obligatoire" />
+    <sost-form-input id="ville" label="ville" formControlName="ville" [formControl]="villeCtrl"
+      message-when-not-valid="La ville est obligatoire" />
 
   </sost-form-card>
   <hr />
 </div>
-  

@@ -41,7 +41,7 @@
       <td>{{ abonnement.pseudo }}</td>
       <td>{{ abonnement.age }} </td>
       <td>{{ abonnement.espece }}</td>
-      <td>{{ abonnement.ville }}</td>
+      <td>{{ abonnement.ville ? abonnement.ville.nom : ' ' }}</td>
       <td>
         <button (click)="modifier(abonnement)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonnement)" class="btn btn-outline-danger ms-2">Supprimer</button>

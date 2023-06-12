@@ -19,7 +19,9 @@ import fr.formation.api.response.AbonnementResponse;
 import fr.formation.exception.AbonnementNotFoundException;
 import fr.formation.exception.AbonnementNotValidException;
 import fr.formation.model.Abonnement;
+import fr.formation.model.Ville;
 import fr.formation.repo.IAbonnementRepository;
+import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,10 +31,20 @@ public class AbonnementApiController {
 	@Autowired
 	private IAbonnementRepository repoAbonnement;
 
+	@Autowired
+	private IVilleRepository repoVille;
+
 	// Liste des Abonnement
 	@GetMapping
 	public List<AbonnementResponse> findAll() {
-		return this.repoAbonnement.findAll().stream().map(AbonnementResponse::convert).toList();
+		List<AbonnementResponse> result = this.repoAbonnement.findAll().stream().map(AbonnementResponse::convert)
+				.toList();
+		result.forEach(abon -> {
+			Ville ville = this.repoVille.findById(abon.getVille_id()).get();
+			abon.setVille(ville);
+		});
+
+		return result;
 	}
 
 	// Ajouter

@@ -3,6 +3,7 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnement;
+import fr.formation.model.Ville;
 
 public class AbonnementResponse {
 
@@ -12,6 +13,15 @@ public class AbonnementResponse {
 	private int age;
 	private String espece;
 	private int Ville_id;
+	private Ville ville;
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
 
 	public int getId() {
 		return id;

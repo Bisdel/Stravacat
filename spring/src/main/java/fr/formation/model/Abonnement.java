@@ -26,6 +26,8 @@ public class Abonnement {
 
 	@Column(name = "abnm_espece")
 	private String espece;
+
+	// ajouter un join column
 	@Column(name = "abnn_ville_id", nullable = false)
 	private int ville_id;
 
