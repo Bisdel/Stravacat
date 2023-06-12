@@ -18,7 +18,7 @@ import { AnimalService } from 'src/app/services/animal.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-  loaded:boolean = false;
+  loaded: boolean = false;
   animalId: string = this.srvAuth.animalId;
   animal!: AnimalResponse;
 
@@ -34,13 +34,13 @@ export class ProfileComponent {
 
   constructor(
     title: Title,
-    private router: Router,
     private srvAuth: AuthenticationService,
     private formBuilder: FormBuilder,
-    private srvAnimal: AnimalService
+    private srvAnimal: AnimalService,
+    private router: Router
   ) {
     title.setTitle('Mon profil');
-        this.srvAnimal.findById(this.animalId).subscribe({
+    this.srvAnimal.findById(this.animalId).subscribe({
       next: (result) => {
         this.animal = new AnimalResponse(
           result.id,
@@ -50,13 +50,28 @@ export class ProfileComponent {
           result.ville
         );
         this.loaded = true;
-        this.pseudoCtrl = this.formBuilder.control(this.animal.pseudo, Validators.minLength(1));
+        this.pseudoCtrl = this.formBuilder.control(
+          this.animal.pseudo,
+          Validators.minLength(1)
+        );
         this.emailCtrl = this.formBuilder.control('', Validators.email);
-        this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
-        this.ageCtrl = this.formBuilder.control(this.animal.age, Validators.min(1));
-        this.especeCtrl = this.formBuilder.control(this.animal.espece, Validators.minLength(1));
-        this.villeCtrl = this.formBuilder.control(this.animal.ville.nom, Validators.minLength(1));
-    
+        this.passwordCtrl = this.formBuilder.control(
+          '',
+          Validators.minLength(8)
+        );
+        this.ageCtrl = this.formBuilder.control(
+          this.animal.age,
+          Validators.min(1)
+        );
+        this.especeCtrl = this.formBuilder.control(
+          this.animal.espece,
+          Validators.minLength(1)
+        );
+        this.villeCtrl = this.formBuilder.control(
+          this.animal.ville.nom,
+          Validators.minLength(1)
+        );
+
         this.userForm = this.formBuilder.group({
           pseudo: this.pseudoCtrl,
           email: this.emailCtrl,
@@ -67,24 +82,6 @@ export class ProfileComponent {
         });
       },
     });
-  }
-
-  ngOnInit(): void {
-    // this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
-    // this.emailCtrl = this.formBuilder.control('', Validators.email);
-    // this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
-    // this.ageCtrl = this.formBuilder.control('', Validators.min(1));
-    // this.especeCtrl = this.formBuilder.control('', Validators.minLength(1));
-    // this.villeCtrl = this.formBuilder.control('', Validators.minLength(1));
-
-    // this.userForm = this.formBuilder.group({
-    //   pseudo: this.pseudoCtrl,
-    //   email: this.emailCtrl,
-    //   password: this.passwordCtrl,
-    //   age: this.ageCtrl,
-    //   espece: this.especeCtrl,
-    //   ville: this.villeCtrl,
-    // });
   }
 
   modifier() {
@@ -111,5 +108,14 @@ export class ProfileComponent {
   }
   doOk() {
     this.ok.emit();
+  }
+
+  supprimer() {
+    this.srvAuth.logout();
+    this.srvAnimal.delete(this.animal).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+    });
   }
 }
