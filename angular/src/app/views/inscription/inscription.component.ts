@@ -28,12 +28,12 @@ export class InscriptionComponent {
   }
   
   ngOnInit(): void {
-    this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-    this.emailCtrl = this.formBuilder.control('', Validators.required);
-    this.passwordCtrl = this.formBuilder.control('', Validators.required);
+    this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
+    this.emailCtrl = this.formBuilder.control('', Validators.email);
+    this.passwordCtrl = this.formBuilder.control('', Validators.minLength(8));
     this.ageCtrl = this.formBuilder.control('', Validators.min(1));
-    this.especeCtrl = this.formBuilder.control('', Validators.required);
-    this.villeCtrl = this.formBuilder.control('', Validators.required);
+    this.especeCtrl = this.formBuilder.control('', Validators.minLength(1));
+    this.villeCtrl = this.formBuilder.control('', Validators.minLength(1));
 
     this.userForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
@@ -50,8 +50,12 @@ export class InscriptionComponent {
 
     this.srvAuth.register(this.pseudoCtrl.value, this.emailCtrl.value, this.passwordCtrl.value, this.ageCtrl.value, this.especeCtrl.value, this.villeCtrl.value, {
       next: () => {
-        this.router.navigate([ '/profile']);
-      },
+        this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
+          next: () => {
+            this.router.navigate([ '/profile'])
+            .then(() =>
+            window.location.reload());
+          }})},
 
       error: () => {
         this.erreur = true;
