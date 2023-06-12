@@ -9,9 +9,9 @@ import fr.formation.model.Actualite;
 public class ActualiteResponse {
     private int actu_id;
     private String actu_description;
-    private String pseudo;
-    private String ville;
     private LocalDateTime actu_timestamp;
+    private AnimalResponse animal;
+    private VilleResponse ville;
 
     public int getActu_id() {
         return actu_id;
@@ -29,22 +29,6 @@ public class ActualiteResponse {
         this.actu_description = actu_description;
     }
 
-    public String getPseudo() {
-        return pseudo;
-    }
-
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
     public LocalDateTime getActu_timestamp() {
         return actu_timestamp;
     }
@@ -53,6 +37,22 @@ public class ActualiteResponse {
         this.actu_timestamp = actu_timestamp;
     }
 
+    public AnimalResponse getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(AnimalResponse animal) {
+        this.animal = animal;
+    }
+
+    public VilleResponse getVille() {
+        return ville;
+    }
+
+    public void setVille(VilleResponse ville) {
+        this.ville = ville;
+    }
+    
     public static ActualiteResponse convert(Actualite actualite) {
         ActualiteResponse response = new ActualiteResponse();	
         BeanUtils.copyProperties(actualite, response);	

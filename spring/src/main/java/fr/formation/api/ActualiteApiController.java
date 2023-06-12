@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.api.response.ActualiteResponse;
+import fr.formation.api.response.AnimalResponse;
+import fr.formation.api.response.VilleResponse;
 import fr.formation.exception.ActualiteNotFoundException;
 import fr.formation.exception.ActualiteNotValidException;
 import fr.formation.model.Actualite;
@@ -42,9 +44,9 @@ public class ActualiteApiController {
 		for (Actualite actu : actualites) {
 			ActualiteResponse actualiteResponse = new ActualiteResponse();
 			actualiteResponse.setActu_id(actu.getActu_id());
-			actualiteResponse.setPseudo(actu.getAnimal().getPseudo());
 			actualiteResponse.setActu_description(actu.getActu_description());
-			actualiteResponse.setVille(actu.getVille().getNom());
+			actualiteResponse.setAnimal(AnimalResponse.convert(actu.getAnimal()));
+			actualiteResponse.setVille(VilleResponse.convert(actu.getVille()));
 			actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
 
 			response.add(actualiteResponse);
@@ -59,8 +61,8 @@ public class ActualiteApiController {
 		ActualiteResponse response = new ActualiteResponse();
 				
 		BeanUtils.copyProperties(actualite, response);
-		response.setPseudo(actualite.getAnimal().getPseudo());
-		response.setVille(actualite.getVille().getNom());
+		response.setAnimal(AnimalResponse.convert(actualite.getAnimal()));
+		response.setVille(VilleResponse.convert(actualite.getVille()));
 				
 		return response;
 	}
