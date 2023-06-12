@@ -48,7 +48,7 @@ export class InscriptionComponent {
   sInscrire() {
     this.erreur = false;
 
-    this.srvAuth.register(this.pseudoCtrl.value, this.emailCtrl.value, this.passwordCtrl.value, this.ageCtrl.value, this.especeCtrl.value, this.villeCtrl.value, {
+    this.srvAuth.signUp(this.pseudoCtrl.value, this.emailCtrl.value, this.passwordCtrl.value, this.ageCtrl.value, this.especeCtrl.value, this.villeCtrl.value, {
       next: () => {
         this.srvAuth.connexion(this.pseudoCtrl.value, this.passwordCtrl.value, {
           next: () => {

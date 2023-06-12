@@ -122,7 +122,8 @@
               </div>
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-danger">
+              <button (click)="supprimer()" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+              >
                 Supprimer mon compte
               </button>
               <button
@@ -132,7 +133,7 @@
               >
                 Annuler
               </button>
-              <button
+              <button (click)="modifier()"
                 type="submit"
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
