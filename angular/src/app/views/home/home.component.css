@@ -18,6 +18,10 @@
     transition: all .4s ease-in-out;
 }
 
+.text-center{
+    text-align: center;
+}
+
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -571,3 +575,11 @@
     transform-origin: -19vw -1vh;
     box-shadow: -16vmin 0 2.988150664448906vmin currentColor;
 }
+
+.centre{
+    text-align: center;
+}
+/* 
+div{
+    margin: 10px;;
+} */
