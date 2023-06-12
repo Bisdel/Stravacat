@@ -24,8 +24,6 @@ export class AbonnesComponent implements OnInit {
 
 
   constructor(title: Title, private srvAbonne: AbonneService, private formBuilder: FormBuilder) {
-
-
     title.setTitle("Liste des abonne");
   }
 
@@ -38,70 +36,33 @@ export class AbonnesComponent implements OnInit {
   }
 
   ajouter() {
-
-
-
     this.editing = 0;
-
-
     this.pseudoCtrl = this.formBuilder.control('', Validators.required);
-
-
     this.ageCtrl = this.formBuilder.control('', Validators.required);
-
-
     this.especeCtrl = this.formBuilder.control('', Validators.required);
-
-
     this.villeCtrl = this.formBuilder.control('', Validators.required);
-
-
     this.animalCtrl = this.formBuilder.control('', Validators.required);
-
-
-
     this.abonneForm = this.formBuilder.group({
-
-
       pseudo: this.pseudoCtrl,
-
-
       age: this.ageCtrl,
-
-
       espece: this.especeCtrl,
-
-
-      ville: this.villeCtrl,    });
+      ville: this.villeCtrl,   
+     });
   }
 
   modifier(abonne: Abonne) {
+  this.editing = abonne.id;
+  this.abonne$ = this.srvAbonne.findAll();
+  this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
+  this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
+  this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
+  this.villeCtrl = this.formBuilder.control(abonne.ville.nom, Validators.required); // Correction ici
 
-
-    this.editing = abonne.id;
-
-
-    this.abonne$ = this.srvAbonne.findAll();
-
-
-    this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
-
-
-    this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
-
-
-    this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
-
-
-    this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required);
-
-
-
-    this.abonneForm = this.formBuilder.group({
-      pseudo: this.pseudoCtrl,
-      age: this.ageCtrl,
-      espece: this.especeCtrl,
-      ville: this.villeCtrl,
+  this.abonneForm = this.formBuilder.group({
+    pseudo: this.pseudoCtrl,
+    age: this.ageCtrl,
+    espece: this.especeCtrl,
+    ville: this.villeCtrl
     });
   }
 

@@ -5,31 +5,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "abonne")
 public class Abonnes {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "abon_id")
 	private int id;
-	
-	@Column(name = "abon_pseudo" , length = 20 , nullable = false)
+
+	@Column(name = "abon_pseudo", length = 20, nullable = false)
 	@NotBlank(message = "Le pseudo est obligatoire")
 	private String pseudo;
-	
-	@Column(name ="abon_age")
+
+	@Column(name = "abon_age")
 	private int age;
-	@Column(name ="abon_espece")
+
+	@Column(name = "abon_espece")
 	private String espece;
-	
-	@Column(name="abon_ville_id")
+
+	@Column(name = "abon_ville_id")
 	private int ville_id;
-	
-	@Column(name="abon_animal_id")
+
+	@Column(name = "abon_animal_id")
 	private int animal_id;
 
 	public int getId() {

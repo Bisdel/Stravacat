@@ -3,20 +3,31 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnes;
+import fr.formation.model.Ville;
 
 public class AbonnesResponse {
 
 	private int id;
-	
+
 	private String pseudo;
-	
+
 	private int age;
-	
+
 	private String espece;
-	
+
 	private int ville_id;
-	
+
 	private int animal_id;
+
+	private Ville ville;
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
 
 	public int getId() {
 		return id;
@@ -65,11 +76,11 @@ public class AbonnesResponse {
 	public void setAnimal_id(int animal_id) {
 		this.animal_id = animal_id;
 	}
-	
-	public  static AbonnesResponse convert(Abonnes abonnes) {
+
+	public static AbonnesResponse convert(Abonnes abonnes) {
 		AbonnesResponse response = new AbonnesResponse();
 		BeanUtils.copyProperties(abonnes, response);
 		return response;
 	}
-	
+
 }
