@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -11,16 +11,20 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimalResponse } from 'src/app/models/response/animal-response';
 import { AnimalService } from 'src/app/services/animal.service';
+import { Actualite } from 'src/app/models/actualite';
+import { Observable } from 'rxjs';
+import { ActualiteService } from 'src/app/services/actualite.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   loaded: boolean = false;
   animalId: string = this.srvAuth.animalId;
   animal!: AnimalResponse;
+  actualites$!: Observable<Actualite[]>;
 
   erreur: boolean = false;
   userForm!: FormGroup;
@@ -34,6 +38,7 @@ export class ProfileComponent {
 
   constructor(
     title: Title,
+    private srvActualite: ActualiteService,
     private srvAuth: AuthenticationService,
     private formBuilder: FormBuilder,
     private srvAnimal: AnimalService,
@@ -82,6 +87,10 @@ export class ProfileComponent {
         });
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.actualites$ = this.srvActualite.findAll();
   }
 
   modifier() {

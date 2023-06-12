@@ -322,16 +322,13 @@
 /></svg></a>
         </div>
         <div class="card-body" style="height: 320px; overflow-y: scroll">
-          <div class="card mb-3">
+          <div class="card mb-3" *ngFor="let actualite of actualites$ | async">
             <div class="card-header">
-              <strong>13/04/2023 13:37</strong><br />Le vieux port, Marseille
+              <strong>{{ actualite.actu_timestamp }}</strong><br />{{ actualite.ville.nom }}
             </div>
             <div class="card-body">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                amet quae neque maxime voluptatum explicabo dignissimos beatae
-                dicta repudiandae aspernatur ducimus, at culpa ex voluptatibus
-                dolorum error ut exercitationem deserunt.
+                {{ actualite.actu_description}}
               </p>
             </div>
           </div>
