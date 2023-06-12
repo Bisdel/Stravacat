@@ -5,23 +5,21 @@ import jakarta.validation.constraints.NotBlank;
 
 public class AbonnementRequest {
 
-
 	@NonNull
 	private int animal_id;
-	
+
 	@NotBlank
 	private String pseudo;
-	
+
 	@NonNull
 	private int age;
-	
+
 	@NotBlank
 	private String espece;
-	
-	@NonNull
-	private int Ville_id;
 
-	
+	@NonNull
+	private int ville_id;
+
 	public int getAnimal_id() {
 		return animal_id;
 	}
@@ -55,11 +53,11 @@ public class AbonnementRequest {
 	}
 
 	public int getVille_id() {
-		return Ville_id;
+		return ville_id;
 	}
 
 	public void setVille_id(int ville_id) {
-		Ville_id = ville_id;
+		this.ville_id = ville_id;
 	}
 
 }

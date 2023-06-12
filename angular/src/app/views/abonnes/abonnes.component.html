@@ -7,7 +7,6 @@
       <th>Age</th>
       <th>Espèce</th>
       <th>Ville</th>
-      <th>animal</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -18,7 +17,6 @@
       <td>{{ abonne.age }} </td>
       <td>{{ abonne.espece }}</td>
       <td>{{ abonne.ville }}</td>
-      <td>{{ abonne.animal }}</td>
       <td>
         <button (click)="modifier(abonne)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -46,9 +44,6 @@
 
     <sost-form-input id="ville" label="ville" formControlName="espece" [formControl]="villeCtrl"
       message-when-not-valid="la ville est obligatoire" />
-
-    <sost-form-input id="animal" label="animal" formControlName="animal" [formControl]="animalCtrl"
-      message-when-not-valid="l animal est onligatoire" />
 
   </sost-form-card>
   <hr />
