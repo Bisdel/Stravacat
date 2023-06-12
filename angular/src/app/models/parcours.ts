@@ -1,6 +1,7 @@
 import { Time } from "@angular/common";
 import { Animal } from "./animal";
 import { Ville } from "./ville";
+import { GeoJsonObject } from "geojson";
 
 export class Parcours {
     public get animal(): Animal[] {
@@ -21,10 +22,10 @@ export class Parcours {
     public set temps(value: Time) {
         this._temps = value;
     }
-    public get trace(): number {
+    public get trace(): GeoJsonObject {
         return this._trace;
     }
-    public set trace(value: number) {
+    public set trace(value: GeoJsonObject) {
         this._trace = value;
     }
     public get datePublication(): Date {
@@ -43,7 +44,7 @@ export class Parcours {
     constructor(
         private _id: number,
         private _datePublication: Date,
-        private _trace: number,
+        private _trace: GeoJsonObject,
         private _temps: Time,
         private _ville: Ville,
         private _animal: Animal[]

@@ -20,6 +20,7 @@ import fr.formation.api.request.ParcoursRequest;
 import fr.formation.api.response.ParcoursDetailResponse;
 import fr.formation.exception.ParcoursNotFoundException;
 import fr.formation.exception.ParcoursNotValidException;
+import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IParcoursRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -30,6 +31,8 @@ import jakarta.validation.Valid;
 public class ParcoursApiController {
     @Autowired
     private IParcoursRepository repoParcours;
+    @Autowired
+    private IAnimalRepository repoAnimal;
 
     @GetMapping
     @JsonView(Views.Parcours.class)
@@ -46,6 +49,13 @@ public class ParcoursApiController {
         BeanUtils.copyProperties(parcours, response);
 
         return response;
+    }
+
+    @GetMapping("/animal/{animalId}")
+    public List<Parcours> findAllByAnimalId(@PathVariable int animalId){
+        List<Parcours> listeParcours = this.repoParcours.findByAnimal(this.repoAnimal.findById(animalId).get());
+
+        return listeParcours;
     }
 
     @PostMapping

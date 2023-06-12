@@ -18,7 +18,7 @@ public class ParcoursRequest {
     @NotBlank
     private LocalDateTime datePublicationParcours;
 
-    private int traceGpsParcours;
+    private String traceGpsParcours;
 
     @NotBlank
     private Time tempsParcours;
@@ -50,11 +50,11 @@ public class ParcoursRequest {
         this.datePublicationParcours = datePublicationParcours;
     }
 
-    public int getTraceGpsParcours() {
+    public String getTraceGpsParcours() {
         return traceGpsParcours;
     }
 
-    public void setTraceGpsParcours(int traceGpsParcours) {
+    public void setTraceGpsParcours(String traceGpsParcours) {
         this.traceGpsParcours = traceGpsParcours;
     }
 
