@@ -3,11 +3,15 @@ package fr.formation.api.response;
 import java.sql.Time;
 import java.time.LocalDateTime;
 
-public class ParcoursDetailResponse {
+import org.springframework.beans.BeanUtils;
+
+import fr.formation.model.Parcours;
+
+public class ParcoursResponse {
     private int id;
     private String villeParcours;
     private LocalDateTime datePublicationParcours;
-    private int traceGpsParcours;
+    private String traceGpsParcours;
     private Time tempsParcours;
 
     
@@ -20,7 +24,7 @@ public class ParcoursDetailResponse {
     public void setDatePublicationParcours(LocalDateTime datePublicationParcours) {
         this.datePublicationParcours = datePublicationParcours;
     }
-    public void setTraceGpsParcours(int traceGpsParcours) {
+    public void setTraceGpsParcours(String traceGpsParcours) {
         this.traceGpsParcours = traceGpsParcours;
     }
     public void setTempsParcours(Time tempsParcours) {
@@ -35,11 +39,17 @@ public class ParcoursDetailResponse {
     public LocalDateTime getDatePublicationParcours() {
         return datePublicationParcours;
     }
-    public int getTraceGpsParcours() {
+    public String getTraceGpsParcours() {
         return traceGpsParcours;
     }
     public Time getTempsParcours() {
         return tempsParcours;
+    }
+    public static ParcoursResponse convert(Parcours p) {
+        ParcoursResponse parcoursResponse = new ParcoursResponse();
+        BeanUtils.copyProperties(p, parcoursResponse);
+
+        return parcoursResponse;
     } 
 
     

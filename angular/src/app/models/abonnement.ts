@@ -2,10 +2,16 @@ import { Animal } from "./animal";
 import { Ville } from "./ville";
 
 export class Abonnement {
-    public get animal(): Animal[] {
+    public get animal_id(): Animal {
+        return this._animal_id;
+    }
+    public set animal_id(value: Animal) {
+        this._animal_id = value;
+    }
+    public get animal(): Animal {
         return this._animal;
     }
-    public set animal(value: Animal[]) {
+    public set animal(value: Animal) {
         this._animal = value;
     }
     public get ville(): Ville {
@@ -44,7 +50,8 @@ export class Abonnement {
       private _age: number,
       private _espece: string,
       private _ville: Ville,
-      private _animal: Animal[]
+      private _animal: Animal,
+      private _animal_id: Animal
       
     ){ }
 }

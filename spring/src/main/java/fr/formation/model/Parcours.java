@@ -43,6 +43,7 @@ public class Parcours {
 	private LocalDateTime datePublicationParcours;
 
         @Column (name = "parc_trace", columnDefinition="text")
+		@JsonView(Views.Parcours.class)
 	private String traceGpsParcours;
 
 		@Column (name = "parc_temps")

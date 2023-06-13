@@ -35,15 +35,19 @@ export class AbonnementComponent implements OnInit {
 
   ajouter() {
     this.editing = 0;
+
     this.pseudoCtrl = this.formBuilder.control('', Validators.minLength(1));
     this.ageCtrl = this.formBuilder.control('', Validators.max(100));
     this.especeCtrl = this.formBuilder.control('', Validators.required);
     this.villeCtrl = this.formBuilder.control('', Validators.required);
+    this.animalCtrl = this.formBuilder.control('' , Validators.required);
+
     this.abonnementForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
+      animal: this.animalCtrl,
     });
   }
 
@@ -54,12 +58,14 @@ export class AbonnementComponent implements OnInit {
     this.ageCtrl = this.formBuilder.control(abonnement.age, Validators.required);
     this.especeCtrl = this.formBuilder.control(abonnement.espece, Validators.required);
     this.villeCtrl = this.formBuilder.control(abonnement.ville.nom, Validators.required);
+    this.animalCtrl = this.formBuilder.control(abonnement.animal_id, Validators.required);
 
     this.abonnementForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
+      animal:this.animalCtrl.value,
 
     });
   }
@@ -71,8 +77,9 @@ export class AbonnementComponent implements OnInit {
       pseudo: this.pseudoCtrl.value,
       age: this.ageCtrl.value,
       espece: this.especeCtrl.value,
-      ville: this.villeCtrl.value,
-  
+      ville_id: this.villeCtrl.value,
+      animal_id: this.animalCtrl.value
+
     };
     if (this.editing) {
       addOrEditObs = this.srvAbonnement.edit(abonnement);

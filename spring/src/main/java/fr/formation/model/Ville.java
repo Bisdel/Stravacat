@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import fr.formation.api.response.VilleResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +29,7 @@ public class Ville {
 	private String nom;
 
 	@OneToMany(mappedBy = "ville")
+	@JsonIgnore
 	private List<Animal> animaux;
 
 	@OneToMany(mappedBy = "ville")

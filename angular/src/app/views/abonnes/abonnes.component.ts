@@ -37,12 +37,13 @@ export class AbonnesComponent implements OnInit {
 
   ajouter() {
     this.editing = 0;
+
     this.pseudoCtrl = this.formBuilder.control('', Validators.required);
     this.ageCtrl = this.formBuilder.control('', Validators.required);
     this.especeCtrl = this.formBuilder.control('', Validators.required);
     this.villeCtrl = this.formBuilder.control('', Validators.required);
     this.animalCtrl = this.formBuilder.control('', Validators.required);
-    this.animalCtrl = this.formBuilder.control('' , Validators.required);
+   
     this.abonneForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
       age: this.ageCtrl,
@@ -59,7 +60,7 @@ export class AbonnesComponent implements OnInit {
   this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
   this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
   this.villeCtrl = this.formBuilder.control(abonne.ville.nom, Validators.required); // Correction ici
-  this.animalCtrl = this.formBuilder.control(abonne.animal, Validators.required );
+  this.animalCtrl = this.formBuilder.control(abonne.animal_id, Validators.required );
 
   this.abonneForm = this.formBuilder.group({
     pseudo: this.pseudoCtrl,
@@ -77,8 +78,8 @@ export class AbonnesComponent implements OnInit {
       pseudo: this.pseudoCtrl.value,
       age: this.ageCtrl.value,
       espece: this.especeCtrl.value,
-      ville: this.villeCtrl.value,
-      animal: this.animalCtrl.value
+      ville_id: this.villeCtrl.value,
+      animal_id: this.animalCtrl.value
     };
 
     if (this.editing) {
