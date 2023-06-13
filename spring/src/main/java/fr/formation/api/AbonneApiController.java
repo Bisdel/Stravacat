@@ -1,6 +1,7 @@
 package fr.formation.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,11 @@ public class AbonneApiController {
 	public List<AbonnesResponse> findAll() {
 		List<AbonnesResponse> result = this.repoARepository.findAll().stream().map(AbonnesResponse::convert).toList();
 		result.forEach(abo -> {
-			Ville ville = this.villeRepository.findById(abo.getVille_id()).get();
-			abo.setVille(ville);
+			Optional<Ville> ville = this.villeRepository.findById(abo.getVille_id());
+
+			if (ville.isPresent()) {
+				abo.setVille(ville.get());
+			}
 		});
 
 		return result;

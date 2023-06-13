@@ -21,6 +21,7 @@ public class Abonnement {
 
 	@Column(name = "abnm_pseudo", length = 50, nullable = false)
 	private String pseudo;
+
 	@Column(name = "abnm_age", nullable = false)
 	private int age;
 

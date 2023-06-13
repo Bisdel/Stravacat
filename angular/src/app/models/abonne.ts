@@ -45,9 +45,5 @@ export class Abonne {
     
 
 
-
-
-
-
 }
 

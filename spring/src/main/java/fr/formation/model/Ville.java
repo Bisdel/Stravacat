@@ -26,9 +26,6 @@ public class Ville {
 	@Column(name = "vill_nom", length = 30, nullable = false)
 	private String nom;
 
-	@Column(name = " vill_ambiance", length = 250)
-	private String ambiance;
-
 	@OneToMany(mappedBy = "ville")
 	private List<Animal> animaux;
 
@@ -49,14 +46,6 @@ public class Ville {
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public String getAmbiance() {
-		return ambiance;
-	}
-
-	public void setAmbiance(String ambiance) {
-		this.ambiance = ambiance;
 	}
 
 	public List<Animal> getAnimaux() {
