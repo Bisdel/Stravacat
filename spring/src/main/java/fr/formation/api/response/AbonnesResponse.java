@@ -3,6 +3,7 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnes;
+import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 
 public class AbonnesResponse {
@@ -20,6 +21,16 @@ public class AbonnesResponse {
 	private int animal_id;
 
 	private Ville ville;
+
+	private Animal animal;
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
 
 	public Ville getVille() {
 		return ville;

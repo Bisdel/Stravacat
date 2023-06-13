@@ -19,8 +19,10 @@ import fr.formation.api.response.AbonnesResponse;
 import fr.formation.exception.AbonnesNotFoundException;
 import fr.formation.exception.AbonnesNotValidException;
 import fr.formation.model.Abonnes;
+import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IAbonnesRepository;
+import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
@@ -28,15 +30,18 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/abonnes")
 public class AbonneApiController {
 	@Autowired
-	private IAbonnesRepository repoARepository;
+	private IAbonnesRepository repoAbonne;
 
 	@Autowired
 	private IVilleRepository villeRepository;
 
+	// @Autowired
+	// private IAnimalRepository repoAnimal;
+
 	// LIste des ABonnes
 	@GetMapping
 	public List<AbonnesResponse> findAll() {
-		List<AbonnesResponse> result = this.repoARepository.findAll().stream().map(AbonnesResponse::convert).toList();
+		List<AbonnesResponse> result = this.repoAbonne.findAll().stream().map(AbonnesResponse::convert).toList();
 		result.forEach(abo -> {
 			Optional<Ville> ville = this.villeRepository.findById(abo.getVille_id());
 
@@ -44,6 +49,14 @@ public class AbonneApiController {
 				abo.setVille(ville.get());
 			}
 		});
+
+		// result.forEach(abo -> {
+		// Optional<Animal> animal = this.repoAnimal.findById(abo.getAnimal_id());
+
+		// if (animal.isPresent()) {
+		// abo.setAnimal(animal.get());
+		// }
+		// });
 
 		return result;
 
@@ -59,7 +72,7 @@ public class AbonneApiController {
 		Abonnes nouveauAbonnes = new Abonnes();
 		BeanUtils.copyProperties(abonnesRequest, nouveauAbonnes);
 
-		this.repoARepository.save(nouveauAbonnes);
+		this.repoAbonne.save(nouveauAbonnes);
 		return AbonnesResponse.convert(nouveauAbonnes);
 	}
 
@@ -69,15 +82,15 @@ public class AbonneApiController {
 		if (result.hasErrors()) {
 			throw new AbonnesNotFoundException();
 		}
-		Abonnes abonnes = this.repoARepository.findById(id).orElseThrow(AbonnesNotFoundException::new);
+		Abonnes abonnes = this.repoAbonne.findById(id).orElseThrow(AbonnesNotFoundException::new);
 		BeanUtils.copyProperties(abonnesRequest, abonnes);
-		return this.repoARepository.save(abonnes);
+		return this.repoAbonne.save(abonnes);
 	}
 
 	// Supprimer
 	@DeleteMapping("/{id}")
 	public void deletById(@PathVariable int id) {
-		this.repoARepository.deleteById(id);
+		this.repoAbonne.deleteById(id);
 	}
 
 }

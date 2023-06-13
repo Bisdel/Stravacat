@@ -29,7 +29,7 @@ public class Abonnement {
 	private String espece;
 
 	// ajouter un join column
-	@Column(name = "abnn_ville_id", nullable = false)
+	@Column(name = "abnm_ville_id", nullable = false)
 	private int ville_id;
 
 	public int getId() {
