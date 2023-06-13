@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.actualites$ = this.srvActualite.findAll();
+    this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
   }
 
   modifier() {
