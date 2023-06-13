@@ -7,16 +7,12 @@ public class AbonnementRequest {
 
 	@NonNull
 	private int animal_id;
-
 	@NotBlank
 	private String pseudo;
-
 	@NonNull
 	private int age;
-
 	@NotBlank
 	private String espece;
-
 	@NonNull
 	private int ville_id;
 
@@ -59,5 +55,4 @@ public class AbonnementRequest {
 	public void setVille_id(int ville_id) {
 		this.ville_id = ville_id;
 	}
-
 }
