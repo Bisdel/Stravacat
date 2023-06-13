@@ -1,6 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { Parcours } from 'src/app/models/parcours';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ParcoursService } from 'src/app/services/parcours.service';
 
@@ -12,7 +11,6 @@ import { ParcoursService } from 'src/app/services/parcours.service';
 export class MapComponent implements AfterViewInit {
 
   private map: any;
-  private popup: any;
   private parcours!: any[];
   private indexParcours: number = 0;
 
@@ -47,16 +45,29 @@ export class MapComponent implements AfterViewInit {
     this.initMap();
   }
 
-  parcoursSuivant() {
-    this.indexParcours++;
-    console.log(this.indexParcours)
-    L.geoJSON(JSON.parse(this.parcours[this.indexParcours].traceGpsParcours)).addTo(this.map);
-    this.initMap();
-    }
-
   parcoursPrecedent() {
-    this.indexParcours--;
-    console.log(this.indexParcours)
-
+    if(this.indexParcours > 0){
+      this.indexParcours--;
+      L.geoJSON(JSON.parse(this.parcours[this.indexParcours].traceGpsParcours)).addTo(this.map);
+      this.map.flyTo([43.610684, 3.876514], 14)
+    } else{
+      triggerErrorToast("Il n'y a pas de parcours depuis le "+this.parcours[this.indexParcours].datePublicationParcours+".");
     }
+  }
+  
+  parcoursSuivant() {
+    if(this.indexParcours < this.parcours.length-1){
+      this.indexParcours++;
+      L.geoJSON(JSON.parse(this.parcours[this.indexParcours].traceGpsParcours)).addTo(this.map);
+      this.map.flyTo([43.2863357,5.3630241],13.5)
+    } else{
+      triggerErrorToast("Il n'y a pas de parcours avant le "+this.parcours[this.indexParcours].datePublicationParcours+".");
+    }
+  }
+
+
 }
+function triggerErrorToast(message:String) {
+  throw new Error('Function not implemented.');
+}
+
