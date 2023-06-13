@@ -11,6 +11,6 @@ export class ParcoursService {
   constructor(private httpClient: HttpClient) {}
 
   public findAllByAnimalId(animalId: string): Observable<Parcours[]> {
-    return this.httpClient.get<Parcours[]>(`${environment.apiUrl}/parcours/${animalId}`);
+    return this.httpClient.get<Parcours[]>(`${environment.apiUrl}/parcours/animal/${animalId}`);
   }
 }

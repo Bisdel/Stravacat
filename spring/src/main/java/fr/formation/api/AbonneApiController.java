@@ -19,10 +19,8 @@ import fr.formation.api.response.AbonnesResponse;
 import fr.formation.exception.AbonnesNotFoundException;
 import fr.formation.exception.AbonnesNotValidException;
 import fr.formation.model.Abonnes;
-import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IAbonnesRepository;
-import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
@@ -35,9 +33,6 @@ public class AbonneApiController {
 	@Autowired
 	private IVilleRepository villeRepository;
 
-	// @Autowired
-	// private IAnimalRepository repoAnimal;
-
 	// LIste des ABonnes
 	@GetMapping
 	public List<AbonnesResponse> findAll() {
@@ -48,15 +43,8 @@ public class AbonneApiController {
 			if (ville.isPresent()) {
 				abo.setVille(ville.get());
 			}
+
 		});
-
-		// result.forEach(abo -> {
-		// Optional<Animal> animal = this.repoAnimal.findById(abo.getAnimal_id());
-
-		// if (animal.isPresent()) {
-		// abo.setAnimal(animal.get());
-		// }
-		// });
 
 		return result;
 

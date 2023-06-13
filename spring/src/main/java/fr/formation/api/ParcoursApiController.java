@@ -1,5 +1,6 @@
 package fr.formation.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import fr.formation.model.Parcours;
 import org.springframework.beans.BeanUtils;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.api.request.ParcoursRequest;
-import fr.formation.api.response.ParcoursDetailResponse;
+import fr.formation.api.response.ParcoursResponse;
 import fr.formation.exception.ParcoursNotFoundException;
 import fr.formation.exception.ParcoursNotValidException;
 import fr.formation.repo.IAnimalRepository;
@@ -36,15 +37,15 @@ public class ParcoursApiController {
 
     @GetMapping
     @JsonView(Views.Parcours.class)
-    public List<fr.formation.model.Parcours> findAll(){
+    public List<Parcours> findAll(){
         return this.repoParcours.findAll();
     }
 
     @GetMapping("/{id}")
     @Transactional
-    public ParcoursDetailResponse findById(@PathVariable int id){
+    public ParcoursResponse findById(@PathVariable int id){
         Parcours parcours = this.repoParcours.findById(id).orElseThrow(ParcoursNotFoundException ::new);
-        ParcoursDetailResponse response = new ParcoursDetailResponse();
+        ParcoursResponse response = new ParcoursResponse();
 
         BeanUtils.copyProperties(parcours, response);
 
@@ -52,10 +53,15 @@ public class ParcoursApiController {
     }
 
     @GetMapping("/animal/{animalId}")
-    public List<Parcours> findAllByAnimalId(@PathVariable int animalId){
+    public List<ParcoursResponse> findAllByAnimalId(@PathVariable int animalId){
         List<Parcours> listeParcours = this.repoParcours.findByAnimal(this.repoAnimal.findById(animalId).get());
+        List<ParcoursResponse> listeParcoursResponses = new ArrayList<>();
 
-        return listeParcours;
+        for (Parcours p : listeParcours){
+            listeParcoursResponses.add(ParcoursResponse.convert(p));
+        }
+        System.out.println(listeParcoursResponses.get(0).getDatePublicationParcours());
+        return listeParcoursResponses;
     }
 
     @PostMapping

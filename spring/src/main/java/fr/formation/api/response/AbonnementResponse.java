@@ -3,17 +3,27 @@ package fr.formation.api.response;
 import org.springframework.beans.BeanUtils;
 
 import fr.formation.model.Abonnement;
+import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 
 public class AbonnementResponse {
 
 	private int id;
-	private int animal_id;
 	private String pseudo;
 	private int age;
 	private String espece;
-	private int Ville_id;
+	private int ville_id;
+	private int animal_id;
 	private Ville ville;
+	private Animal animal;
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
 
 	public Ville getVille() {
 		return ville;
@@ -29,14 +39,6 @@ public class AbonnementResponse {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getAnimal_id() {
-		return animal_id;
-	}
-
-	public void setAnimal_id(int animal_id) {
-		this.animal_id = animal_id;
 	}
 
 	public String getPseudo() {
@@ -64,11 +66,19 @@ public class AbonnementResponse {
 	}
 
 	public int getVille_id() {
-		return Ville_id;
+		return ville_id;
 	}
 
 	public void setVille_id(int ville_id) {
-		Ville_id = ville_id;
+		this.ville_id = ville_id;
+	}
+
+	public int getAnimal_id() {
+		return animal_id;
+	}
+
+	public void setAnimal_id(int animal_id) {
+		this.animal_id = animal_id;
 	}
 
 	public static AbonnementResponse convert(Abonnement abonnement) {

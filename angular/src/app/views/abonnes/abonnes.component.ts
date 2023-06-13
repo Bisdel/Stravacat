@@ -77,8 +77,8 @@ export class AbonnesComponent implements OnInit {
       pseudo: this.pseudoCtrl.value,
       age: this.ageCtrl.value,
       espece: this.especeCtrl.value,
-      ville: this.villeCtrl.value,
-      animal: this.animalCtrl.value
+      ville_id: this.villeCtrl.value,
+   
     };
 
     if (this.editing) {

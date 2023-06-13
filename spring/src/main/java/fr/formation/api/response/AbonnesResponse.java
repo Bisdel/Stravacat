@@ -9,19 +9,12 @@ import fr.formation.model.Ville;
 public class AbonnesResponse {
 
 	private int id;
-
 	private String pseudo;
-
 	private int age;
-
 	private String espece;
-
 	private int ville_id;
-
 	private int animal_id;
-
 	private Ville ville;
-
 	private Animal animal;
 
 	public Animal getAnimal() {
