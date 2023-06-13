@@ -1,6 +1,7 @@
 package fr.formation.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,11 @@ public class AbonnementApiController {
 		List<AbonnementResponse> result = this.repoAbonnement.findAll().stream().map(AbonnementResponse::convert)
 				.toList();
 		result.forEach(abon -> {
-			Ville ville = this.repoVille.findById(abon.getVille_id()).get();
-			abon.setVille(ville);
+			Optional<Ville> ville = this.repoVille.findById(abon.getVille_id());
+			if (ville.isPresent()) {
+				abon.setVille(ville.get());
+			}
+
 		});
 
 		return result;

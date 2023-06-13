@@ -21,6 +21,7 @@ public class Abonnement {
 
 	@Column(name = "abnm_pseudo", length = 50, nullable = false)
 	private String pseudo;
+
 	@Column(name = "abnm_age", nullable = false)
 	private int age;
 
@@ -28,7 +29,7 @@ public class Abonnement {
 	private String espece;
 
 	// ajouter un join column
-	@Column(name = "abnn_ville_id", nullable = false)
+	@Column(name = "abnm_ville_id", nullable = false)
 	private int ville_id;
 
 	public int getId() {
