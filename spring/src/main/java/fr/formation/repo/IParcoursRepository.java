@@ -11,9 +11,10 @@ import fr.formation.model.Parcours;
 
 public interface IParcoursRepository extends JpaRepository<Parcours, Integer>{
 
-	 @Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
-	 public List<Parcours> findByDateParcours(LocalDateTime start, LocalDateTime end);
-
+	@Query ("select p from Parcours p where p.datePublicationParcours between ?1 and ?2")
+	public List<Parcours> findByDateParcours(LocalDateTime start, LocalDateTime end);
+	 
+	@Query ("SELECT p FROM Parcours p where p.animal = ?1 ORDER BY p.datePublicationParcours desc")
 	public List<Parcours> findByAnimal(Animal animal);
 
 	// @Query("delete p from Parcours p where p.id = ?1")

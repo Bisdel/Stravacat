@@ -19,10 +19,8 @@ import fr.formation.api.response.AbonnesResponse;
 import fr.formation.exception.AbonnesNotFoundException;
 import fr.formation.exception.AbonnesNotValidException;
 import fr.formation.model.Abonnes;
-import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 import fr.formation.repo.IAbonnesRepository;
-import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 

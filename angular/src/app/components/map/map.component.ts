@@ -10,9 +10,11 @@ import { ParcoursService } from 'src/app/services/parcours.service';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements AfterViewInit {
+
   private map: any;
   private popup: any;
-  private parcours!: Parcours[];
+  private parcours!: any[];
+  private indexParcours: number = 0;
 
   private initMap(): void {
     this.map = L.map('map').setView([43.610684, 3.876514], 14);
@@ -31,10 +33,9 @@ export class MapComponent implements AfterViewInit {
     this.srvParcours.findAllByAnimalId(this.srvAuth.animalId).subscribe({
       next: (result) => {
         this.parcours = result;
+        L.geoJSON(JSON.parse(this.parcours[this.indexParcours].traceGpsParcours)).addTo(this.map);
       },
     });
-    
-    L.geoJSON(this.parcours[0].trace).addTo(this.map);
   }
 
   constructor(
@@ -45,4 +46,17 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
   }
+
+  parcoursSuivant() {
+    this.indexParcours++;
+    console.log(this.indexParcours)
+    L.geoJSON(JSON.parse(this.parcours[this.indexParcours].traceGpsParcours)).addTo(this.map);
+    this.initMap();
+    }
+
+  parcoursPrecedent() {
+    this.indexParcours--;
+    console.log(this.indexParcours)
+
+    }
 }
