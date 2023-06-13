@@ -44,6 +44,7 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
+      animal: this.animalCtrl,
     });
   }
 
@@ -60,6 +61,7 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
+      animal:this.animalCtrl.value,
 
     });
   }
@@ -71,8 +73,8 @@ export class AbonnementComponent implements OnInit {
       pseudo: this.pseudoCtrl.value,
       age: this.ageCtrl.value,
       espece: this.especeCtrl.value,
-      ville: this.villeCtrl.value,
-  
+      ville_id: this.villeCtrl.value,
+
     };
     if (this.editing) {
       addOrEditObs = this.srvAbonnement.edit(abonnement);

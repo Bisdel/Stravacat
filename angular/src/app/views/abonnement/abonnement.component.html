@@ -7,7 +7,9 @@
       <th>Age</th>
       <th>Espèce</th>
       <th>Ville</th>
+      <th>Animal_id</th>
       <th>Action</th>
+    
     </tr>
   </thead>
 
@@ -17,6 +19,7 @@
       <td>{{ abonnement.age }} </td>
       <td>{{ abonnement.espece }}</td>
       <td>{{ abonnement.ville ? abonnement.ville.nom : ' ' }}</td>
+      <td>{{abonnement.animal_id}}</td>
       <td>
         <button (click)="modifier(abonnement)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonnement)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -45,10 +48,15 @@
 
     <sost-form-input id="ville" label="ville" formControlName="ville" [formControl]="villeCtrl"
       message-when-not-valid="la ville est obligatoire" />
+      
+      <sost-form-input id="animal_id" label="animal_id" formControlName="animal_id" [formControl]="animalCtrl"
+      message-when-not-valid="L'id de l'animal ville est obligatoire" />
+
+
 
   </sost-form-card>
 </div>
 
-
 <hr />
+
 

@@ -2,6 +2,12 @@ import { Animal } from "./animal";
 import { Ville } from "./ville";
 
 export class Abonne {
+    public get animal_id(): Animal {
+        return this._animal_id;
+    }
+    public set animal_id(value: Animal) {
+        this._animal_id = value;
+    }
     public get animal(): Animal {
         return this._animal;
     }
@@ -46,7 +52,8 @@ export class Abonne {
         private _age: number,
         private _espece: string,
         private _ville: Ville,
-        private _animal: Animal
+        private _animal: Animal,
+        private _animal_id: Animal
 
     ){ };
     

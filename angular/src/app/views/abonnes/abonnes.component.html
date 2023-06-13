@@ -6,7 +6,7 @@
       <th>Pseudo</th>
       <th>Age</th>
       <th>Espèce</th>
-      <th>Ville_id</th>
+      <th>Ville</th>
       <th>Animal_id</th>
       <th>Action</th>
     </tr>
@@ -17,8 +17,8 @@
       <td>{{ abonne.pseudo }}</td>
       <td>{{ abonne.age }}</td>
       <td>{{ abonne.espece }}</td>
-      <td>{{ abonne.ville ? abonne.ville.nom :  ' '}}</td>
-      <td>{{abonne.animal ? abonne.animal.pseudo : ' ' }}</td>
+      <td>{{ abonne.ville ? abonne.ville.nom :  ' la ville n"existe pas  '}}</td>
+      <td>{{abonne.animal_id}}</td>
       <td>
         <button (click)="modifier(abonne)" class="btn btn-outline-warning">Modifier</button>
         <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -46,9 +46,11 @@
     <sost-form-input id="ville" label="ville" formControlName="ville" [formControl]="villeCtrl"
       message-when-not-valid="L'id de la ville est obligatoire" />
 
-      <sost-form-input id="animal_id" label="ville_id" formControlName="animal_id" [formControl]="animalCtrl"
+      <sost-form-input id="animal_id" label="animal_id" formControlName="animal_id" [formControl]="animalCtrl"
       message-when-not-valid="L'id de l'animal ville est obligatoire" />
 
   </sost-form-card>
-  <hr />
+
 </div>
+
+<hr />
