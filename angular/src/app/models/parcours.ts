@@ -4,12 +4,12 @@ import { Ville } from "./ville";
 import { GeoJsonObject } from "geojson";
 
 export class Parcours {
-    public get animal(): Animal[] {
-        return this._animal;
-    }
-    public set animal(value: Animal[]) {
-        this._animal = value;
-    }
+    // public get animal(): Animal[] {
+    //     return this._animal;
+    // }
+    // public set animal(value: Animal[]) {
+    //     this._animal = value;
+    // }
     public get ville(): Ville {
         return this._ville;
     }
@@ -47,7 +47,7 @@ export class Parcours {
         private _trace: GeoJsonObject,
         private _temps: Time,
         private _ville: Ville,
-        private _animal: Animal[]
+        // private _animal: Animal[]
     ){}
 }
 
