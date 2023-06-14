@@ -90,6 +90,9 @@ export class ActualiteComponent implements OnInit {
   }
 
   supprimer(actualite: Actualite) {
-    this.srvActualite.delete(actualite).subscribe(() => this.srvActualite.findAll());
+    if (confirm("Es-tu sûr de vouloir supprimer cette actualité ?")) {
+      this.srvActualite.delete(actualite).subscribe(() => this.srvActualite.findAll());
+      this.actualites$ = this.srvActualite.findAll();
+    }
   }
 }

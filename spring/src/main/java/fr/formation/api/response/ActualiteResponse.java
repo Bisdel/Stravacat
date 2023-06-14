@@ -55,7 +55,9 @@ public class ActualiteResponse {
     
     public static ActualiteResponse convert(Actualite actualite) {
         ActualiteResponse response = new ActualiteResponse();	
-        BeanUtils.copyProperties(actualite, response);	
+        BeanUtils.copyProperties(actualite, response);
+        response.setAnimal(AnimalResponse.convert(actualite.getAnimal()));
+		response.setVille(VilleResponse.convert(actualite.getVille()));
         return response;
     }
 }

@@ -26,7 +26,6 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { MapComponent } from './components/map/map.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations: [
     AppComponent,
