@@ -13,6 +13,7 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { Actualite } from 'src/app/models/actualite';
 import { Observable } from 'rxjs';
 import { ActualiteService } from 'src/app/services/actualite.service';
+import { Animal } from 'src/app/models/animal';
 
 @Component({
   selector: 'app-profile',
@@ -119,12 +120,14 @@ export class ProfileComponent implements OnInit {
   }
 
   supprimer() {
-    this.srvAuth.logout();
-    this.srvAnimal.delete(this.animal).subscribe({
-      next: () => {
-        window.location.reload();
-      },
-    });
+    if (confirm("Es-tu sûr de vouloir supprimer ton animal ?")) {
+      this.srvAuth.logout();
+      this.srvAnimal.delete(this.animal).subscribe({
+        next: () => {
+          window.location.reload();
+        },
+      });
+    }
   }
 
   deleteActu(actualite: Actualite) {
@@ -132,5 +135,6 @@ export class ProfileComponent implements OnInit {
       this.srvActualite.delete(actualite).subscribe(() => this.srvActualite.findAll());
       this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
     }
-  }
+  }  
+  
 }
