@@ -4,35 +4,35 @@ import { Ville } from "./ville";
 import { GeoJsonObject } from "geojson";
 
 export class Parcours {
-    // public get animal(): Animal[] {
-    //     return this._animal;
-    // }
-    // public set animal(value: Animal[]) {
-    //     this._animal = value;
-    // }
-    public get ville(): Ville {
-        return this._ville;
+    public get animalId(): string {
+        return this._animalId;
     }
-    public set ville(value: Ville) {
-        this._ville = value;
+    public set animalId(value: string) {
+        this._animalId = value;
     }
-    public get temps(): Time {
-        return this._temps;
+    public get villeParcours(): string {
+        return this._villeParcours;
     }
-    public set temps(value: Time) {
-        this._temps = value;
+    public set villeParcours(value: string) {
+        this._villeParcours = value;
     }
-    public get trace(): GeoJsonObject {
-        return this._trace;
+    public get tempsParcours(): Time {
+        return this._tempsParcours;
     }
-    public set trace(value: GeoJsonObject) {
-        this._trace = value;
+    public set tempsParcours(value: Time) {
+        this._tempsParcours = value;
     }
-    public get datePublication(): Date {
-        return this._datePublication;
+    public get traceGpsParcours(): string {
+        return this._traceGpsParcours;
     }
-    public set datePublication(value: Date) {
-        this._datePublication = value;
+    public set traceGpsParcours(value: string) {
+        this._traceGpsParcours = value;
+    }
+    public get datePublicationParcours(): Date {
+        return this._datePublicationParcours;
+    }
+    public set datePublicationParcours(value: Date) {
+        this._datePublicationParcours = value;
     }
     public get id(): number {
         return this._id;
@@ -43,11 +43,11 @@ export class Parcours {
 
     constructor(
         private _id: number,
-        private _datePublication: Date,
-        private _trace: GeoJsonObject,
-        private _temps: Time,
-        private _ville: Ville,
-        // private _animal: Animal[]
+        private _datePublicationParcours: Date,
+        private _traceGpsParcours: string,
+        private _tempsParcours: Time,
+        private _villeParcours: string,
+        private _animalId: string
     ){}
 }
 

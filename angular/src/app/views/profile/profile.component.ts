@@ -41,8 +41,7 @@ export class ProfileComponent implements OnInit {
     private srvActualite: ActualiteService,
     private srvAuth: AuthenticationService,
     private formBuilder: FormBuilder,
-    private srvAnimal: AnimalService,
-    private router: Router
+    private srvAnimal: AnimalService
   ) {
     title.setTitle('Mon profil');
     this.srvAnimal.findById(this.animalId).subscribe({
@@ -120,7 +119,7 @@ export class ProfileComponent implements OnInit {
   }
 
   supprimer() {
-    if (confirm("Es-tu sûr de vouloir supprimer ton animal ?")) {
+    if (confirm('Es-tu sûr de vouloir supprimer ton animal ?')) {
       this.srvAuth.logout();
       this.srvAnimal.delete(this.animal).subscribe({
         next: () => {
@@ -131,10 +130,13 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteActu(actualite: Actualite) {
-    if (confirm("Es-tu sûr de vouloir supprimer cette actualité ?")) {
-      this.srvActualite.delete(actualite).subscribe(() => this.srvActualite.findAll());
-      this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
+    if (confirm('Es-tu sûr de vouloir supprimer cette actualité ?')) {
+      this.srvActualite
+        .delete(actualite)
+        .subscribe(() => this.srvActualite.findAll());
+      this.actualites$ = this.srvActualite.findByAnimalId(
+        this.srvAuth.animalId
+      );
     }
-  }  
-  
+  }
 }
