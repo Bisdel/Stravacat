@@ -49,9 +49,9 @@ public class ActualiteApiController {
 			ActualiteResponse actualiteResponse = new ActualiteResponse();
 			actualiteResponse.setActu_id(actu.getActu_id());
 			actualiteResponse.setActu_description(actu.getActu_description());
+			actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
 			actualiteResponse.setAnimal(AnimalResponse.convert(actu.getAnimal()));
 			actualiteResponse.setVille(VilleResponse.convert(actu.getVille()));
-			actualiteResponse.setActu_timestamp(actu.getActu_timestamp());
 
 			response.add(actualiteResponse);
 		}
@@ -62,24 +62,24 @@ public class ActualiteApiController {
 	@Transactional
 	public ActualiteResponse findById(@PathVariable int id) {
 		Actualite actualite = this.repoActualite.findById(id).orElseThrow(ActualiteNotFoundException::new);
-		ActualiteResponse response = new ActualiteResponse();
-				
-		BeanUtils.copyProperties(actualite, response);
-		response.setAnimal(AnimalResponse.convert(actualite.getAnimal()));
-		response.setVille(VilleResponse.convert(actualite.getVille()));
-				
-		return response;
+		// ActualiteResponse response = new ActualiteResponse();		
+		// BeanUtils.copyProperties(actualite, response);
+		// response.setAnimal(AnimalResponse.convert(actualite.getAnimal()));
+		// response.setVille(VilleResponse.convert(actualite.getVille()));
+
+		return ActualiteResponse.convert(actualite);
+		
 	}
 
 	@GetMapping("/animal/{animalId}")
     public List<ActualiteResponse> findAllByAnimalId(@PathVariable int animalId){
         List<Actualite> actualites = this.repoActualite.findByAnimal(this.repoAnimal.findById(animalId).get());
-        List<ActualiteResponse> actualiteResponse = new ArrayList<>();
+        List<ActualiteResponse> response = new ArrayList<>();
 	
         for (Actualite actu : actualites) {
-			actualiteResponse.add(ActualiteResponse.convert(actu));
+			response.add(ActualiteResponse.convert(actu));
         }
-        return actualiteResponse;
+        return response;
     }
 
 
