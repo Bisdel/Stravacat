@@ -126,4 +126,11 @@ export class ProfileComponent implements OnInit {
       },
     });
   }
+
+  deleteActu(actualite: Actualite) {
+    if (confirm("Es-tu sûr de vouloir supprimer cette actualité ?")) {
+      this.srvActualite.delete(actualite).subscribe(() => this.srvActualite.findAll());
+      this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
+    }
+  }
 }
