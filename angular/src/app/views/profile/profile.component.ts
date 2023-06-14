@@ -8,7 +8,6 @@ import {
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimalResponse } from 'src/app/models/response/animal-response';
 import { AnimalService } from 'src/app/services/animal.service';
 import { Actualite } from 'src/app/models/actualite';
