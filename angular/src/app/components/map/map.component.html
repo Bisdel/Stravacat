@@ -41,4 +41,109 @@
     <div class="card-body">
         <div id="map" style="height: 320px;"></div>
     </div>
+          <!-- Modal
+          <div
+          class="modal fade"
+          id="parcoursModal"
+          tabindex="-1"
+          aria-labelledby="parcoursModalLabel"
+          aria-hidden="true"
+        >
+          <form
+            method="post"
+            class="modal-dialog"
+            [formGroup]="userForm"
+            (ngSubmit)="doOk()"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="parcoursModalLabel">
+                  Modifier mes informations
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                  <p>
+                    Remplis les champs que tu souhaites modifier, puis clique sur Enregistrer 😸
+                  </p>
+                  <app-input
+                    id="pseudo"
+                    type="text"
+                    label="Ton pseudo"
+                    formControlName="pseudo"
+                    [formControl]="pseudoCtrl"
+                    message-when-not-valid="Le pseudo est obligatoire"
+                  ></app-input>
+                  <app-input
+                    id="email"
+                    type="email"
+                    label="Email"
+                    formControlName="email"
+                    [formControl]="emailCtrl"
+                    message-when-not-valid="L'adresse email est obligatoire"
+                  ></app-input>
+                  <app-input
+                    id="password"
+                    type="password"
+                    label="Mot de passe"
+                    formControlName="password"
+                    [formControl]="passwordCtrl"
+                    message-when-not-valid="Le mot de passe est obligatoire"
+                  ></app-input>
+                  <app-input
+                    id="age"
+                    type="number"
+                    label="Âge"
+                    formControlName="age"
+                    [formControl]="ageCtrl"
+                    message-when-not-valid="L'âge est obligatoire"
+                  ></app-input>
+                  <app-input
+                    id="espece"
+                    type="text"
+                    label="Espèce"
+                    formControlName="espece"
+                    [formControl]="especeCtrl"
+                    message-when-not-valid="L'espèce est obligatoire"
+                  ></app-input>
+                  <app-input
+                    id="ville"
+                    type="text"
+                    label="Ville"
+                    formControlName="ville"
+                    [formControl]="villeCtrl"
+                    message-when-not-valid="La ville est obligatoire"
+                  ></app-input>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button (click)="supprimer()" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                >
+                  Supprimer mon compte
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Annuler
+                </button>
+                <button (click)="modifier()"
+                  type="submit"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  id="liveToastBtn"
+                >
+                  Enregistrer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div> -->
   </div>

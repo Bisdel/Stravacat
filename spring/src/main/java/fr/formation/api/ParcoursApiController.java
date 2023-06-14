@@ -19,10 +19,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.api.request.ParcoursRequest;
 import fr.formation.api.response.ParcoursResponse;
+import fr.formation.exception.AnimalNotFoundException;
 import fr.formation.exception.ParcoursNotFoundException;
 import fr.formation.exception.ParcoursNotValidException;
+import fr.formation.exception.VilleNotFoundException;
 import fr.formation.repo.IAnimalRepository;
 import fr.formation.repo.IParcoursRepository;
+import fr.formation.repo.IVilleRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -34,6 +37,9 @@ public class ParcoursApiController {
     private IParcoursRepository repoParcours;
     @Autowired
     private IAnimalRepository repoAnimal;
+    @Autowired
+    private IVilleRepository repoVille;
+    
 
     @GetMapping
     @JsonView(Views.Parcours.class)
@@ -60,22 +66,21 @@ public class ParcoursApiController {
         for (Parcours p : listeParcours){
             listeParcoursResponses.add(ParcoursResponse.convert(p));
         }
-        System.out.println(listeParcoursResponses.get(0).getDatePublicationParcours());
         return listeParcoursResponses;
     }
 
     @PostMapping
     @JsonView(Views.Parcours.class)
-    public Parcours add(@Valid @RequestBody ParcoursRequest parcoursRequest, BindingResult result ){
+    public ParcoursResponse add(@Valid @RequestBody ParcoursRequest parcoursRequest, BindingResult result ){
         if (result.hasErrors()){
             throw new ParcoursNotValidException();
         }
-
         Parcours parcours = new Parcours();
-
         BeanUtils.copyProperties(parcoursRequest, parcours);
-
-        return this.repoParcours.save(parcours);
+        parcours.setVille(this.repoVille.findByNom(parcoursRequest.getVilleParcours()).orElseThrow(VilleNotFoundException::new));
+        parcours.setAnimal(this.repoAnimal.findById(parcoursRequest.getAnimalId()).orElseThrow(AnimalNotFoundException::new));
+        this.repoParcours.save(parcours);
+        return ParcoursResponse.convert(parcours);
     }
 
     @PutMapping("/{id}")

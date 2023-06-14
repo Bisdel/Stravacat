@@ -38,6 +38,9 @@ public class Ville {
 	@OneToMany(mappedBy = "ville")
 	private List<Actualite> actualites;
 
+	@OneToMany(mappedBy = "ville")
+	private List<Parcours> parcours;
+
 	public int getId() {
 		return id;
 	}
@@ -68,6 +71,14 @@ public class Ville {
 
 	public void setActualites(List<Actualite> actualites) {
 		this.actualites = actualites;
+	}
+
+	public List<Parcours> getParcours() {
+		return parcours;
+	}
+
+	public void setParcours(List<Parcours> parcours) {
+		this.parcours = parcours;
 	}
 
 	public VilleResponse convert() {

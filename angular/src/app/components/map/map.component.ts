@@ -48,6 +48,10 @@ export class MapComponent implements AfterViewInit {
     L.geoJSON(this.traceGps).addTo(this.map);
   }
 
+  ajouterParcours() {
+  
+  }
+
   parcoursPrecedent() {
     if (this.indexParcours > 0) {
       this.indexParcours--;
@@ -82,6 +86,7 @@ export class MapComponent implements AfterViewInit {
       );
     }
   }
+
   getMeanCoordinates(traceGps: any): [number, number] {
     let coordinates: string[] = traceGps.features[0].geometry.coordinates;
     let xCoordinates: string[] = [];

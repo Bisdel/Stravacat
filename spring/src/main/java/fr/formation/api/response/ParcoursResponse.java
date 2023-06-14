@@ -14,7 +14,6 @@ public class ParcoursResponse {
     private String traceGpsParcours;
     private Time tempsParcours;
 
-    
     public void setId(int id) {
         this.id = id;
     }
