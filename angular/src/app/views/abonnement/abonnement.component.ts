@@ -66,7 +66,7 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
-      animal_id:this.animalCtrl.value,
+      animal_id:this.animalCtrl,
     });
   }
 

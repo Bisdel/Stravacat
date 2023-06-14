@@ -1,30 +1,17 @@
-.pagination {
-    display: flex;
-    align-items: center;
-  }
 
-@keyframes move {
-    100% {
-        transform: translate3d(0, 0, 1px) rotate(360deg);
-    }
-}
 
-:root{
-    font-size: 16px;
-    background: rgba(220, 217, 215, 0.905);
-}
 
-.btn-success{
-  
-    transition: all .4s ease-in-out;
-}
+  .custom-section {
+    background-color: #f2cd8dd8; /* Marron clair - tu peux ajuster cette valeur selon tes préférences */
+    color: inherit;
 
-.background-container {
-    width: 100%;
-    height: 25vh;
-    background-color: chocolate;
-    background-repeat: no-repeat;
-    background-size:contain;
-    background-position: center;
-    background-image: url("https://cdn.discordapp.com/attachments/1092797225605799976/1105481987176800286/logo_stravacat.png");
-  }
+  };
+  .table-spacing td,
+  .table-spacing th {
+    padding: 8px; /* Ajuste la valeur du padding selon tes préférences */
+  };
+
+  .center-button {
+    text-align: center;
+    margin-top: 20px; /* Ajuste la marge supérieure selon tes besoins */
+  };
