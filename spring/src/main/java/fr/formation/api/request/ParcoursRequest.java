@@ -1,30 +1,30 @@
 package fr.formation.api.request;
-import fr.formation.model.Parcours;
+
 import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.List;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public class ParcoursRequest {
-    
-    @NotNull
+
     private int id;
 
     @NotBlank
     private String villeParcours;
 
-    @NotBlank
+    @Valid
     private LocalDateTime datePublicationParcours;
 
+    @NotBlank
     private String traceGpsParcours;
 
-    @NotBlank
+    @Valid
     private Time tempsParcours;
 
-    @NotBlank
-    private List<Parcours> parcours;
+    @Positive
+    private int animalId;
 
     public int getId() {
         return id;
@@ -66,14 +66,12 @@ public class ParcoursRequest {
         this.tempsParcours = tempsParcours;
     }
 
-    public List<Parcours> getParcours() {
-        return parcours;
+    public int getAnimalId() {
+        return animalId;
     }
 
-    public void setParcours(List<Parcours> parcours) {
-        this.parcours = parcours;
+    public void setAnimalId(int animalId) {
+        this.animalId = animalId;
     }
-
-
 
 }

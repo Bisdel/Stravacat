@@ -1,5 +1,4 @@
 package fr.formation.model;
-
 import java.sql.Time;
 import java.time.LocalDateTime;
 
@@ -33,10 +32,10 @@ public class Parcours {
 		@JsonView(Views.Parcours.class)
 	private int id;
 
-        @Column (name = "parc_ville", length = 100)
+		@ManyToOne
+        @JoinColumn (name = "parc_ville_id")
 		@JsonView(Views.Parcours.class)
-	private String villeParcours;
-
+	private Ville ville;
 
         @Column (name = "parc_date")
 		@JsonView(Views.Parcours.class)
@@ -62,12 +61,12 @@ public class Parcours {
 			this.id = id;
 		}
 
-		public String getVilleParcours() {
-			return villeParcours;
+		public Ville getVille() {
+			return ville;
 		}
 
-		public void setVilleParcours(String villeParcours) {
-			this.villeParcours = villeParcours;
+		public void setVille(Ville villeParcours) {
+			this.ville = villeParcours;
 		}
 
 		public LocalDateTime getDatePublicationParcours() {
@@ -90,6 +89,9 @@ public class Parcours {
 			return tempsParcours;
 		}
 
+		public void setTempsParcours(Time tempsParcours) {
+			this.tempsParcours = tempsParcours;
+		}
 
 		public Animal getAnimal() {
 			return animal;
@@ -99,10 +101,5 @@ public class Parcours {
 			this.animal = animal;
 		}
 
-		public void setTempsParcours(Time tempsParcours) {
-			this.tempsParcours = tempsParcours;
-		}
-
-
-
+	
 }
