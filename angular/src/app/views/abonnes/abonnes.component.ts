@@ -49,7 +49,7 @@ export class AbonnesComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,   
-      animal: this.animalCtrl,
+      animal_id: this.animalCtrl,
      });
   }
 
@@ -59,7 +59,7 @@ export class AbonnesComponent implements OnInit {
   this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
   this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
   this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
-  this.villeCtrl = this.formBuilder.control(abonne.ville.nom, Validators.required); // Correction ici
+  this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required); // Correction ici
   this.animalCtrl = this.formBuilder.control(abonne.animal_id, Validators.required );
 
   this.abonneForm = this.formBuilder.group({
@@ -67,7 +67,7 @@ export class AbonnesComponent implements OnInit {
     age: this.ageCtrl,
     espece: this.especeCtrl,
     ville: this.villeCtrl,
-    animal: this.animalCtrl
+    animal_id: this.animalCtrl
     });
   }
 

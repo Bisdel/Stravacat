@@ -47,17 +47,18 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
-      animal: this.animalCtrl,
+      animal_id: this.animalCtrl,
     });
   }
 
   modifier(abonnement: Abonnement) {
     this.editing = abonnement.id;
+
     this.abonnement$ = this.srvAbonnement.findAll();
     this.pseudoCtrl = this.formBuilder.control(abonnement.pseudo, Validators.minLength(1));
     this.ageCtrl = this.formBuilder.control(abonnement.age, Validators.required);
     this.especeCtrl = this.formBuilder.control(abonnement.espece, Validators.required);
-    this.villeCtrl = this.formBuilder.control(abonnement.ville.nom, Validators.required);
+    this.villeCtrl = this.formBuilder.control(abonnement.ville, Validators.required);
     this.animalCtrl = this.formBuilder.control(abonnement.animal_id, Validators.required);
 
     this.abonnementForm = this.formBuilder.group({
@@ -65,8 +66,7 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
-      animal:this.animalCtrl.value,
-
+      animal_id:this.animalCtrl.value,
     });
   }
 
