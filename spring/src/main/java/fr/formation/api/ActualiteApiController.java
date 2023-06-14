@@ -83,7 +83,7 @@ public class ActualiteApiController {
 
 
 	@PostMapping
-	@JsonView(Views.ActualiteDetail.class)
+	@JsonView(Views.Actualite.class)
 	public Actualite add(@Valid @RequestBody Actualite actualite, BindingResult result) {
 		if (result.hasErrors()){
             throw new ActualiteNotValidException();
@@ -93,7 +93,7 @@ public class ActualiteApiController {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.ActualiteDetail.class)
+	@JsonView(Views.Actualite.class)
 	public Actualite update(@PathVariable int id, @Valid @RequestBody Actualite actualite, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ActualiteNotValidException();

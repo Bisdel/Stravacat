@@ -47,7 +47,7 @@ export class ActualiteComponent implements OnInit {
     this.descriptionCtrl = this.formBuilder.control('', Validators.required);
     
     this.actualiteForm = this.formBuilder.group({
-      actu_description: this.descriptionCtrl,
+      description: this.descriptionCtrl,
       ville: this.villeCtrl
      });
   }
@@ -56,10 +56,10 @@ export class ActualiteComponent implements OnInit {
     this.editing = actualite.actu_id;
     this.villes$ = this.srvVille.findAll();
 
-    this.descriptionCtrl = this.formBuilder.control(actualite.actu_description, Validators.required);
     this.villeCtrl = this.formBuilder.control(actualite.ville.nom, Validators.required);
+    this.descriptionCtrl = this.formBuilder.control(actualite.actu_description, Validators.required);
     this.actualiteForm = this.formBuilder.group({
-      actu_description: this.descriptionCtrl,
+      description: this.descriptionCtrl,
       ville: this.villeCtrl,
     });
   }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.formation.api.Views;
 import fr.formation.api.response.VilleResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +24,7 @@ public class Ville {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "vill_id")
+	@JsonView(Views.Common.class)
 	private int id;
 
 	@NotBlank
