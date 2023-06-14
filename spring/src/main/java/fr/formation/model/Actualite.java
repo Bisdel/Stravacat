@@ -43,12 +43,12 @@ public class Actualite {
     
 	@ManyToOne
 	@JoinColumn(name = "actu_animal_id")
-	@JsonView(Views.ActualiteDetail.class)
+	@JsonView(Views.Actualite.class)
 	private Animal animal;
 
 	@ManyToOne
 	@JoinColumn(name = "actu_ville_id")
-	@JsonView(Views.ActualiteDetail.class)
+	@JsonView(Views.Actualite.class)
 	private Ville ville;
 
 	public int getActu_id() {
