@@ -15,8 +15,8 @@ export class ActualiteService {
     return this.httpClient.get<Actualite[]>(`${ environment.apiUrl }/actualite`);
   }
 
-  public findById(animalId: number): Observable<Actualite> {
-    return this.httpClient.get<Actualite>(`${ environment.apiUrl }/actualite/${ animalId }`);
+  public findByAnimalId(animalId: string): Observable<Actualite[]> {
+    return this.httpClient.get<Actualite[]>(`${environment.apiUrl}/actualite/animal/${ animalId }`);
   }
 
   public add(actualite: any): Observable<Actualite> {

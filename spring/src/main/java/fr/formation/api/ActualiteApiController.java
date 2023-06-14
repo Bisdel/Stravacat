@@ -25,6 +25,7 @@ import fr.formation.exception.ActualiteNotFoundException;
 import fr.formation.exception.ActualiteNotValidException;
 import fr.formation.model.Actualite;
 import fr.formation.repo.IActualiteRepository;
+import fr.formation.repo.IAnimalRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -35,6 +36,9 @@ public class ActualiteApiController {
     @Autowired
     private IActualiteRepository repoActualite;
 
+	@Autowired
+    private IAnimalRepository repoAnimal;
+	
     @GetMapping
 	@Transactional
 	public List<ActualiteResponse> findAll() {
@@ -66,6 +70,18 @@ public class ActualiteApiController {
 				
 		return response;
 	}
+
+	@GetMapping("/animal/{animalId}")
+    public List<ActualiteResponse> findAllByAnimalId(@PathVariable int animalId){
+        List<Actualite> actualites = this.repoActualite.findByAnimal(this.repoAnimal.findById(animalId).get());
+        List<ActualiteResponse> actualiteResponse = new ArrayList<>();
+	
+        for (Actualite actu : actualites) {
+			actualiteResponse.add(ActualiteResponse.convert(actu));
+        }
+        return actualiteResponse;
+    }
+
 
 	@PostMapping
 	@JsonView(Views.ActualiteDetail.class)
