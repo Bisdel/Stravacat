@@ -50,7 +50,7 @@ export const routes: Routes = [
   {
     path: 'actualite',
     component: ActualiteComponent,
-    // canActivate: [authenticatedGuard]
+    canActivate: [authenticatedGuard]
    
   },
 
