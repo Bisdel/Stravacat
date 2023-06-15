@@ -20,8 +20,16 @@ export class AbonnesComponent implements OnInit {
   especeCtrl!: FormControl;
   villeCtrl!: FormControl;
   animalCtrl!: FormControl;
+  collectionSize: number = 0;
+  page: number = 1;
+  pageSize: number = 4;
+
   editing: number = 0;
 
+  refreshCountries() {
+    console.log('Page actuelle :', this.page);
+    console.log('Taille de la page :', this.pageSize);
+  }
 
   constructor(title: Title, private srvAbonne: AbonneService, private formBuilder: FormBuilder) {
     title.setTitle("Liste des abonne");
@@ -29,6 +37,10 @@ export class AbonnesComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
+    this.abonne$.subscribe(abonnes =>{
+      this.collectionSize = abonnes.length; // Remplacez 100 par la taille réelle de votre collection d'abonnés
+      this.pageSize = 10;
+    })
   }
 
   private reload() {

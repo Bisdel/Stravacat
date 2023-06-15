@@ -25,6 +25,8 @@ import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { MapComponent } from './components/map/map.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgbPaginationModule,
   ],
   providers: [
     {
