@@ -20,6 +20,7 @@ import fr.formation.exception.VilleNotFoundException;
 import fr.formation.exception.VilleNotValidException;
 import fr.formation.model.Ville;
 import fr.formation.repo.IVilleRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
@@ -32,6 +33,13 @@ public class VilleApiController {
 	@GetMapping
 	public List<VilleResponse> findAll() {
 		return this.repoville.findAll().stream().map(VilleResponse::convert).toList();
+	}
+
+	@GetMapping("/{nom}")
+	@Transactional
+	public VilleResponse findByNom(@PathVariable String nom) {
+		Ville ville = this.repoville.findByNom(nom).orElseThrow(VilleNotFoundException::new);
+		return VilleResponse.convert(ville);
 	}
 
 	@PostMapping

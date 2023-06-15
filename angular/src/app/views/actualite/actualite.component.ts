@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ParseTreeResult } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Actualite } from 'src/app/models/actualite';
 import { Ville } from 'src/app/models/ville';
 import { ActualiteService } from 'src/app/services/actualite.service';
+import { AnimalService } from 'src/app/services/animal.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { VilleService } from 'src/app/services/ville.service';
 
@@ -21,7 +23,7 @@ export class ActualiteComponent implements OnInit {
   animalCtrl!: FormControl;
   villeCtrl!: FormControl;
   descriptionCtrl!: FormControl;
-  isprivate: boolean = false;
+  isprivateCtrl!: FormControl;
   editing: number = 0;
 
   constructor(
@@ -30,6 +32,7 @@ export class ActualiteComponent implements OnInit {
     private srvVille: VilleService,
     private router: Router,
     private srvAuth: AuthenticationService,
+    private srvAnimal: AnimalService,
     private formBuilder: FormBuilder
   ) {
     title.setTitle("Fil d'actualités");
@@ -43,12 +46,14 @@ export class ActualiteComponent implements OnInit {
     this.editing = 0;
     this.villes$ = this.srvVille.findAll();
 
-    this.villeCtrl = this.formBuilder.control(0, Validators.min(1));
+    this.villeCtrl = this.formBuilder.control('', Validators.required);
     this.descriptionCtrl = this.formBuilder.control('', Validators.required);
+    this.isprivateCtrl = this.formBuilder.control(true, Validators.required);
     
     this.actualiteForm = this.formBuilder.group({
-      description: this.descriptionCtrl,
-      ville: this.villeCtrl
+      actu_description: this.descriptionCtrl,
+      ville: this.villeCtrl,
+      actu_isprivate: this.isprivateCtrl,
      });
   }
 
@@ -58,9 +63,12 @@ export class ActualiteComponent implements OnInit {
 
     this.villeCtrl = this.formBuilder.control(actualite.ville.nom, Validators.required);
     this.descriptionCtrl = this.formBuilder.control(actualite.actu_description, Validators.required);
+    this.isprivateCtrl = this.formBuilder.control(actualite.actu_isprivate, Validators.required);
+    
     this.actualiteForm = this.formBuilder.group({
-      description: this.descriptionCtrl,
       ville: this.villeCtrl,
+      actu_description: this.descriptionCtrl,
+      actu_isprivate: this.isprivateCtrl,
     });
   }
 
@@ -68,20 +76,25 @@ export class ActualiteComponent implements OnInit {
   let addOrEditObs: Observable<Actualite>;
     const actualite = {
       actu_id: this.editing,
+      // animal: this.srvAnimal.findById(this.srvAuth.animalId),
+      animal: this.srvAuth.animalId,
+      ville: this.srvVille.findByNom(this.villeCtrl),
       actu_description: this.descriptionCtrl.value,
-      ville: this.villeCtrl.value
+      actu_isprivate: this.isprivateCtrl.value
     };
    
-    if (this.editing) {
-      addOrEditObs = this.srvActualite.edit(actualite);
-    }
+    if (confirm("Es-tu sûr de vouloir valider ?")) {
+      if (this.editing) {
+        addOrEditObs = this.srvActualite.edit(actualite);
+      }
 
-    else {
-      addOrEditObs = this.srvActualite.add(actualite);
-    }
+      else {
+        addOrEditObs = this.srvActualite.add(actualite);
+      }
 
-    addOrEditObs.subscribe(() => this.srvActualite.findAll());
-    this.stopAjouterOuModifier();
+      addOrEditObs.subscribe(() => this.srvActualite.findAll());
+      this.stopAjouterOuModifier();
+    }
   }
 
   stopAjouterOuModifier() {
