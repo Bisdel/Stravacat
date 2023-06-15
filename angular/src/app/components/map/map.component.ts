@@ -9,6 +9,7 @@ import * as L from 'leaflet';
 import { Parcours } from 'src/app/models/parcours';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ParcoursService } from 'src/app/services/parcours.service';
+import { AppToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-map',
@@ -35,7 +36,8 @@ export class MapComponent implements AfterViewInit {
   constructor(
     private srvParcours: ParcoursService,
     private srvAuth: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private srvToast:AppToastService
   ) {
     this.villeParcoursCtrl = this.formBuilder.control(
       '',
@@ -120,9 +122,9 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      this.triggerErrorToast(
+      this.srvToast.show('Information',
         "Il n'y a pas de parcours depuis le " +
-          this.parcours$[0].datePublicationParcours.getMonth +
+          this.parcours$[0].datePublicationParcours +
           '.'
       );
     }
@@ -137,7 +139,7 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      this.triggerErrorToast(
+      this.srvToast.show('Information',
         "Il n'y a pas de parcours avant le " +
           this.parcours$![this.indexParcours].datePublicationParcours +
           '.'
@@ -166,10 +168,4 @@ export class MapComponent implements AfterViewInit {
     let meanCoordinates: [number, number] = [meanYCoordinate, meanXCoordinate];
     return meanCoordinates;
   }
-
-  triggerErrorToast(message: String) {
-    this.toastMessage = message;
-    this.showToast = true;
-  }
-
 }
