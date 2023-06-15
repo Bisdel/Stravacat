@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private srvAnimal: AnimalService
   ) {
+    this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
     title.setTitle('Mon profil');
     this.srvAnimal.findById(this.animalId).subscribe({
       next: (result) => {
@@ -53,6 +54,7 @@ export class ProfileComponent implements OnInit {
           result.espece,
           result.ville
         );
+      
         this.loaded = true;
         this.pseudoCtrl = this.formBuilder.control(
           this.animal.pseudo,
@@ -89,7 +91,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
   }
 
   modifier() {

@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as L from 'leaflet';
 import { environment } from 'src/app/environments/environment';
 import { AuthResponse } from 'src/app/models/response/auth-response';
@@ -21,48 +26,37 @@ export class MapComponent implements AfterViewInit {
 
   userForm!: FormGroup;
   erreur: boolean = false;
-  villeParcoursCtrl!:FormControl;
-  datePublicationParcoursCtrl!:FormControl;
-  tempsParcoursCtrl!:FormControl;
-  // animalIdCtrl!:FormControl;
-  traceGpsParcoursCtrl!:FormControl;
+  villeParcoursCtrl!: FormControl;
+  datePublicationParcoursCtrl!: FormControl;
+  tempsParcoursCtrl!: FormControl;
+  traceGpsParcoursCtrl!: FormControl;
   @Output() ok: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private srvParcours: ParcoursService,
     private srvAuth: AuthenticationService,
-    private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private formBuilder: FormBuilder
   ) {
-    // this.villeParcoursCtrl = this.formBuilder.control(
-    //       this.animal.pseudo,
-    //       Validators.minLength(1)
-    //     );
-    //     this.emailCtrl = this.formBuilder.control('', Validators.email);
-    //     this.passwordCtrl = this.formBuilder.control(
-    //       '',
-    //       Validators.minLength(8)
-    //     );
-    //     this.ageCtrl = this.formBuilder.control(
-    //       this.animal.age,
-    //       Validators.min(1)
-    //     );
-    //     this.especeCtrl = this.formBuilder.control(
-    //       this.animal.espece,
-    //       Validators.minLength(1)
-    //     );
-    //     this.villeCtrl = this.formBuilder.control(
-    //       this.animal.ville.nom,
-    //       Validators.minLength(1)
-    //     );
+    this.villeParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.datePublicationParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.tempsParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.traceGpsParcoursCtrl = this.formBuilder.control('', Validators.minLength(1));
 
-        this.userForm = this.formBuilder.group({
-          villeParcours: this.villeParcoursCtrl,
-          datePublicationParcours: this.datePublicationParcoursCtrl,
-          tempsParcours: this.tempsParcoursCtrl,
-          traceGpsParcours: this.traceGpsParcoursCtrl,
-          animalId: this.srvAuth.animalId
-        });
+    this.userForm = this.formBuilder.group({
+      villeParcours: this.villeParcoursCtrl,
+      datePublicationParcours: this.datePublicationParcoursCtrl,
+      tempsParcours: this.tempsParcoursCtrl,
+      traceGpsParcours: this.traceGpsParcoursCtrl,
+    });
   }
 
   ngAfterViewInit(): void {
@@ -100,8 +94,19 @@ export class MapComponent implements AfterViewInit {
       this.datePublicationParcoursCtrl.value,
       this.tempsParcoursCtrl.value,
       this.traceGpsParcoursCtrl.value,
-      this.srvAuth.animalId.toString()
-    )}
+      this.srvAuth.animalId.toString(),
+      {
+        next: () => {
+          console.log('ok !');
+          window.location.reload();
+        },
+
+        error: () => {
+          this.erreur = true;
+        },
+      }
+    );
+  }
 
   parcoursPrecedent() {
     if (this.indexParcours > 0) {
