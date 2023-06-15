@@ -20,6 +20,14 @@ export class AbonnementComponent implements OnInit {
   villeCtrl!: FormControl;
   animalCtrl!: FormControl;
   editing: number = 0;
+  collectionSize: number = 0;
+  page: number = 1;
+  pageSize: number = 4;
+
+  refreshCountries(){
+    console.log('Page actuelle :' , this.page);
+    console.log('Taille de la page :' , this.pageSize);
+  }
 
   constructor(title: Title, private srvAbonnement: AbonnementService, private formBuilder: FormBuilder) {
     title.setTitle("Liste des abonnements");
@@ -27,6 +35,12 @@ export class AbonnementComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
+
+    this.abonnement$.subscribe(abonnement => {
+     this.collectionSize = abonnement.length;
+     this.pageSize = 10 ;
+
+    })
   }
 
   private reload() {

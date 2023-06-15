@@ -26,6 +26,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { MapComponent } from './components/map/map.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppToastsComponent } from './components/toasts/toasts.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import { AppToastsComponent } from './components/toasts/toasts.component';
         FormsModule, ReactiveFormsModule,
         RouterModule.forRoot(routes),
         HttpClientModule,
-        NgbModule
+        NgbModule,
+        NgbPaginationModule,
     ]
 })
 export class AppModule { }

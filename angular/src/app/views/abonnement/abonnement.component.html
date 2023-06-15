@@ -24,30 +24,29 @@
   </script>
   <div class ="custom-section">
     <hr />
-  <p>Liste de mes abonnement</p>
-  
+  <p>Liste de mes abonnement 🐵</p>
   <hr />
   </div>
   
   <table class="table table-striped table-bordered table-spacing">
     <thead>
       <tr>
-        <th>Pseudo</th>
-        <th>Age</th>
-        <th>Espèce</th>
-        <th>Ville</th>
-        <th>Animal_id</th>
-        <th>Action</th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Age</th>
+        <th scope="col">Espèce</th>
+        <th scope="col">Ville_id</th>
+        <th scope="col">Animal_id</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
   
     <tbody>
-      <tr *ngFor="let abonnement of abonnement$ | async">
-        <td>{{ abonnement.pseudo }}</td>
-        <td>{{ abonnement.age }}</td>
-        <td>{{ abonnement.espece }}</td>
-        <td>{{ abonnement.ville ? abonnement.ville.nom  : 'la ville n existe pas' }}</td>
-        <td>{{ abonnement.animal_id }}</td>
+      <tr *ngFor="let abonnement of abonnement$ | async | slice:(page-1)*pageSize:page*pageSize">
+        <td scope="row">{{ abonnement.pseudo }}</td>
+        <td scope="row">{{ abonnement.age }}</td>
+        <td scope="row">{{ abonnement.espece }}</td>
+        <td scope="row">{{ abonnement.ville ? abonnement.ville.nom  : 'la ville n existe pas' }}</td>
+        <td scope="row">{{ abonnement.animal_id }}</td>
         <td>
           <button (click)="modifier(abonnement)" class="btn btn-outline-warning">Modifier</button>
           <button (click)="supprimer(abonnement)" class="btn btn-outline-danger ms-2">Supprimer</button>
@@ -55,6 +54,17 @@
       </tr>
     </tbody>
   </table>
+  <div class="d-flex justify-content-between p-2 p-4 p-6">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshCountries()">
+    </ngb-pagination>
+
+    <select class="form-select " style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="2" [selected]="pageSize === 2">2 items par page</option>
+      <option [ngValue]="4" [selected]="pageSize === 4">4 items per page</option>
+      <option [ngValue]="6" [selected]="pageSize === 6">6 items per page</option>
+    </select>
+  </div>
   
   <hr />
   <div class="contenent-center">
@@ -79,21 +89,8 @@
   </div>
   
   <hr />
-  <div class="d-flex justify-content-center">
-    <nav aria-label="Pagination">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span
-              aria-hidden="true">&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-              aria-hidden="true">&raquo;</span></a></li>
-      </ul>
-    </nav>
-  </div>
-</body>
 
+</body>
 </html>
 
 
