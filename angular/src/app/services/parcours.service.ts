@@ -46,4 +46,35 @@ export class ParcoursService {
         },
       });
   }
+
+  public supprimerParcours(
+    villeParcours:string,
+    datePublicationParcours:Date,
+    tempsParcours: Time,
+    traceGpsParcours: JSON,
+    animalId: string,
+    options:any
+  ){
+    this.httpClient
+      .post<Parcours>(`${environment.apiUrl}/parcours`, {
+        villeParcours,
+        datePublicationParcours,
+        tempsParcours,
+        traceGpsParcours,
+        animalId
+      })
+      .subscribe({
+        next: (result) => {
+          if (options.next) {
+            options.next(result);
+          }
+        },
+
+        error: () => {
+          if (options.error) {
+            options.error();
+          }
+        },
+      });
+  }
 }

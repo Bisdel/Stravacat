@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
@@ -23,6 +24,7 @@ export class MapComponent implements AfterViewInit {
   private indexParcours: number = 0;
 
   showToast: boolean = false;
+  datePipe: DatePipe = new DatePipe("en-US");
 
   userForm!: FormGroup;
   erreur: boolean = false;
@@ -113,6 +115,27 @@ export class MapComponent implements AfterViewInit {
     );
   }
 
+  supprimerParcours() {
+    this.erreur = false;
+    this.srvParcours.ajouterOuModifierParcours(
+      this.villeParcoursCtrl.value,
+      this.datePublicationParcoursCtrl.value,
+      this.tempsParcoursCtrl.value,
+      this.traceGpsParcoursCtrl.value,
+      this.srvAuth.animalId.toString(),
+      {
+        next: () => {
+          console.log('ok !');
+          window.location.reload();
+        },
+
+        error: () => {
+          this.erreur = true;
+        },
+      }
+    );
+  }
+
   parcoursPrecedent() {
     if (this.indexParcours > 0) {
       this.indexParcours--;
@@ -122,9 +145,9 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      this.srvToast.show('Information',
-        "Il n'y a pas de parcours depuis le " +
-          this.parcours$[0].datePublicationParcours +
+        this.srvToast.show('Information',
+        "Il n'y a pas eu de nouveau parcours depuis le " +
+        this.datePipe.transform(this.parcours$[0].datePublicationParcours, "dd/MM/yyyy HH:mm") +
           '.'
       );
     }
@@ -141,7 +164,7 @@ export class MapComponent implements AfterViewInit {
     } else {
       this.srvToast.show('Information',
         "Il n'y a pas de parcours avant le " +
-          this.parcours$![this.indexParcours].datePublicationParcours +
+        this.datePipe.transform(this.parcours$![this.indexParcours].datePublicationParcours, "dd/MM/yyyy HH:mm") +
           '.'
       );
     }
