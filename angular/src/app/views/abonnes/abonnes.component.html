@@ -13,59 +13,75 @@
 </head>
 
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
+  <!-- Inclusion des scripts nécessaires à Bootstrap -->
 
-
+  <!-- Début de la section personnalisée -->
   <div class="custom-section">
     <a href="/abonnement">Mes abonnements 🐶</a>
     <hr />
-
-
-
     <p>Listes de mes abonnés 🐯</p>
     <hr />
   </div>
+  <!-- Fin de la section personnalisée -->
 
+  <!-- Tableau pour afficher les abonnés -->
   <table class="table table-striped table-bordered  table-spacing">
     <thead>
       <tr>
-        <th>Pseudo</th>
-        <th>Age</th>
-        <th>Espèce</th>
-        <th>Ville</th>
-        <th>Animal_id</th>
-        <th>Action</th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Age</th>
+        <th scope="col">Espèce</th>
+        <th scope="col">Ville_id</th>
+        <th scope="col">Animal_id</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let abonne of abonne$ | async">
-        <td>{{ abonne.pseudo }}</td>
-        <td>{{ abonne.age }}</td>
-        <td>{{ abonne.espece }}</td>
-        <td>{{ abonne.ville ? abonne.ville.nom : ' la ville n existe pas '}}</td>
-        <td>{{abonne.animal_id }}</td>
+      <!-- Boucle sur chaque abonné pour afficher les détails -->
+      <tr *ngFor="let abonne of abonne$ | async | slice:(page-1)*pageSize:page*pageSize">
+        <td scope="row">{{ abonne.pseudo }}</td>
+        <td scope="row">{{ abonne.age }}</td>
+        <td scope="row">{{ abonne.espece }}</td>
+        <td scope="row">{{ abonne.ville ? abonne.ville.nom : ' la ville n existe pas '}}</td>
+        <td scope="row">{{abonne.animal_id }}</td>
         <td>
+          <!-- Boutons pour modifier et supprimer l'abonné -->
           <button (click)="modifier(abonne)" class="btn btn-outline-warning">Modifier</button>
-          <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2" role="alert">Supprimer</button>
+          <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2">Supprimer</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <hr />
 
-  <div class="contenent-center">
-    <button *ngIf="!abonneForm" class="btn btn-success" (click)="ajouter()">Ajouter un Abonné</button>
+  <!-- Pagination pour naviguer entre les pages d'abonnés -->
+  <div class="d-flex justify-content-between p-2 p-4 p-6">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshCountries()">
+    </ngb-pagination>
+
+    <!-- Sélection du nombre d'éléments par page -->
+    <div>
+      <label for="pageSizeSelect">Nombre d'éléments par page:</label>
+      <select id="pageSizeSelect" class="form-select" style="width: auto" [(ngModel)]="pageSize"
+        (ngModelChange)="refreshCountries()">
+        <option [ngValue]="2" [selected]="pageSize === 2">2 items par page</option>
+        <option [ngValue]="4" [selected]="pageSize === 4">4 items per page</option>
+        <option [ngValue]="6" [selected]="pageSize === 6">6 items per page</option>
+      </select>
+    </div>
   </div>
 
+  <!-- Affichage du bouton pour ajouter un abonné -->
+  <div class="contenent-center">
+    <button *ngIf="!abonneForm && editing === 0" class="btn btn-success" (click)="ajouter()">Ajouter un Abonné</button>
+  </div>
+
+  <!-- Formulaire pour ajouter ou modifier un abonné -->
   <div *ngIf="abonneForm">
     <sost-form-card [formGroup]="abonneForm" [title]="editing ? 'Modifier abonne' : 'Ajouter un abonne'"
       [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()"
       (cancel)="stopAjouterOuModifier()">
+      <!-- Champs du formulaire -->
       <sost-form-input id="pseudo" label="pseudo" formControlName="pseudo" [formControl]="pseudoCtrl"
         message-when-not-valid="Le pseudo est obligatoire" />
       <sost-form-input id="age" label="age" formControlName="age" [formControl]="ageCtrl"
@@ -78,22 +94,7 @@
         message-when-not-valid="L'id de l'animal ville est obligatoire" />
     </sost-form-card>
   </div>
-
   <hr />
-
-  <div class="d-flex justify-content-center">
-    <nav aria-label="Pagination">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span
-              aria-hidden="true">&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-              aria-hidden="true">&raquo;</span></a></li>
-      </ul>
-    </nav>
-  </div>
 </body>
 
 </html>

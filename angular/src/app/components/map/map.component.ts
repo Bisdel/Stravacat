@@ -1,11 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as L from 'leaflet';
-import { environment } from 'src/app/environments/environment';
-import { AuthResponse } from 'src/app/models/response/auth-response';
+import { Parcours } from 'src/app/models/parcours';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ParcoursService } from 'src/app/services/parcours.service';
+import { AppToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-map',
@@ -13,56 +18,52 @@ import { ParcoursService } from 'src/app/services/parcours.service';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements AfterViewInit {
-  private loaded: boolean = false;
   private map: any;
-  private parcours$!: any[];
+  private parcours$!: Parcours[];
   private traceGps: any;
   private indexParcours: number = 0;
 
+  showToast: boolean = false;
+  datePipe: DatePipe = new DatePipe("en-US");
+
   userForm!: FormGroup;
   erreur: boolean = false;
-  villeParcoursCtrl!:FormControl;
-  datePublicationParcoursCtrl!:FormControl;
-  tempsParcoursCtrl!:FormControl;
-  // animalIdCtrl!:FormControl;
-  traceGpsParcoursCtrl!:FormControl;
+  villeParcoursCtrl!: FormControl;
+  datePublicationParcoursCtrl!: FormControl;
+  tempsParcoursCtrl!: FormControl;
+  traceGpsParcoursCtrl!: FormControl;
   @Output() ok: EventEmitter<void> = new EventEmitter<void>();
+  toastMessage: String = '';
 
   constructor(
     private srvParcours: ParcoursService,
     private srvAuth: AuthenticationService,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private srvToast:AppToastService
   ) {
-    // this.villeParcoursCtrl = this.formBuilder.control(
-    //       this.animal.pseudo,
-    //       Validators.minLength(1)
-    //     );
-    //     this.emailCtrl = this.formBuilder.control('', Validators.email);
-    //     this.passwordCtrl = this.formBuilder.control(
-    //       '',
-    //       Validators.minLength(8)
-    //     );
-    //     this.ageCtrl = this.formBuilder.control(
-    //       this.animal.age,
-    //       Validators.min(1)
-    //     );
-    //     this.especeCtrl = this.formBuilder.control(
-    //       this.animal.espece,
-    //       Validators.minLength(1)
-    //     );
-    //     this.villeCtrl = this.formBuilder.control(
-    //       this.animal.ville.nom,
-    //       Validators.minLength(1)
-    //     );
+    this.villeParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.datePublicationParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.tempsParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.traceGpsParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
 
-        this.userForm = this.formBuilder.group({
-          villeParcours: this.villeParcoursCtrl,
-          datePublicationParcours: this.datePublicationParcoursCtrl,
-          tempsParcours: this.tempsParcoursCtrl,
-          traceGpsParcours: this.traceGpsParcoursCtrl,
-          animalId: this.srvAuth.animalId
-        });
+    this.userForm = this.formBuilder.group({
+      villeParcours: this.villeParcoursCtrl,
+      datePublicationParcours: this.datePublicationParcoursCtrl,
+      tempsParcours: this.tempsParcoursCtrl,
+      traceGpsParcours: this.traceGpsParcoursCtrl,
+    });
   }
 
   ngAfterViewInit(): void {
@@ -100,8 +101,40 @@ export class MapComponent implements AfterViewInit {
       this.datePublicationParcoursCtrl.value,
       this.tempsParcoursCtrl.value,
       this.traceGpsParcoursCtrl.value,
-      this.srvAuth.animalId.toString()
-    )}
+      this.srvAuth.animalId.toString(),
+      {
+        next: () => {
+          console.log('ok !');
+          window.location.reload();
+        },
+
+        error: () => {
+          this.erreur = true;
+        },
+      }
+    );
+  }
+
+  supprimerParcours() {
+    this.erreur = false;
+    this.srvParcours.ajouterOuModifierParcours(
+      this.villeParcoursCtrl.value,
+      this.datePublicationParcoursCtrl.value,
+      this.tempsParcoursCtrl.value,
+      this.traceGpsParcoursCtrl.value,
+      this.srvAuth.animalId.toString(),
+      {
+        next: () => {
+          console.log('ok !');
+          window.location.reload();
+        },
+
+        error: () => {
+          this.erreur = true;
+        },
+      }
+    );
+  }
 
   parcoursPrecedent() {
     if (this.indexParcours > 0) {
@@ -112,9 +145,9 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      triggerErrorToast(
-        "Il n'y a pas de parcours depuis le " +
-          this.parcours$![this.indexParcours].datePublicationParcours +
+        this.srvToast.show('Information',
+        "Il n'y a pas eu de nouveau parcours depuis le " +
+        this.datePipe.transform(this.parcours$[0].datePublicationParcours, "dd/MM/yyyy HH:mm") +
           '.'
       );
     }
@@ -129,9 +162,9 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      triggerErrorToast(
+      this.srvToast.show('Information',
         "Il n'y a pas de parcours avant le " +
-          this.parcours$![this.indexParcours].datePublicationParcours +
+        this.datePipe.transform(this.parcours$![this.indexParcours].datePublicationParcours, "dd/MM/yyyy HH:mm") +
           '.'
       );
     }
@@ -158,7 +191,4 @@ export class MapComponent implements AfterViewInit {
     let meanCoordinates: [number, number] = [meanYCoordinate, meanXCoordinate];
     return meanCoordinates;
   }
-}
-function triggerErrorToast(message: String) {
-  throw new Error('Function not implemented.');
 }

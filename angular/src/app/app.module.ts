@@ -25,42 +25,46 @@ import { AbonnementComponent } from './views/abonnement/abonnement.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { MapComponent } from './components/map/map.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppToastsComponent } from './components/toasts/toasts.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    FournisseurComponent,
-    NavigationComponent,
-    FormCardComponent,
-    FormInputComponent,
-    FormSelectComponent,
-    InscriptionComponent,
-    FooterComponent,
-    InputComponent,
-    AbonnesComponent,
-    VilleComponent,
-    ConnexionComponent,
-    ActualiteComponent,
-    AbonnementComponent,
-    ProfileComponent,
-    MapComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule, ReactiveFormsModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    NgbModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthenticationInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        PageNotFoundComponent,
+        FournisseurComponent,
+        NavigationComponent,
+        FormCardComponent,
+        FormInputComponent,
+        FormSelectComponent,
+        InscriptionComponent,
+        FooterComponent,
+        InputComponent,
+        AbonnesComponent,
+        VilleComponent,
+        ConnexionComponent,
+        ActualiteComponent,
+        AbonnementComponent,
+        ProfileComponent,
+        MapComponent,
+        AppToastsComponent
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        FormsModule, ReactiveFormsModule,
+        RouterModule.forRoot(routes),
+        HttpClientModule,
+        NgbModule,
+        NgbPaginationModule,
+    ]
 })
 export class AppModule { }

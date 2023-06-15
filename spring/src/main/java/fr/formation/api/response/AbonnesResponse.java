@@ -82,8 +82,13 @@ public class AbonnesResponse {
 	}
 
 	public static AbonnesResponse convert(Abonnes abonnes) {
+		// Créer une nouvelle instance de AbonnesResponse
 		AbonnesResponse response = new AbonnesResponse();
+
+		// Copier les propriétés de l'objet Abonnes vers l'objet AbonnesResponse
 		BeanUtils.copyProperties(abonnes, response);
+
+		// Retourner l'objet AbonnesResponse converti
 		return response;
 	}
 

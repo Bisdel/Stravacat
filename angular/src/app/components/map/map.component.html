@@ -77,22 +77,27 @@
                     [formControl]="villeParcoursCtrl"
                     message-when-not-valid="La ville est obligatoire"
                   ></app-input>
-                  <app-input
+                   <app-input
                     id="datePublicationParcours"
-                    type="text"
+                    type="datetime-local"
                     label="Date du parcours"
                     formControlName="datePublicationParcours"
                     [formControl]="datePublicationParcoursCtrl"
                     message-when-not-valid="La date est obligatoire"
                   ></app-input>
-                  <app-input
+                  <div class="form-floating mb-3">
+                    <input
+                    class="form-control"
                     id="tempsParcours"
-                    type="text"
-                    label="Temps de parcours"
+                    type="time"
+                    step="1"
                     formControlName="tempsParcours"
                     [formControl]="tempsParcoursCtrl"
                     message-when-not-valid="Le temps de parcours est obligatoire"
-                  ></app-input>
+                    placeholder="tempsParcours"
+                    />
+                    <label>Temps de parcours (hh:mm:ss)</label>
+                  </div>
                   <app-input
                     id="traceGpsParcours"
                     type="text"
@@ -100,7 +105,7 @@
                     formControlName="traceGpsParcours"
                     [formControl]="traceGpsParcoursCtrl"
                     message-when-not-valid="Tracé GPS non valide"
-                  ></app-input>
+                  ></app-input> 
                 </div>
               </div>
               <div class="modal-footer justify-content-between">

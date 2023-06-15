@@ -9,9 +9,18 @@ import fr.formation.model.Actualite;
 public class ActualiteResponse {
     private int actu_id;
     private String actu_description;
+    private boolean actu_isprivate;
     private LocalDateTime actu_timestamp;
     private AnimalResponse animal;
     private VilleResponse ville;
+
+    public boolean isActu_isprivate() {
+        return actu_isprivate;
+    }
+
+    public void setActu_isprivate(boolean actu_isprivate) {
+        this.actu_isprivate = actu_isprivate;
+    }
 
     public int getActu_id() {
         return actu_id;
