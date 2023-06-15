@@ -1,58 +1,62 @@
-<div class="col">
-  <div class="card" style="height: 400px">
+<div class=row>
+  <div class="col">
+    <div class="card" style="height: 400px">
 
-    <div class="card-header">
-      <strong>Fil d'actu  </strong>
+      <div class="card-header">
+        <h5>
+          <strong>Fil d'actu</strong>
 
-      <button ngbTooltip="Ajouter une actu" class="btn" *ngIf="!actualiteForm" (click)="ajouter()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="card-body" style="height: 320px; overflow-y: scroll">
-      <div class="card mb-3" *ngFor="let actualite of actualites$ | async">
-        <div class="card-header">
-          <img
-              class="border border-secondary-subtle border-3 rounded-4 px-0"
-              ngbTooltip="Samba"
-              src="assets\images\profile_picture_index_2.png"
-              style="height: 40px; width: 40px; object-fit: cover"
-              alt="..."
-          />
-          <strong id="title">{{ actualite.animal.pseudo.toUpperCase() }}</strong>, {{ actualite.actu_timestamp | date:'dd/MM/yyyy HH:mm' }}
-          <span> à {{ actualite.ville.nom }}</span>
-          <button ngbTooltip="Modifier cette actu" class="btn" *ngIf="!actualiteForm" (click)="modifier(actualite)" id="title">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
-              <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+          <button id="title" ngbTooltip="Ajouter une actu" class="btn" *ngIf="!actualiteForm" (click)="ajouter()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
             </svg>
           </button>
-          <button ngbTooltip="Supprimer cette actu" class="btn" (click)="supprimer(actualite)" >
-            <svg id="title" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-            </svg>
-          </button>
-        </div>
-        <div class="card-body">
-          <p>
-            {{ actualite.actu_description }}
-          </p>
+        </h5>
+      </div>
+
+      <div class="card-body" style="height: 320px; overflow-y: scroll">
+        <div class="card mb-3" *ngFor="let actualite of actualites$ | async">
+          <div class="card-header">
+            <img
+                class="border border-secondary-subtle border-3 rounded-4 px-0"
+                ngbTooltip="Samba"
+                src="assets\images\profile_picture_index_2.png"
+                style="height: 40px; width: 40px; object-fit: cover"
+                alt="..."
+            />
+            <strong id="title">{{ actualite.animal.pseudo.toUpperCase() }}</strong>, {{ actualite.actu_timestamp | date: 'dd/MM/yyyy HH:mm' }}
+            <span> à {{ actualite.ville.nom }}</span>
+            <button ngbTooltip="Modifier cette actu" class="btn" *ngIf="!actualiteForm" (click)="modifier(actualite)" id="title">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+                <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+              </svg>
+            </button>
+            <button id="title" ngbTooltip="Supprimer cette actu" class="btn" *ngIf="!actualiteForm" (click)="supprimer(actualite)" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-body">
+            <p>
+              {{ actualite.actu_description }}
+            </p>
+          </div>
         </div>
       </div>
+      
     </div>
-    
   </div>
-</div>
 
-<br>
-<div *ngIf="actualiteForm" style="height: 200px">
-  <sost-form-card style="height: 400px" [formGroup]="actualiteForm" [title]="editing ? 'Modifier une actualité' : 'Ajouter une actualité'" [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()" (cancel)="stopAjouterOuModifier()">
-    <sost-form-input id="description" label="Description" formControlName="description" [formControl]="descriptionCtrl" message-when-not-valid="Une description est requise"></sost-form-input>
-    <!-- <sost-form-select id="ville" label="Ville" [items]="villes$ | async" itemLabel="nom" formControlName="ville" [formControl]="villeCtrl" message-when-not-valid="Une ville est requise"></sost-form-select> -->
-    <sost-form-input id="ville" label="Ville" formControlName="ville" [formControl]="villeCtrl" message-when-not-valid="Une ville est requise"></sost-form-input>
-  </sost-form-card>
+  <div class="col" *ngIf="actualiteForm">
+    <sost-form-card style="height: 400px" [formGroup]="actualiteForm" [title]="editing ? 'Modifier une actualité' : 'Ajouter une actualité'" [ok-label]="editing ? 'Modifier' : 'Ajouter'" [cancellable]="true" (ok)="ajouterOuModifier()" (cancel)="stopAjouterOuModifier()">
+      <sost-form-input id="description" label="Description" formControlName="actu_description" [formControl]="descriptionCtrl" message-when-not-valid="Une description est requise"></sost-form-input>
+      <sost-form-input id="ville" label="Ville" formControlName="ville" [formControl]="villeCtrl" message-when-not-valid="Une ville est requise"></sost-form-input>
+      <sost-form-input id="private" label="Privé (true/false)" formControlName="actu_isprivate" [formControl]="isprivateCtrl" message-when-not-valid="La confidentialité est requise"></sost-form-input>
+    </sost-form-card>
+  </div>
 </div> 
-<br/>
+<!-- <sost-form-select id="ville" label="Ville" [items]="villes$ | async" itemLabel="nom" formControlName="ville" [formControl]="villeCtrl" message-when-not-valid="Une ville est requise"></sost-form-select> -->
+<!-- <input type="checkbox" id="private" value="Privé ?" formControlName="private" [formControl]="isprivateCtrl" message-when-not-valid="La confidentialité est requise"> -->
