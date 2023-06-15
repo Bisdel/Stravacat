@@ -56,6 +56,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
     NgbPaginationModule,
+    
   ],
   providers: [
     {

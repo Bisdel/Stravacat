@@ -46,25 +46,33 @@
         <td scope="row">{{ abonne.ville ? abonne.ville.nom : ' la ville n existe pas '}}</td>
         <td scope="row">{{abonne.animal_id }}</td>
         <td>
-          <button (click)="modifier(abonne)" class="btn btn-outline-warning">Modifier</button>
-          <button (click)="supprimer(abonne)" class="btn btn-outline-danger ms-2" role="alert">Supprimer</button>
+          <button (click)="modifier(abonne) " class="btn btn-outline-warning">Modifier</button>
+          <button (click)="supprimer(abonne) " class="btn btn-outline-danger ms-2">Supprimer</button>
         </td>
+
       </tr>
     </tbody>
   </table>
+
   <div class="d-flex justify-content-between p-2 p-4 p-6">
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
       (pageChange)="refreshCountries()">
     </ngb-pagination>
 
-    <select class="form-select " style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-      <option [ngValue]="2" [selected]="pageSize === 2">2 items par page</option>
-      <option [ngValue]="4" [selected]="pageSize === 4">4 items per page</option>
-      <option [ngValue]="6" [selected]="pageSize === 6">6 items per page</option>
-    </select>
+    <div>
+      <label for="pageSizeSelect">Nombre d'éléments par page:</label>
+      <select id="pageSizeSelect" class="form-select" style="width: auto" [(ngModel)]="pageSize"
+        (ngModelChange)="refreshCountries()">
+        <option [ngValue]="2" [selected]="pageSize === 2">2 items par page</option>
+        <option [ngValue]="4" [selected]="pageSize === 4">4 items per page</option>
+        <option [ngValue]="6" [selected]="pageSize === 6">6 items per page</option>
+      </select>
+    </div>
   </div>
+
   <div class="contenent-center">
-    <button *ngIf="!abonneForm" class="btn btn-success" (click)="ajouter()">Ajouter un Abonné</button>
+    <button *ngIf="!abonneForm && editing === 0" class="btn btn-success" (click)="ajouter()">Ajouter un Abonné</button>
+
   </div>
 
   <div *ngIf="abonneForm">

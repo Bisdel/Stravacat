@@ -20,29 +20,30 @@ export class AbonnementComponent implements OnInit {
   villeCtrl!: FormControl;
   animalCtrl!: FormControl;
   editing: number = 0;
+
   collectionSize: number = 0;
   page: number = 1;
   pageSize: number = 4;
-
-  refreshCountries(){
-    console.log('Page actuelle :' , this.page);
-    console.log('Taille de la page :' , this.pageSize);
-  }
+  abonnementToModify: Abonnement | null = null;
 
   constructor(title: Title, private srvAbonnement: AbonnementService, private formBuilder: FormBuilder) {
     title.setTitle("Liste des abonnements");
+  }
+
+  refreshCountries() {
+    console.log('Page actuelle :', this.page);
+    console.log('Taille de la page :', this.pageSize);
   }
 
   ngOnInit(): void {
     this.reload();
 
     this.abonnement$.subscribe(abonnement => {
-     this.collectionSize = abonnement.length;
-     this.pageSize = 10 ;
+      this.collectionSize = abonnement.length;
+      this.pageSize = 10;
 
-    })
+    });
   }
-
   private reload() {
     this.abonnement$ = this.srvAbonnement.findAll();
   }
@@ -54,7 +55,7 @@ export class AbonnementComponent implements OnInit {
     this.ageCtrl = this.formBuilder.control('', Validators.max(100));
     this.especeCtrl = this.formBuilder.control('', Validators.required);
     this.villeCtrl = this.formBuilder.control('', Validators.required);
-    this.animalCtrl = this.formBuilder.control('' , Validators.required);
+    this.animalCtrl = this.formBuilder.control('', Validators.required);
 
     this.abonnementForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
@@ -80,8 +81,31 @@ export class AbonnementComponent implements OnInit {
       age: this.ageCtrl,
       espece: this.especeCtrl,
       ville: this.villeCtrl,
-      animal_id:this.animalCtrl,
+      animal_id: this.animalCtrl,
     });
+    const confirmDelete = confirm("Voulez-vous vraimant modifier l'abonnement ?");
+    if (confirmDelete) {
+      console.log("Modification de l'abonnement : ", abonnement);
+    }
+    else {
+      this.stopAjouterOuModifier();
+    }
+    if (this.editing === 0) {
+      this.abonnementForm = null;
+    }
+  }
+  showAlert() {
+    const confirmResult = confirm("Voulez-vous vraiment modifier les informations ?");
+    if (confirmResult) {
+      this.ajouterOuModifier();
+    }
+  };
+
+  showDelete(abonne: Abonnement) {
+    const confirmResult = confirm("Voulez-vous vraiment supprimer l'abonné ?");
+    if (confirmResult) {
+      this.supprimer(abonne);
+    }
   }
 
   ajouterOuModifier() {
@@ -104,12 +128,26 @@ export class AbonnementComponent implements OnInit {
     this.stopAjouterOuModifier();
   }
 
+  annulerAjout() {
+    this.stopAjouterOuModifier();
+  }
+
   stopAjouterOuModifier() {
     this.editing = 0;
+    this.abonnementForm?.reset();
     this.abonnementForm = null;
+
   }
 
   supprimer(abonnement: Abonnement) {
+    const confirmResult = confirm("Voulez-vous vraiment supprimer l'abonnement ?");
+    if(confirmResult){
+      console.log("Suppression réuissis :" , abonnement);
     this.srvAbonnement.delete(abonnement).subscribe(() => this.reload());
-  }
+  } 
+}
+
+annuler() {
+  this.stopAjouterOuModifier();
+}
 }

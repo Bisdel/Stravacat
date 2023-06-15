@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 import { Abonne } from 'src/app/models/abonne';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,27 +20,28 @@ export class AbonnesComponent implements OnInit {
   especeCtrl!: FormControl;
   villeCtrl!: FormControl;
   animalCtrl!: FormControl;
+  editing: number = 0;
+
   collectionSize: number = 0;
   page: number = 1;
   pageSize: number = 4;
+  abonneToModify: Abonne | null = null;
 
-  editing: number = 0;
+  constructor(title: Title, private srvAbonne: AbonneService, private formBuilder: FormBuilder) {
+    title.setTitle("Liste des abonne");
+  }
 
   refreshCountries() {
     console.log('Page actuelle :', this.page);
     console.log('Taille de la page :', this.pageSize);
   }
 
-  constructor(title: Title, private srvAbonne: AbonneService, private formBuilder: FormBuilder) {
-    title.setTitle("Liste des abonne");
-  }
-
   ngOnInit(): void {
     this.reload();
-    this.abonne$.subscribe(abonnes =>{
+    this.abonne$.subscribe(abonnes => {
       this.collectionSize = abonnes.length; // Remplacez 100 par la taille réelle de votre collection d'abonnés
       this.pageSize = 10;
-    })
+    });
   }
 
   private reload() {
@@ -55,33 +56,60 @@ export class AbonnesComponent implements OnInit {
     this.especeCtrl = this.formBuilder.control('', Validators.required);
     this.villeCtrl = this.formBuilder.control('', Validators.required);
     this.animalCtrl = this.formBuilder.control('', Validators.required);
-   
+
     this.abonneForm = this.formBuilder.group({
       pseudo: this.pseudoCtrl,
       age: this.ageCtrl,
       espece: this.especeCtrl,
-      ville: this.villeCtrl,   
+      ville: this.villeCtrl,
       animal_id: this.animalCtrl,
-     });
+    });
   }
 
   modifier(abonne: Abonne) {
-  this.editing = abonne.id;
-  this.abonne$ = this.srvAbonne.findAll();
-  this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
-  this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
-  this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
-  this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required); // Correction ici
-  this.animalCtrl = this.formBuilder.control(abonne.animal_id, Validators.required );
+    this.editing = abonne.id;
+    this.abonne$ = this.srvAbonne.findAll();
+    this.pseudoCtrl = this.formBuilder.control(abonne.pseudo, Validators.required);
+    this.ageCtrl = this.formBuilder.control(abonne.age, Validators.required);
+    this.especeCtrl = this.formBuilder.control(abonne.espece, Validators.required);
+    this.villeCtrl = this.formBuilder.control(abonne.ville, Validators.required); // Correction ici
+    this.animalCtrl = this.formBuilder.control(abonne.animal_id, Validators.required);
 
-  this.abonneForm = this.formBuilder.group({
-    pseudo: this.pseudoCtrl,
-    age: this.ageCtrl,
-    espece: this.especeCtrl,
-    ville: this.villeCtrl,
-    animal_id: this.animalCtrl
+    this.abonneForm = this.formBuilder.group({
+      pseudo: this.pseudoCtrl,
+      age: this.ageCtrl,
+      espece: this.especeCtrl,
+      ville: this.villeCtrl,
+      animal_id: this.animalCtrl
     });
+
+    const confirmDelete = confirm("Voulez-vous vraiment modifier cet abonné ?");
+  if (confirmDelete) {
+    // Action à effectuer si l'utilisateur répond "Oui"
+    console.log("Modification de l'abonné :", abonne);
+    // Autres actions à effectuer...
+  } else {
+    this.stopAjouterOuModifier(); // Masquer le formulaire si l'utilisateur annule
   }
+  if (this.editing === 0) {
+    this.abonneForm = null;
+  }
+  }
+
+  showAlert() {
+    const confirmResult = confirm("Voulez-vous vraiment modifier les informations ?");
+    if (confirmResult) {
+      this.ajouterOuModifier();
+    }
+  };
+
+  showDelete(abonne: Abonne) {
+    const confirmResult = confirm("Voulez-vous vraiment supprimer l'abonné ?");
+    if (confirmResult) {
+      this.supprimer(abonne);
+    }
+  }
+
 
   ajouterOuModifier() {
     let addOrEditObs: Observable<Abonne>;
@@ -106,20 +134,30 @@ export class AbonnesComponent implements OnInit {
     this.stopAjouterOuModifier();
   }
 
+  annulerAjout() {
+    this.stopAjouterOuModifier();
+  }
 
   stopAjouterOuModifier() {
     this.editing = 0;
+    this.abonneForm?.reset() ;
     this.abonneForm = null;
   }
 
 
   supprimer(abonne: Abonne) {
-    this.srvAbonne.delete(abonne).subscribe(() => this.reload());
+    const confirmResult = confirm("Voulez-vous vraiment supprimer l'abonné ?");
+    if (confirmResult) {
+      console.log("Suppression de l'abonné :", abonne);
+      this.srvAbonne.delete(abonne).subscribe(() => this.reload());
+    }
+  }
+  annuler() {
+    this.stopAjouterOuModifier();
   }
 
+
 }
-
-
 
 
 
