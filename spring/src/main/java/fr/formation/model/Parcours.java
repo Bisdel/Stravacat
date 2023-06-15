@@ -1,6 +1,6 @@
 package fr.formation.model;
-import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -47,7 +47,7 @@ public class Parcours {
 
 		@Column (name = "parc_temps")
 		@JsonView(Views.Parcours.class)
-	private Time tempsParcours; 
+	private LocalTime tempsParcours; 
 
 		@ManyToOne
 		@JoinColumn(name = "parc_animal_id")
@@ -85,11 +85,11 @@ public class Parcours {
 			this.traceGpsParcours = traceGpsParcours;
 		}
 
-		public Time getTempsParcours() {
+		public LocalTime getTempsParcours() {
 			return tempsParcours;
 		}
 
-		public void setTempsParcours(Time tempsParcours) {
+		public void setTempsParcours(LocalTime tempsParcours) {
 			this.tempsParcours = tempsParcours;
 		}
 

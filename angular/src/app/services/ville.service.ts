@@ -14,6 +14,10 @@ export class VilleService {
     return this.httpClient.get<Ville[]>(`${ environment.apiUrl }/ville`);
   }
 
+  public findByNom(ville: any): Observable<Ville> {
+    return this.httpClient.get<Ville>(`${ environment.apiUrl }/ville/${ ville.nom }`);
+  }
+
   public add(ville: any): Observable<Ville> {
     return this.httpClient.post<Ville>(`${ environment.apiUrl }/ville`, ville);
   }

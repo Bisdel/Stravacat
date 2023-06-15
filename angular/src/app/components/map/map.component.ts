@@ -1,5 +1,14 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import * as L from 'leaflet';
+import { environment } from 'src/app/environments/environment';
+import { AuthResponse } from 'src/app/models/response/auth-response';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ParcoursService } from 'src/app/services/parcours.service';
 
@@ -15,10 +24,40 @@ export class MapComponent implements AfterViewInit {
   private traceGps: any;
   private indexParcours: number = 0;
 
+  userForm!: FormGroup;
+  erreur: boolean = false;
+  villeParcoursCtrl!: FormControl;
+  datePublicationParcoursCtrl!: FormControl;
+  tempsParcoursCtrl!: FormControl;
+  traceGpsParcoursCtrl!: FormControl;
+  @Output() ok: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(
     private srvParcours: ParcoursService,
-    private srvAuth: AuthenticationService
-  ) {}
+    private srvAuth: AuthenticationService,
+    private formBuilder: FormBuilder
+  ) {
+    this.villeParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.datePublicationParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.tempsParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
+    this.traceGpsParcoursCtrl = this.formBuilder.control('', Validators.minLength(1));
+
+    this.userForm = this.formBuilder.group({
+      villeParcours: this.villeParcoursCtrl,
+      datePublicationParcours: this.datePublicationParcoursCtrl,
+      tempsParcours: this.tempsParcoursCtrl,
+      traceGpsParcours: this.traceGpsParcoursCtrl,
+    });
+  }
 
   ngAfterViewInit(): void {
     this.srvParcours.findAllByAnimalId(this.srvAuth.animalId).subscribe({
@@ -48,8 +87,25 @@ export class MapComponent implements AfterViewInit {
     L.geoJSON(this.traceGps).addTo(this.map);
   }
 
-  ajouterParcours() {
-  
+  ajouterOuModifierParcours() {
+    this.erreur = false;
+    this.srvParcours.ajouterOuModifierParcours(
+      this.villeParcoursCtrl.value,
+      this.datePublicationParcoursCtrl.value,
+      this.tempsParcoursCtrl.value,
+      this.traceGpsParcoursCtrl.value,
+      this.srvAuth.animalId.toString(),
+      {
+        next: () => {
+          console.log('ok !');
+          window.location.reload();
+        },
+
+        error: () => {
+          this.erreur = true;
+        },
+      }
+    );
   }
 
   parcoursPrecedent() {
@@ -77,7 +133,6 @@ export class MapComponent implements AfterViewInit {
       );
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
-      // this.map.flyTo([43.2863357,5.3630241],13.5)
     } else {
       triggerErrorToast(
         "Il n'y a pas de parcours avant le " +

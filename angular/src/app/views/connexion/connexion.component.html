@@ -9,6 +9,11 @@
         <br />
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
+        
+        <div *ngIf="erreur" class="alert alert-danger">
+          Nom d'utilisateur ou mot de passe incorrect !
+        </div>
+        
         <form
           [formGroup]="userForm"
           (ngSubmit)="doOk()"
