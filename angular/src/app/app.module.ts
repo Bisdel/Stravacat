@@ -10,7 +10,6 @@ import { FormSelectComponent } from './components/form-select/form-select.compon
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { routes } from './routes';
-import { FournisseurComponent } from './views/fournisseur/fournisseur.component';
 import { HomeComponent } from './views/home/home.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { FormCardComponent } from './components/form-card/form-card.component';
@@ -33,7 +32,6 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
         AppComponent,
         HomeComponent,
         PageNotFoundComponent,
-        FournisseurComponent,
         NavigationComponent,
         FormCardComponent,
         FormInputComponent,
