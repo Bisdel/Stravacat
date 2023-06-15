@@ -77,8 +77,6 @@ public class ParcoursApiController {
         }
         Parcours parcours = new Parcours();
         BeanUtils.copyProperties(parcoursRequest, parcours);
-        System.out.println(parcoursRequest.getTempsParcours());
-        System.out.println(parcours.getTempsParcours());
         parcours.setVille(this.repoVille.findByNom(parcoursRequest.getVilleParcours()).orElseThrow(VilleNotFoundException::new));
         parcours.setAnimal(this.repoAnimal.findById(parcoursRequest.getAnimalId()).orElseThrow(AnimalNotFoundException::new));
         this.repoParcours.save(parcours);

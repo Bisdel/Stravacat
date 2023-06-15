@@ -3,6 +3,7 @@ import { Animal } from "./animal";
 import { Ville } from "./ville";
 
 export class Actualite {
+    
     public get animal(): Animal {
         return this._animal;
     }

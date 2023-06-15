@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,16 +16,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
+import fr.formation.api.request.ActualiteRequest;
 import fr.formation.api.response.ActualiteResponse;
 import fr.formation.api.response.AnimalResponse;
 import fr.formation.api.response.VilleResponse;
 import fr.formation.exception.ActualiteNotFoundException;
 import fr.formation.exception.ActualiteNotValidException;
+import fr.formation.exception.AnimalNotFoundException;
+import fr.formation.exception.VilleNotFoundException;
 import fr.formation.model.Actualite;
 import fr.formation.repo.IActualiteRepository;
 import fr.formation.repo.IAnimalRepository;
+import fr.formation.repo.IVilleRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -37,7 +40,10 @@ public class ActualiteApiController {
 
 	@Autowired
     private IAnimalRepository repoAnimal;
-	
+
+	@Autowired
+    private IVilleRepository repoVille;
+
     @GetMapping
 	@Transactional
 	public List<ActualiteResponse> findAll() {
@@ -61,13 +67,8 @@ public class ActualiteApiController {
 	@Transactional
 	public ActualiteResponse findById(@PathVariable int id) {
 		Actualite actualite = this.repoActualite.findById(id).orElseThrow(ActualiteNotFoundException::new);
-		// ActualiteResponse response = new ActualiteResponse();		
-		// BeanUtils.copyProperties(actualite, response);
-		// response.setAnimal(AnimalResponse.convert(actualite.getAnimal()));
-		// response.setVille(VilleResponse.convert(actualite.getVille()));
-
-		return ActualiteResponse.convert(actualite);
-		
+	
+		return ActualiteResponse.convert(actualite);	
 	}
 
 	@GetMapping("/animal/{animalId}")
@@ -81,27 +82,59 @@ public class ActualiteApiController {
         return response;
     }
 
+	// @PostMapping
+	// @JsonView(Views.Actualite.class)
+	// public Actualite add(@Valid @RequestBody Actualite actualite, BindingResult result) {
+	// 	if (result.hasErrors()){
+    //         throw new ActualiteNotValidException();
+    //     }
+	// 	actualite.setActu_timestamp(LocalDateTime.now());
+	// 	return this.repoActualite.save(actualite);
+	// }
 
 	@PostMapping
-	@JsonView(Views.Actualite.class)
-	public Actualite add(@Valid @RequestBody Actualite actualite, BindingResult result) {
+	public ActualiteResponse add(@Valid @RequestBody ActualiteRequest actualiteRequest, BindingResult result) {
 		if (result.hasErrors()){
             throw new ActualiteNotValidException();
         }
+		Actualite actualite = new Actualite();
+		BeanUtils.copyProperties(actualiteRequest, actualite);
+        actualite.setVille(this.repoVille.findById(actualiteRequest.getVille()).orElseThrow(VilleNotFoundException::new));
+        actualite.setAnimal(this.repoAnimal.findById(actualiteRequest.getAnimal()).orElseThrow(AnimalNotFoundException::new));
 		actualite.setActu_timestamp(LocalDateTime.now());
-		return this.repoActualite.save(actualite);
+        
+		this.repoActualite.save(actualite);
+
+		return ActualiteResponse.convert(actualite);
 	}
 	
+	// @PutMapping("/{id}")
+	// @JsonView(Views.Actualite.class)
+	// public Actualite update(@PathVariable int id, @Valid @RequestBody Actualite actualite, BindingResult result) {
+	// 	if (result.hasErrors()) {
+	// 		throw new ActualiteNotValidException();
+	// 	}
+	// 	actualite.setActu_id(id);
+	// 	actualite.setActu_timestamp(LocalDateTime.now());
+		
+	// 	return this.repoActualite.save(actualite);
+	// }
+
 	@PutMapping("/{id}")
-	@JsonView(Views.Actualite.class)
-	public Actualite update(@PathVariable int id, @Valid @RequestBody Actualite actualite, BindingResult result) {
+	public ActualiteResponse update(@PathVariable int id, @Valid @RequestBody ActualiteRequest actualiteRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ActualiteNotValidException();
 		}
+		Actualite actualite = new Actualite();
+		BeanUtils.copyProperties(actualiteRequest, actualite);
+        actualite.setVille(this.repoVille.findById(actualiteRequest.getVille()).orElseThrow(VilleNotFoundException::new));
+        actualite.setAnimal(this.repoAnimal.findById(actualiteRequest.getAnimal()).orElseThrow(AnimalNotFoundException::new));
+        
 		actualite.setActu_id(id);
 		actualite.setActu_timestamp(LocalDateTime.now());
 		
-		return this.repoActualite.save(actualite);
+		this.repoActualite.save(actualite);
+		return ActualiteResponse.convert(actualite);
 	}
 
 	@DeleteMapping("/{id}")
