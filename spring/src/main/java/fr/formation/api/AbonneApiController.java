@@ -24,61 +24,79 @@ import fr.formation.repo.IAbonnesRepository;
 import fr.formation.repo.IVilleRepository;
 import jakarta.validation.Valid;
 
-@RestController
+@RestController // pour indiquer qu'elle gère les requêtes REST
 @RequestMapping("/api/abonnes")
-public class AbonneApiController {
+public class AbonneApiController { // Injection des dépendances IAbonnesRepository et IVilleRepository
 	@Autowired
 	private IAbonnesRepository repoAbonne;
 
 	@Autowired
 	private IVilleRepository villeRepository;
 
-	// LIste des ABonnes
+	// Méthode pour récupérer la liste de tous les abonnés
 	@GetMapping
 	public List<AbonnesResponse> findAll() {
-		List<AbonnesResponse> result = this.repoAbonne.findAll().stream().map(AbonnesResponse::convert).toList();
+		// Récupérer tous les abonnés depuis le repository
+		List<AbonnesResponse> result = this.repoAbonne.findAll().stream()
+				.map(AbonnesResponse::convert)
+				.toList(); // la méthode de conversion convert de la classe AbonnesResponse à chaque
+							// élément de la liste d'abonnés et renvoie une liste des objets AbonnesResponse
+							// convertis.
+
+		// Parcourir chaque abonné et récupérer les détails de la ville correspondante
 		result.forEach(abo -> {
 			Optional<Ville> ville = this.villeRepository.findById(abo.getVille_id());
 
 			if (ville.isPresent()) {
 				abo.setVille(ville.get());
 			}
-
 		});
 
+		// Retourner la liste des abonnés avec les détails de la ville
 		return result;
-
 	}
 
-	// Ajouter un abonnes
-
+	// Méthode pour ajouter un nouvel abonné
 	@PostMapping
 	public AbonnesResponse add(@Valid @RequestBody AbonnesRequest abonnesRequest, BindingResult result) {
+		// Vérifier s'il y a des erreurs de validation dans le BindingResult
 		if (result.hasErrors()) {
 			throw new AbonnesNotValidException();
 		}
+
+		// Créer un nouvel objet Abonnes et copier les propriétés de la requête
 		Abonnes nouveauAbonnes = new Abonnes();
 		BeanUtils.copyProperties(abonnesRequest, nouveauAbonnes);
 
+		// Enregistrer le nouvel abonné dans le repository
 		this.repoAbonne.save(nouveauAbonnes);
+
+		// Convertir et retourner la réponse AbonnesResponse correspondante
 		return AbonnesResponse.convert(nouveauAbonnes);
 	}
 
-	// Midifier
+	// Méthode pour modifier un abonné existant
 	@PutMapping("/{id}")
 	public Abonnes add(@PathVariable int id, @Valid @RequestBody AbonnesRequest abonnesRequest, BindingResult result) {
+		// Vérifier s'il y a des erreurs de validation dans le BindingResult
 		if (result.hasErrors()) {
 			throw new AbonnesNotFoundException();
 		}
+
+		// Récupérer l'abonné existant à partir de l'ID fourni
 		Abonnes abonnes = this.repoAbonne.findById(id).orElseThrow(AbonnesNotFoundException::new);
+
+		// Copier les propriétés de la requête dans l'abonné existant
 		BeanUtils.copyProperties(abonnesRequest, abonnes);
+
+		// Enregistrer les modifications de l'abonné dans le repository
 		return this.repoAbonne.save(abonnes);
 	}
 
-	// Supprimer
+	// Méthode pour supprimer un abonné par son ID
 	@DeleteMapping("/{id}")
 	public void deletById(@PathVariable int id) {
+		// Supprimer l'abonné correspondant à l'ID fourni
 		this.repoAbonne.deleteById(id);
 	}
-
 }

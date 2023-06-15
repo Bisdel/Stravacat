@@ -8,16 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "abonne")
+@Entity // Annotation @Entity indique que cette classe est une entité persistante
+@Table(name = "abonne") // Annotation @Table spécifie le nom de la table correspondante dans la base de
+						// données
 public class Abonnes {
-
+	// Annotation @Id indique que le champ id est la clé primaire de l'entité
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "abon_id")
 	private int id;
 
+	// Annotation @Column spécifie que le champ est mappé à une colonne de la table
 	@Column(name = "abon_pseudo", length = 20, nullable = false)
+	// Annotation @NotBlank spécifie que le champ ne peut pas être vide
 	@NotBlank(message = "Le pseudo est obligatoire")
 	private String pseudo;
 
