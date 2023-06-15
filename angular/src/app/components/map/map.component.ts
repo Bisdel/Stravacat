@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
@@ -7,10 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import * as L from 'leaflet';
-import { environment } from 'src/app/environments/environment';
-import { AuthResponse } from 'src/app/models/response/auth-response';
+import { Parcours } from 'src/app/models/parcours';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ParcoursService } from 'src/app/services/parcours.service';
+import { AppToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-map',
@@ -18,11 +17,12 @@ import { ParcoursService } from 'src/app/services/parcours.service';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements AfterViewInit {
-  private loaded: boolean = false;
   private map: any;
-  private parcours$!: any[];
+  private parcours$!: Parcours[];
   private traceGps: any;
   private indexParcours: number = 0;
+
+  showToast: boolean = false;
 
   userForm!: FormGroup;
   erreur: boolean = false;
@@ -31,11 +31,13 @@ export class MapComponent implements AfterViewInit {
   tempsParcoursCtrl!: FormControl;
   traceGpsParcoursCtrl!: FormControl;
   @Output() ok: EventEmitter<void> = new EventEmitter<void>();
+  toastMessage: String = '';
 
   constructor(
     private srvParcours: ParcoursService,
     private srvAuth: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private srvToast:AppToastService
   ) {
     this.villeParcoursCtrl = this.formBuilder.control(
       '',
@@ -49,7 +51,10 @@ export class MapComponent implements AfterViewInit {
       '',
       Validators.minLength(1)
     );
-    this.traceGpsParcoursCtrl = this.formBuilder.control('', Validators.minLength(1));
+    this.traceGpsParcoursCtrl = this.formBuilder.control(
+      '',
+      Validators.minLength(1)
+    );
 
     this.userForm = this.formBuilder.group({
       villeParcours: this.villeParcoursCtrl,
@@ -117,9 +122,9 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      triggerErrorToast(
+      this.srvToast.show('Information',
         "Il n'y a pas de parcours depuis le " +
-          this.parcours$![this.indexParcours].datePublicationParcours +
+          this.parcours$[0].datePublicationParcours +
           '.'
       );
     }
@@ -134,7 +139,7 @@ export class MapComponent implements AfterViewInit {
       L.geoJSON(this.traceGps).addTo(this.map);
       this.map.flyTo(this.getMeanCoordinates(this.traceGps), 13);
     } else {
-      triggerErrorToast(
+      this.srvToast.show('Information',
         "Il n'y a pas de parcours avant le " +
           this.parcours$![this.indexParcours].datePublicationParcours +
           '.'
@@ -163,7 +168,4 @@ export class MapComponent implements AfterViewInit {
     let meanCoordinates: [number, number] = [meanYCoordinate, meanXCoordinate];
     return meanCoordinates;
   }
-}
-function triggerErrorToast(message: String) {
-  throw new Error('Function not implemented.');
 }
