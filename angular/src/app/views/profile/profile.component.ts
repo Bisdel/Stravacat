@@ -13,7 +13,6 @@ import { AnimalService } from 'src/app/services/animal.service';
 import { Actualite } from 'src/app/models/actualite';
 import { Observable } from 'rxjs';
 import { ActualiteService } from 'src/app/services/actualite.service';
-import { Animal } from 'src/app/models/animal';
 
 @Component({
   selector: 'app-profile',
@@ -25,7 +24,6 @@ export class ProfileComponent implements OnInit {
   animalId: string = this.srvAuth.animalId;
   animal!: AnimalResponse;
   actualites$!: Observable<Actualite[]>;
-
   erreur: boolean = false;
   userForm!: FormGroup;
   pseudoCtrl!: FormControl;
@@ -41,7 +39,7 @@ export class ProfileComponent implements OnInit {
     private srvActualite: ActualiteService,
     private srvAuth: AuthenticationService,
     private formBuilder: FormBuilder,
-    private srvAnimal: AnimalService
+    private srvAnimal: AnimalService,
   ) {
     this.actualites$ = this.srvActualite.findByAnimalId(this.srvAuth.animalId);
     title.setTitle('Mon profil');

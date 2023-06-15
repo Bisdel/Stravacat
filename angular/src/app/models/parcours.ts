@@ -1,8 +1,4 @@
 import { Time } from "@angular/common";
-import { Animal } from "./animal";
-import { Ville } from "./ville";
-import { GeoJsonObject } from "geojson";
-
 export class Parcours {
     public get animalId(): string {
         return this._animalId;

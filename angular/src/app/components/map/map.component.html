@@ -1,3 +1,6 @@
+<ngb-toast class="toast bg-primary text-light" header="Information" *ngIf="showToast" (hidden)="showToast = false">
+{{toastMessage}}
+</ngb-toast>
 <div class="card m-1" style="height: 400px">
     <div class="card-header justify-content-around align-content-center">
       <strong>Mes derniers parcours </strong>
@@ -91,12 +94,12 @@
                     id="tempsParcours"
                     type="time"
                     step="1"
-                    label="Temps de parcours (hh:mm)"
                     formControlName="tempsParcours"
                     [formControl]="tempsParcoursCtrl"
                     message-when-not-valid="Le temps de parcours est obligatoire"
                     placeholder="tempsParcours"
                     />
+                    <label>Temps de parcours (hh:mm:ss)</label>
                   </div>
                   <app-input
                     id="traceGpsParcours"
