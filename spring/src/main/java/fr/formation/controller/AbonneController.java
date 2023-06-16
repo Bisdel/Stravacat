@@ -47,33 +47,27 @@ public class AbonneController {
 	public String add(@Valid Abonnes abonnes, BindingResult result, Model model) {
 		// Cette méthode est appelée lors de la soumission du formulaire d'ajout ou de
 		// modification d'un abonné
-
 		if (result.hasErrors()) {
 			// Vérifie s'il y a des erreurs de validation dans le formulaire
 			model.addAttribute("erreurs", result);
 			return "abonne/ajouter";
 		}
-
 		// Sauvegarde l'abonné dans le repository
 		this.repoAbonnes.save(abonnes);
-
 		return "redirect:/abonne";
 	}
 
 	@GetMapping("/abonne/modifier/{id}")
 	public String edit(@PathVariable int id, Model model) {
 		// Affiche la page de formulaire pour modifier un abonné existant
-
 		// Recherche l'abonné par son ID dans le repository
 		Abonnes abonne = this.repoAbonnes.findById(id).orElseThrow(AbonnesNotFoundException::new);
 		model.addAttribute("abonne", abonne);
 		return "abonne/ajouter";
 	}
 
-	@GetMapping("/abonne/supprimer/{id}")
+	@GetMapping("/abonne/supprimer/{id}") // Supprime l'abonné par son ID
 	public String deleteById(@PathVariable int id) {
-		// Supprime l'abonné par son ID
-
 		try {
 			this.repoAbonnes.deleteById(id);
 		} catch (Exception ex) {

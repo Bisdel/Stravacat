@@ -6,19 +6,16 @@ import jakarta.validation.constraints.NotNull;
 
 public class AbonnesRequest {
 
-
-     @NotNull
+	@NotNull
 	private int animal_id;
-     @NotBlank
+	@NotBlank
 	private String pseudo;
-     @NonNull
+	@NonNull
 	private int age;
-     @NotBlank
+	@NotBlank
 	private String espece;
-     @NonNull
+	@NonNull
 	private int Ville_id;
-
-	
 
 	public int getAnimal_id() {
 		return animal_id;

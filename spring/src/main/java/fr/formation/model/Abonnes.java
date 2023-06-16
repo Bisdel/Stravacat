@@ -12,27 +12,21 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name = "abonne") // Annotation @Table spécifie le nom de la table correspondante dans la base de
 						// données
 public class Abonnes {
-	// Annotation @Id indique que le champ id est la clé primaire de l'entité
-	@Id
+	@Id // Annotation @Id indique que le champ id est la clé primaire de l'entité
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "abon_id")
 	private int id;
-
 	// Annotation @Column spécifie que le champ est mappé à une colonne de la table
 	@Column(name = "abon_pseudo", length = 20, nullable = false)
 	// Annotation @NotBlank spécifie que le champ ne peut pas être vide
 	@NotBlank(message = "Le pseudo est obligatoire")
 	private String pseudo;
-
 	@Column(name = "abon_age")
 	private int age;
-
 	@Column(name = "abon_espece")
 	private String espece;
-
 	@Column(name = "abon_ville_id")
 	private int ville_id;
-
 	@Column(name = "abon_animal_id")
 	private int animal_id;
 

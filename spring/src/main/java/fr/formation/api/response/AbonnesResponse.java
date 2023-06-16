@@ -1,13 +1,11 @@
 package fr.formation.api.response;
 
 import org.springframework.beans.BeanUtils;
-
 import fr.formation.model.Abonnes;
 import fr.formation.model.Animal;
 import fr.formation.model.Ville;
 
 public class AbonnesResponse {
-
 	private int id;
 	private String pseudo;
 	private int age;
