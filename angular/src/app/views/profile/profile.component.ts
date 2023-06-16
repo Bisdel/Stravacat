@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AnimalResponse } from 'src/app/models/response/animal-response';
 import { AnimalService } from 'src/app/services/animal.service';

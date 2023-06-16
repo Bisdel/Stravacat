@@ -12,14 +12,27 @@ export class AuthenticationService {
   private _token: string = '';
   private _animalId:string = ''; 
 
-  public get token(): string {
-    return this._token;
-  }
   public set token(value: string) {
     // Stockage du jeton dans le navigateur pour le retrouver au refresh de l'appli (et éviter des déconnexions à répétition)
     localStorage.setItem('token', value);
     this._token = value;
   }
+  
+  constructor(private httpClient: HttpClient, private router: Router) {
+    // Récupération du jeton stocké dans le navigateur
+    this.token = localStorage.getItem('token') ?? '';
+    this.animalId = localStorage.getItem('animalId') ?? '';
+  }
+
+  public isLogged() {
+    return !!(this.token && this.token != '');
+  }
+
+  public get token(): string {
+    return this._token;
+  }
+
+
   public get animalId(): string {
     return this._animalId;
   }
@@ -28,16 +41,6 @@ export class AuthenticationService {
     this._animalId = value;
   }
 
-  constructor(private httpClient: HttpClient, private router: Router) {
-    // Récupération du jeton stocké dans le navigateur
-    this.token = localStorage.getItem('token') ?? '';
-    this.animalId = localStorage.getItem('animalId') ?? '';
-
-  }
-
-  public isLogged() {
-    return !!(this.token && this.token != '');
-  }
 
   public logout(){
     this.token = '';

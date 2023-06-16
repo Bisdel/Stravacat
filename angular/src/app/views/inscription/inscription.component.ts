@@ -60,8 +60,7 @@ export class InscriptionComponent {
       error: () => {
         this.erreur = true;
       }
-    });
-    
+    });  
   }
   doOk() {
     this.ok.emit();
